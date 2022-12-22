@@ -1,4 +1,15 @@
 --              AstroNvim Configuration Table
+vim.opt.guifont = { "Iosevka", ":h14" }
+-- CTRL-X is Cut
+vim.api.nvim_command("vnoremap <C-X> \"+x")
+
+-- CTRL-C is Copy
+vim.api.nvim_command("vnoremap <C-C> \"+y")
+
+-- CTRL-V is Paste
+vim.api.nvim_command("map <C-V> \"+gP")
+vim.api.nvim_command("cmap <C-V> <C-R>+")
+
 local config = {
   colorscheme = "catppuccin",
   options = {
@@ -6,6 +17,9 @@ local config = {
       relativenumber = false, -- sets vim.opt.relativenumber
       number = true, -- sets vim.opt.number
     },
+  },
+  lsp = {
+    skip_setup = { "rust-analyzer" }
   },
   plugins = {
     init = {
@@ -17,8 +31,157 @@ local config = {
         end,
       },
       {
+        "simrat39/rust-tools.nvim",
+        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+        config = function()
+          local rt = require("rust-tools")
+
+          rt.setup {
+            tools = { -- rust-tools options
+              inlay_hints = {
+                auto = true,
+                only_current_line = false,
+                show_parameter_hints = true,
+              },
+              hover_actions = {
+                auto_focus = true,
+              },
+            },
+            server = {
+              standalone = false,
+              settings = {
+                ['rust-analyzer'] = {
+                  diagnostics = {
+                    enable = true,
+                    -- https://github.com/rust-analyzer/rust-analyzer/issues/6835
+                    disabled = { 'unresolved-macro-call' },
+                    enableExperimental = true,
+                  },
+                  completion = {
+                    autoself = { enable = true },
+                    autoimport = { enable = true },
+                    postfix = { enable = true },
+                  },
+                  imports = {
+                    group = { enable = true },
+                    merge = { glob = false },
+                    prefix = 'self',
+                    granularity = {
+                      enforce = true,
+                      group = 'crate',
+                    },
+                  },
+                  cargo = {
+                    loadOutDirsFromCheck = true,
+                    autoreload = true,
+                    runBuildScripts = true,
+                    features = 'all',
+                  },
+                  procMacro = { enable = true },
+                  lens = {
+                    enable = true,
+                    run = { enable = true },
+                    debug = { enable = true },
+                    implementations = { enable = true },
+                    references = {
+                      adt = { enable = true },
+                      enumVariant = { enable = true },
+                      method = { enable = true },
+                      trait = { enable = true },
+                    },
+                  },
+                  hover = {
+                    actions = {
+                      enable = true,
+                      run = { enable = true },
+                      debug = { enable = true },
+                      gotoTypeDef = { enable = true },
+                      implementations = { enable = true },
+                      references = { enable = true },
+                    },
+                    links = { enable = true },
+                    documentation = { enable = true },
+                  },
+                  inlayHints = {
+                    enable = true,
+                    bindingModeHints = { enable = true },
+                    chainingHints = { enable = true },
+                    closingBraceHints = {
+                      enable = true,
+                      minLines = 0,
+                    },
+                    closureReturnTypeHints = { enable = 'always' },
+                    lifetimeElisionHints = { enable = 'skip_trivial' },
+                    typeHints = { enable = true },
+                  },
+                  checkOnSave = {
+                    enable = true,
+                    command = 'clippy',
+                    features = 'all',
+                  },
+                },
+              },
+              on_attach = function(_, bufnr)
+                -- Hover actions
+                vim.keymap.set("n", "<C-space>", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
+                -- Code action groups
+                vim.keymap.set("n", "<Leader>a", require("rust-tools").code_action_group.code_action_group,
+                  { buffer = bufnr })
+              end,
+
+            }
+          }
+
+          rt.runnables.runnables()
+          rt.hover_actions.hover_actions()
+        end,
+      },
+      {
+        'saecki/crates.nvim',
+        event = { "BufRead Cargo.toml" },
+        after = "nvim-cmp",
+        config = function()
+          require("crates").setup()
+          astronvim.add_cmp_source { name = "crates", priority = 1100 }
+
+          -- Crates mappings:
+          local map = vim.api.nvim_set_keymap
+          map("n", "<leader>Ct", ":lua require('crates').toggle()<cr>", { desc = "Toggle extra crates.io information" })
+          map("n", "<leader>Cr", ":lua require('crates').reload()<cr>", { desc = "Reload information from crates.io" })
+          map("n", "<leader>CU", ":lua require('crates').upgrade_crate()<cr>", { desc = "Upgrade a crate" })
+          map("v", "<leader>CU", ":lua require('crates').upgrade_crates()<cr>", { desc = "Upgrade selected crates" })
+          map("n", "<leader>CA", ":lua require('crates').upgrade_all_crates()<cr>", { desc = "Upgrade all crates" })
+        end,
+      },
+      {
+        "tzachar/cmp-tabnine",
+        requires = "nvim-cmp",
+        run = "./install.sh",
+        config = function()
+          local tabnine = require "cmp_tabnine.config"
+          tabnine:setup {
+            max_lines = 5,
+            max_num_results = 7,
+            sort = true,
+            run_on_every_keystroke = true,
+            snippet_placeholder = "..",
+            ignored_file_types = {},
+            show_prediction_strength = false,
+          }
+          astronvim.add_cmp_source({ name = "cmp_tabnine", priority = 900, max_item_count = 4 })
+        end,
+      },
+      {
         "wakatime/vim-wakatime"
       }
+    },
+    ["mason-lspconfig"] = {
+      ensure_installed = { "rust_analyzer" }, -- install rust_analyzer
+    },
+  },
+  mappings = {
+    n = {
+      ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
     },
   },
 }
