@@ -1,14 +1,5 @@
 --              AstroNvim Configuration Table
 vim.opt.guifont = { "Iosevka", ":h14" }
--- CTRL-X is Cut
-vim.api.nvim_command("vnoremap <C-X> \"+x")
-
--- CTRL-C is Copy
-vim.api.nvim_command("vnoremap <C-C> \"+y")
-
--- CTRL-V is Paste
-vim.api.nvim_command("map <C-V> \"+gP")
-vim.api.nvim_command("cmap <C-V> <C-R>+")
 
 local config = {
   colorscheme = "catppuccin",
@@ -180,8 +171,28 @@ local config = {
     },
   },
   mappings = {
+    -- make copy-pasting use the system clipboard by default
     n = {
-      ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
+      p = { "\"+p" },
+      P = { "\"+P" },
+
+      ["<C-s>"] = { ":w<cr>", desc = "Save File" },
+      ["<C-V>"] = { "p", desc = "Paste" }
+    },
+    v = {
+      x = { "\"+x" },
+      y = { "\"+y" },
+      -- also make pasting in visual mode not overwrite the clipboard
+      p = { "\"_d\"+p" },
+      P = { "\"_d\"+P" },
+
+      ["<C-X>"] = { "x", desc = "Cut" },
+      ["<C-C>"] = { "y", desc = "Copy" },
+      ["<C-V>"] = { "P", desc = "Paste" }
+    },
+    i = {
+      -- saving also in insert mode
+      ["<C-S>"] = { "<Esc>:w<cr>li", desc = "Save File" },
     },
   },
 }
