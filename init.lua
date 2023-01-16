@@ -155,6 +155,26 @@ local config = {
         end,
       },
       {
+        "RishabhRD/lspactions",
+        requires = {
+          { 'nvim-lua/plenary.nvim' },
+          { 'nvim-lua/popup.nvim' },
+          { 'nvim-lua/plenary.nvim' },
+        },
+      },
+      {
+        "lewis6991/hover.nvim",
+        config = function()
+          require("hover").setup {
+            init = function()
+              require("hover.providers.lsp")
+            end,
+            preview_window = true,
+            title = false
+          }
+        end
+      },
+      {
         "wakatime/vim-wakatime"
       }
     },
@@ -169,7 +189,16 @@ local config = {
       P = { "\"+P" },
 
       ["<C-s>"] = { ":w<cr>", desc = "Save File" },
-      ["<C-V>"] = { "p", desc = "Paste" }
+      ["<C-V>"] = { "p", desc = "Paste" },
+
+      ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
+      ["<leader>la"] = { "<cmd>lua require'lspactions'.code_action()<cr>", desc = "Rename symbol" },
+      ["<leader>le"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Show definition" },
+      ["<leader>ld"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Show declaration" },
+      ["<leader>lm"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Show implementations" },
+
+      ["<leader>lh"] = { "<cmd>lua require('hover').hover()<cr>", desc = "Hover" },
+      ["<leader>lH"] = { "<cmd>lua require('hover').hover_select()<cr>", desc = "Hover (select)" },
     },
     v = {
       x = { "\"+x" },
@@ -180,13 +209,29 @@ local config = {
 
       ["<C-X>"] = { "x", desc = "Cut" },
       ["<C-C>"] = { "y", desc = "Copy" },
-      ["<C-V>"] = { "P", desc = "Paste" }
+      ["<C-V>"] = { "P", desc = "Paste" },
+
+      ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
     },
     i = {
       -- saving also in insert mode
-      ["<C-S>"] = { "<Esc>:w<cr>li", desc = "Save File" },
+      ["<C-S>"] = { "<cmd>w<cr>li", desc = "Save File" },
+
+      ["<F2>"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
     },
   },
+    },
+  },
+
+  polish = function()
+    vim.ui.select = require 'lspactions'.select
+    vim.ui.input = require 'lspactions'.input
+    vim.lsp.handlers["textDocument/codeAction"] = require 'lspactions'.codeaction
+    vim.lsp.handlers["textDocument/references"] = require 'lspactions'.references
+    vim.lsp.handlers["textDocument/definition"] = require 'lspactions'.definition
+    vim.lsp.handlers["textDocument/declaration"] = require 'lspactions'.declaration
+    vim.lsp.handlers["textDocument/implementation"] = require 'lspactions'.implementation
+  end
 }
 
 return config
