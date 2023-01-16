@@ -179,7 +179,7 @@ local config = {
       }
     },
     ["mason-lspconfig"] = {
-      ensure_installed = { "rust_analyzer" }, -- install rust_analyzer
+      ensure_installed = { "rust_analyzer" },
     },
   },
   mappings = {
@@ -220,6 +220,13 @@ local config = {
       ["<F2>"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
     },
   },
+  ["which-key"] = {
+    register = {
+      n = {
+        ["<leader>"] = {
+          ["C"] = { name = "Crates" },
+        },
+      },
     },
   },
 
