@@ -10,7 +10,7 @@ local config = {
     },
   },
   lsp = {
-    skip_setup = { "rust-analyzer" }
+    -- skip_setup = { "rust-analyzer" }
   },
   plugins = {
     init = {
@@ -99,10 +99,11 @@ local config = {
                     chainingHints = { enable = true },
                     closingBraceHints = {
                       enable = true,
-                      minLines = 0,
+                      minLines = 10,
                     },
                     closureReturnTypeHints = { enable = 'always' },
                     lifetimeElisionHints = { enable = 'skip_trivial' },
+                    parameterHints = { enable = false },
                     typeHints = { enable = true },
                   },
                   checkOnSave = {
@@ -112,19 +113,10 @@ local config = {
                   },
                 },
               },
-              on_attach = function(_, bufnr)
-                -- Hover actions
-                vim.keymap.set("n", "<C-space>", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
-                -- Code action groups
-                vim.keymap.set("n", "<Leader>a", require("rust-tools").code_action_group.code_action_group,
-                  { buffer = bufnr })
-              end,
-
             }
           }
 
           rt.runnables.runnables()
-          rt.hover_actions.hover_actions()
         end,
       },
       {
