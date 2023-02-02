@@ -12,9 +12,7 @@ local config = {
       number = true,
     },
   },
-  lsp = {
-    -- skip_setup = { "rust-analyzer" }
-  },
+  lsp = { skip_setup = { "rust-analyzer" } },
   plugins = {
     init = {
       {
