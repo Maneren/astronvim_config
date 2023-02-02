@@ -129,14 +129,6 @@ local config = {
         config = function()
           require("crates").setup()
           astronvim.add_cmp_source { name = "crates", priority = 1100 }
-
-          -- Crates mappings:
-          local map = vim.api.nvim_set_keymap
-          map("n", "<leader>Ct", ":lua require('crates').toggle()<cr>", { desc = "Toggle extra crates.io information" })
-          map("n", "<leader>Cr", ":lua require('crates').reload()<cr>", { desc = "Reload information from crates.io" })
-          map("n", "<leader>CU", ":lua require('crates').upgrade_crate()<cr>", { desc = "Upgrade a crate" })
-          map("v", "<leader>CU", ":lua require('crates').upgrade_crates()<cr>", { desc = "Upgrade selected crates" })
-          map("n", "<leader>CA", ":lua require('crates').upgrade_all_crates()<cr>", { desc = "Upgrade all crates" })
         end,
       },
       {
@@ -201,6 +193,11 @@ local config = {
 
       ["<leader>lh"] = { "<cmd>lua require('hover').hover()<cr>", desc = "Hover" },
       ["<leader>lH"] = { "<cmd>lua require('hover').hover_select()<cr>", desc = "Hover (select)" },
+
+      ["<leader>Ct"] = { "<cmd>lua require('crates').toggle()<cr>", desc = "Toggle extra crates.io information" },
+      ["<leader>Cr"] = { "<cmd>lua require('crates').reload()<cr>", desc = "Reload information from crates.io" },
+      ["<leader>CU"] = { "<cmd>lua require('crates').upgrade_crate()<cr>", desc = "Upgrade a crate" },
+      ["<leader>CA"] = { "<cmd>lua require('crates').upgrade_all_crates()<cr>", desc = "Upgrade all crates" },
     },
     v = {
       x = { "\"+x" },
@@ -214,6 +211,8 @@ local config = {
       ["<C-V>"] = { "p", desc = "Paste" },
 
       ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
+
+      ["<leader>CU"] = { "<cmd>lua require('crates').upgrade_crates()<cr>", desc = "Upgrade selected crates" }
     },
     i = {
       -- saving also in insert mode
