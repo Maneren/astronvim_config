@@ -162,7 +162,6 @@ local config = {
         requires = {
           { 'nvim-lua/plenary.nvim' },
           { 'nvim-lua/popup.nvim' },
-          { 'nvim-lua/plenary.nvim' },
         },
       },
       {
@@ -218,7 +217,7 @@ local config = {
     },
     i = {
       -- saving also in insert mode
-      ["<C-S>"] = { "<cmd>w<cr>li", desc = "Save File" },
+      ["<C-S>"] = { "<cmd>w<cr>", desc = "Save File" },
 
       ["<F2>"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
     },
