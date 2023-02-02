@@ -228,6 +228,12 @@ local config = {
           ["C"] = { name = "Crates" },
         },
       },
+      v = {
+        ["<leader>"] = {
+          ["C"] = { name = "Crates" },
+        },
+      },
+
     },
   },
 
