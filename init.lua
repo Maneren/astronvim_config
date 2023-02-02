@@ -211,7 +211,7 @@ local config = {
 
       ["<C-X>"] = { "x", desc = "Cut" },
       ["<C-C>"] = { "y", desc = "Copy" },
-      ["<C-V>"] = { "P", desc = "Paste" },
+      ["<C-V>"] = { "p", desc = "Paste" },
 
       ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
     },
