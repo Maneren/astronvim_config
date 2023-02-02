@@ -137,7 +137,7 @@ local config = {
           local tabnine = require "cmp_tabnine.config"
           tabnine:setup {
             max_lines = 5,
-            max_num_results = 7,
+            max_num_results = 4,
             sort = true,
             run_on_every_keystroke = true,
             snippet_placeholder = "..",
