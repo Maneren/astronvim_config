@@ -8,8 +8,8 @@ local config = {
   colorscheme = "catppuccin",
   options = {
     opt = {
-      relativenumber = false, -- sets vim.opt.relativenumber
-      number = true, -- sets vim.opt.number
+      relativenumber = false,
+      number = true,
     },
   },
   lsp = {
