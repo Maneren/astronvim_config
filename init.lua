@@ -240,6 +240,10 @@ local config = {
     vim.lsp.handlers["textDocument/definition"] = require 'lspactions'.definition
     vim.lsp.handlers["textDocument/declaration"] = require 'lspactions'.declaration
     vim.lsp.handlers["textDocument/implementation"] = require 'lspactions'.implementation
+
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.offsetEncoding = { "utf-16" }
+    require("lspconfig").clangd.setup({ capabilities = capabilities })
   end
 }
 
