@@ -270,10 +270,8 @@ local config = {
           ["C"] = { name = "Crates" },
         },
       },
-
     },
   },
-
   polish = function()
     vim.ui.select = require 'lspactions'.select
     vim.ui.input = require 'lspactions'.input
