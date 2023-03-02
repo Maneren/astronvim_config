@@ -184,8 +184,30 @@ local config = {
         end
       },
       {
-        "wakatime/vim-wakatime"
-      }
+        "nvim-neotest/neotest",
+        requires = {
+          "nvim-lua/plenary.nvim",
+          "nvim-treesitter/nvim-treesitter",
+          'haydenmeade/neotest-jest',
+          "rouge8/neotest-rust"
+        },
+        config = function()
+          require('neotest').setup({
+            adapters = {
+              require("neotest-rust"),
+              require('neotest-jest')({
+                jestCommand = "pnpm jest",
+                jestConfigFile = "jest.config.js",
+                env = { CI = true },
+                cwd = function()
+                  return vim.fn.getcwd()
+                end,
+              }),
+            }
+          })
+        end
+      },
+      { "wakatime/vim-wakatime" }
     },
     ["mason-lspconfig"] = {
       ensure_installed = { "rust_analyzer" },
@@ -212,6 +234,11 @@ local config = {
       ["<leader>Cr"] = { "<cmd>lua require('crates').reload()<cr>", desc = "Reload information from crates.io" },
       ["<leader>CU"] = { "<cmd>lua require('crates').upgrade_crate()<cr>", desc = "Upgrade a crate" },
       ["<leader>CA"] = { "<cmd>lua require('crates').upgrade_all_crates()<cr>", desc = "Upgrade all crates" },
+
+      ["<leader>Tr"] = { "<cmd>lua require('neotest').run.run()<cr>", desc = "Run closest test" },
+      ["<leader>Tf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run current file" },
+      ["<leader>Td"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Debug closest test" },
+      ["<leader>Tc"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Toggle summary window" },
     },
     v = {
       x = { "\"+x" },
@@ -234,6 +261,7 @@ local config = {
       n = {
         ["<leader>"] = {
           ["C"] = { name = "Crates" },
+          ["T"] = { name = "Tests" },
         },
       },
       v = {
