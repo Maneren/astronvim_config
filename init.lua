@@ -12,7 +12,24 @@ local config = {
       number = true,
     },
   },
-  lsp = { skip_setup = { "rust-analyzer" } },
+  lsp = {
+    skip_setup = { "rust-analyzer" },
+    ["server-settings"] = {
+      -- I use rome for formatting
+      tsserver = {
+        javascript = {
+          format = {
+            enable = false
+          }
+        },
+        typescript = {
+          format = {
+            enable = false
+          }
+        },
+      },
+    },
+  },
   plugins = {
     init = {
       {
