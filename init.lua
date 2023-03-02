@@ -207,6 +207,12 @@ local config = {
           })
         end
       },
+      { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } },
+      {
+        "microsoft/vscode-js-debug",
+        opt = true,
+        run = "npm install --legacy-peer-deps && npm run compile"
+      },
       { 'folke/neodev.nvim' },
       { "wakatime/vim-wakatime" }
     },
@@ -289,6 +295,67 @@ local config = {
     require("neodev").setup({
       library = { plugins = { "neotest" }, types = true },
     })
+
+    local dap = require('dap')
+    dap.adapters.lldb = {
+      type = 'executable',
+      command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
+      name = 'lldb'
+    }
+    dap.configurations.cpp = {
+      {
+        name = 'Launch',
+        type = 'lldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+      },
+    }
+    dap.configurations.c = dap.configurations.cpp
+    dap.configurations.rust = dap.configurations.cpp
+
+    require("dap-vscode-js").setup({
+      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+    })
+
+    for _, language in ipairs({ "typescript", "javascript" }) do
+      require("dap").configurations[language] = {
+        {
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-node",
+            request = "attach",
+            name = "Attach",
+            processId = require 'dap.utils'.pick_process,
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Debug Jest Tests",
+            runtimeExecutable = "pnpm",
+            runtimeArgs = {
+              "jest",
+              "--runInBand",
+            },
+            rootPath = "${workspaceFolder}",
+            cwd = "${workspaceFolder}",
+            console = "integratedTerminal",
+            internalConsoleOptions = "neverOpen",
+          }
+        }
+      }
+    end
   end
 }
 
