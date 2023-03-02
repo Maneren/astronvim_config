@@ -207,6 +207,7 @@ local config = {
           })
         end
       },
+      { 'folke/neodev.nvim' },
       { "wakatime/vim-wakatime" }
     },
     ["mason-lspconfig"] = {
@@ -285,6 +286,10 @@ local config = {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.offsetEncoding = { "utf-16" }
     require("lspconfig").clangd.setup({ capabilities = capabilities })
+
+    require("neodev").setup({
+      library = { plugins = { "neotest" }, types = true },
+    })
   end
 }
 
