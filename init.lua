@@ -227,6 +227,7 @@ local config = {
       ["<leader>le"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Show definition" },
       ["<leader>ln"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Show declaration" },
       ["<leader>lm"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Show implementations" },
+      ["<leader>lR"] = { "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Show references" },
 
       ["<leader>lh"] = { "<cmd>lua require('hover').hover()<cr>", desc = "Hover" },
       ["<leader>lH"] = { "<cmd>lua require('hover').hover_select()<cr>", desc = "Hover (select)" },
