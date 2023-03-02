@@ -184,9 +184,8 @@ local config = {
       ["<C-V>"] = { "p", desc = "Paste" },
 
       ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
-      ["<leader>la"] = { "<cmd>lua require'lspactions'.code_action()<cr>", desc = "Rename symbol" },
       ["<leader>le"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Show definition" },
-      ["<leader>ld"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Show declaration" },
+      ["<leader>ln"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Show declaration" },
       ["<leader>lm"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Show implementations" },
 
       ["<leader>lh"] = { "<cmd>lua require('hover').hover()<cr>", desc = "Hover" },
@@ -211,12 +210,6 @@ local config = {
       ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
 
       ["<leader>CU"] = { "<cmd>lua require('crates').upgrade_crates()<cr>", desc = "Upgrade selected crates" }
-    },
-    i = {
-      -- saving also in insert mode
-      ["<C-S>"] = { "<cmd>w<cr>", desc = "Save File" },
-
-      ["<F2>"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
     },
   },
   ["which-key"] = {
