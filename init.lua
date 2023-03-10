@@ -165,6 +165,30 @@ local config = {
         end,
       },
       {
+        's1n7ax/nvim-search-and-replace',
+        config = function()
+          require 'nvim-search-and-replace'.setup {
+            -- file patters to ignore
+            ignore = { '**/node_modules/**', '**/.git/**', '**/.gitignore', '**/.gitmodules', 'build/**' },
+
+            -- save the changes after replace
+            update_changes = false,
+
+            -- keymap for search and replace
+            replace_keymap = '<leader>rr',
+
+            -- keymap for search and replace ( this does not care about ignored files )
+            replace_all_keymap = '<leader>rR',
+
+            -- keymap for search and replace
+            replace_and_save_keymap = '<leader>ru',
+
+            -- keymap for search and replace ( this does not care about ignored files )
+            replace_all_and_save_keymap = '<leader>rU',
+          }
+        end,
+      },
+      {
         "RishabhRD/lspactions",
         requires = {
           { 'nvim-lua/plenary.nvim' },
