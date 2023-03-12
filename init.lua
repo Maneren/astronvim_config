@@ -268,8 +268,8 @@ local config = {
     }
   },
   mappings = {
-    -- make copy-pasting use the system clipboard by default
     n = {
+      -- make copy-pasting use the system clipboard by default
       p = { "\"+p" },
       P = { "\"+P" },
       ["<C-s>"] = { ":w<cr>", desc = "Save File" },
@@ -295,15 +295,15 @@ local config = {
       ["<leader>Tc"] = { function() require('neotest').summary.toggle() end, desc = "Toggle summary window" },
     },
     v = {
+      -- Also in visual mode
       x = { "\"+x" },
       y = { "\"+y" },
-      -- also make pasting in visual mode not overwrite the clipboard
       p = { "\"_d\"+p" },
       P = { "\"_d\"+P" },
       ["<leader>C"] = { name = "Crates" },
       ["<C-X>"] = { "x", desc = "Cut" },
       ["<C-C>"] = { "y", desc = "Copy" },
-      ["<C-V>"] = { "p", desc = "Paste" },
+      ["<C-V>"] = { "\"_d\"+P", desc = "Paste" },
       ["<leader>lr"] = { function() require('lspactions').rename() end, desc = "Rename symbol" },
       ["<leader>CU"] = { function() require('crates').upgrade_crates() end, desc = "Upgrade selected crates" }
     },
