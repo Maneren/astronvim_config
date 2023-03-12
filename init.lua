@@ -13,8 +13,8 @@ local config = {
     },
   },
   lsp = {
-    skip_setup = { "rust-analyzer" },
-    ["server-settings"] = {
+    skip_setup = { "rust_analyzer" },
+    config = {
       -- I use rome for formatting
       tsserver = {
         javascript = {
@@ -31,217 +31,228 @@ local config = {
     },
   },
   plugins = {
-    init = {
-      {
-        "catppuccin/nvim",
-        as = "catppuccin",
-        config = function()
-          require("catppuccin").setup {}
-        end,
-      },
-      {
-        "simrat39/rust-tools.nvim",
-        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-        config = function()
-          local rt = require("rust-tools")
-
-          rt.setup {
-            tools = { -- rust-tools options
-              inlay_hints = {
-                auto = true,
-                only_current_line = false,
-                show_parameter_hints = true,
+    {
+      "catppuccin/nvim",
+      as = "catppuccin",
+      priority = 1000,
+      lazy = false
+    },
+    {
+      "simrat39/rust-tools.nvim",
+      after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+      event = "User AstroLspSetup",
+      opts  = {
+        tools = {
+          -- rust-tools options
+          inlay_hints = {
+            auto = true,
+            only_current_line = false,
+            show_parameter_hints = true,
+          },
+          hover_actions = {
+            auto_focus = true,
+          },
+        },
+        server = {
+          standalone = false,
+          settings = {
+            ['rust-analyzer'] = {
+              diagnostics = {
+                enable = true,
+                -- https://github.com/rust-analyzer/rust-analyzer/issues/6835
+                disabled = { 'unresolved-macro-call' },
+                enableExperimental = true,
               },
-              hover_actions = {
-                auto_focus = true,
+              completion = {
+                autoself = { enable = true },
+                autoimport = { enable = true },
+                postfix = { enable = true },
               },
-            },
-            server = {
-              standalone = false,
-              settings = {
-                ['rust-analyzer'] = {
-                  diagnostics = {
-                    enable = true,
-                    -- https://github.com/rust-analyzer/rust-analyzer/issues/6835
-                    disabled = { 'unresolved-macro-call' },
-                    enableExperimental = true,
-                  },
-                  completion = {
-                    autoself = { enable = true },
-                    autoimport = { enable = true },
-                    postfix = { enable = true },
-                  },
-                  imports = {
-                    group = { enable = true },
-                    merge = { glob = false },
-                    prefix = 'self',
-                    granularity = {
-                      enforce = true,
-                      group = 'crate',
-                    },
-                  },
-                  cargo = {
-                    loadOutDirsFromCheck = true,
-                    autoreload = true,
-                    runBuildScripts = true,
-                    features = 'all',
-                  },
-                  procMacro = { enable = true },
-                  lens = {
-                    enable = true,
-                    run = { enable = true },
-                    debug = { enable = true },
-                    implementations = { enable = true },
-                    references = {
-                      adt = { enable = true },
-                      enumVariant = { enable = true },
-                      method = { enable = true },
-                      trait = { enable = true },
-                    },
-                  },
-                  hover = {
-                    actions = {
-                      enable = true,
-                      run = { enable = true },
-                      debug = { enable = true },
-                      gotoTypeDef = { enable = true },
-                      implementations = { enable = true },
-                      references = { enable = true },
-                    },
-                    links = { enable = true },
-                    documentation = { enable = true },
-                  },
-                  inlayHints = {
-                    enable = true,
-                    bindingModeHints = { enable = true },
-                    chainingHints = { enable = true },
-                    closingBraceHints = {
-                      enable = true,
-                      minLines = 10,
-                    },
-                    closureReturnTypeHints = { enable = 'always' },
-                    lifetimeElisionHints = { enable = 'skip_trivial' },
-                    parameterHints = { enable = false },
-                    typeHints = { enable = true },
-                  },
-                  checkOnSave = {
-                    enable = true,
-                    command = 'clippy',
-                    features = 'all',
-                  },
+              imports = {
+                group = { enable = true },
+                merge = { glob = false },
+                prefix = 'self',
+                granularity = {
+                  enforce = true,
+                  group = 'crate',
                 },
               },
-            }
-          }
-
-          rt.runnables.runnables()
-        end,
-      },
-      {
-        'saecki/crates.nvim',
-        event = { "BufRead Cargo.toml" },
-        after = "nvim-cmp",
-        config = function()
-          require("crates").setup()
-          astronvim.add_cmp_source { name = "crates", priority = 1100 }
-        end,
-      },
-      {
-        "tzachar/cmp-tabnine",
-        requires = "nvim-cmp",
-        run = "./install.sh",
-        config = function()
-          local tabnine = require "cmp_tabnine.config"
-          tabnine:setup {
-            max_lines = 5,
-            max_num_results = 4,
-            sort = true,
-            run_on_every_keystroke = true,
-            snippet_placeholder = "..",
-            ignored_file_types = {},
-            show_prediction_strength = false,
-          }
-          astronvim.add_cmp_source({ name = "cmp_tabnine", priority = 900, max_item_count = 4 })
-        end,
-      },
-      {
-        's1n7ax/nvim-search-and-replace',
-        config = function()
-          require 'nvim-search-and-replace'.setup {
-            -- file patters to ignore
-            ignore = { '**/node_modules/**', '**/.git/**', '**/.gitignore', '**/.gitmodules', 'build/**' },
-
-            -- save the changes after replace
-            update_changes = false,
-
-            -- keymap for search and replace
-            replace_keymap = '<leader>rr',
-
-            -- keymap for search and replace ( this does not care about ignored files )
-            replace_all_keymap = '<leader>rR',
-
-            -- keymap for search and replace
-            replace_and_save_keymap = '<leader>ru',
-
-            -- keymap for search and replace ( this does not care about ignored files )
-            replace_all_and_save_keymap = '<leader>rU',
-          }
-        end,
-      },
-      {
-        "RishabhRD/lspactions",
-        requires = {
-          { 'nvim-lua/plenary.nvim' },
-          { 'nvim-lua/popup.nvim' },
-        },
-      },
-      {
-        "lewis6991/hover.nvim",
-        config = function()
-          require("hover").setup {
-            init = function()
-              require("hover.providers.lsp")
-            end,
-            preview_window = true,
-            title = false
-          }
-        end
-      },
-      {
-        "nvim-neotest/neotest",
-        requires = {
-          "nvim-lua/plenary.nvim",
-          "nvim-treesitter/nvim-treesitter",
-          'haydenmeade/neotest-jest',
-          "rouge8/neotest-rust"
-        },
-        config = function()
-          require('neotest').setup({
-            adapters = {
-              require("neotest-rust"),
-              require('neotest-jest')({
-                jestCommand = "pnpm jest",
-                jestConfigFile = "jest.config.js",
-                env = { CI = true },
-                cwd = function()
-                  return vim.fn.getcwd()
-                end,
-              }),
-            }
-          })
-        end
-      },
-      { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } },
-      {
-        "microsoft/vscode-js-debug",
-        opt = true,
-        run = "npm install --legacy-peer-deps && npm run compile"
-      },
-      { 'folke/neodev.nvim' },
-      { "wakatime/vim-wakatime" }
+              cargo = {
+                loadOutDirsFromCheck = true,
+                autoreload = true,
+                runBuildScripts = true,
+                features = 'all',
+              },
+              procMacro = { enable = true },
+              lens = {
+                enable = true,
+                run = { enable = true },
+                debug = { enable = true },
+                implementations = { enable = true },
+                references = {
+                  adt = { enable = true },
+                  enumVariant = { enable = true },
+                  method = { enable = true },
+                  trait = { enable = true },
+                },
+              },
+              hover = {
+                actions = {
+                  enable = true,
+                  run = { enable = true },
+                  debug = { enable = true },
+                  gotoTypeDef = { enable = true },
+                  implementations = { enable = true },
+                  references = { enable = true },
+                },
+                links = { enable = true },
+                documentation = { enable = true },
+              },
+              inlayHints = {
+                enable = true,
+                bindingModeHints = { enable = true },
+                chainingHints = { enable = true },
+                closingBraceHints = {
+                  enable = true,
+                  minLines = 10,
+                },
+                closureReturnTypeHints = { enable = 'always' },
+                lifetimeElisionHints = { enable = 'skip_trivial' },
+                parameterHints = { enable = false },
+                typeHints = { enable = true },
+              },
+              checkOnSave = {
+                enable = true,
+                command = 'clippy',
+                features = 'all',
+              },
+            },
+          },
+        }
+      }
     },
-    ["mason-lspconfig"] = {
-      ensure_installed = { "rust_analyzer" },
+    {
+      "saecki/crates.nvim",
+      event = "BufRead Cargo.toml",
+      after = "nvim-cmp",
+      config = true,
+    },
+    {
+      "tzachar/cmp-tabnine",
+      requires = "nvim-cmp",
+      build = "./install.sh",
+      config = function()
+        local tabnine = require "cmp_tabnine.config"
+        tabnine:setup {
+          max_lines = 5,
+          max_num_results = 4,
+          sort = true,
+          run_on_every_keystroke = true,
+          snippet_placeholder = "..",
+          ignored_file_types = {},
+          show_prediction_strength = false,
+        }
+      end,
+    },
+    {
+      "hrsh7th/nvim-cmp",
+      lazy = false,
+      dependencies = {
+        "tzachar/cmp-tabnine",
+      },
+      opts = function(_, opts)
+        local cmp = require "cmp"
+        opts.sources = cmp.config.sources {
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip",  priority = 750 },
+          { name = "buffer",   priority = 500 },
+          { name = "path",     priority = 250 },
+          { name = "tabnine",  priority = 700 },
+          { name = "crates",   priority = 1100 }
+        }
+        return opts
+      end,
+    },
+    {
+      's1n7ax/nvim-search-and-replace',
+      lazy = false,
+      opts = {
+        ignore = { '**/node_modules/**', '**/.git/**', '**/.gitignore', '**/.gitmodules', 'build/**', 'target/**' },
+        update_changes = false,
+        replace_keymap = '<leader>rr',
+        replace_all_keymap = '<leader>rR',
+        replace_and_save_keymap = '<leader>ru',
+        replace_all_and_save_keymap = '<leader>rU',
+      }
+    },
+    {
+      "RishabhRD/lspactions",
+      lazy = false,
+      dependencies = {
+        { 'nvim-lua/plenary.nvim' },
+        { 'nvim-lua/popup.nvim' },
+      },
+    },
+    {
+      "lewis6991/hover.nvim",
+      lazy = false,
+      opts = {
+        init = function()
+          require("hover.providers.lsp")
+        end,
+        preview_window = true,
+        title = false
+      }
+    },
+    {
+      "nvim-neotest/neotest",
+      lazy = false,
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "haydenmeade/neotest-jest",
+        "rouge8/neotest-rust"
+      },
+      opts = function()
+        return {
+          adapters = {
+            require("neotest-rust"),
+            require("neotest-jest")({
+              jestCommand = "pnpm jest",
+              jestConfigFile = "jest.config.js",
+              env = { CI = true },
+              cwd = function()
+                return vim.fn.getcwd()
+              end,
+            }),
+          }
+        }
+      end
+    },
+    {
+      "mxsdev/nvim-dap-vscode-js",
+      lazy = false,
+      requires = { "mfussenegger/nvim-dap" }
+    },
+    {
+      "microsoft/vscode-js-debug",
+      lazy = false,
+      build = "pnpm install && pnpm dlx gulp vsDebugServerBundle && mv dist out"
+    },
+    {
+      "folke/neodev.nvim",
+      lazy = false
+    },
+    {
+      "wakatime/vim-wakatime",
+      lazy = false,
+    },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      lazy = false,
+      opts = {
+        ensure_installed = { "rust_analyzer" },
+      },
     },
   },
   mappings = {
@@ -249,24 +260,22 @@ local config = {
     n = {
       p = { "\"+p" },
       P = { "\"+P" },
-
       ["<C-s>"] = { ":w<cr>", desc = "Save File" },
       ["<C-V>"] = { "p", desc = "Paste" },
-
+      ["<leader>C"] = { name = "Crates" },
+      ["<leader>T"] = { name = "Tests" },
+      ["<leader>r"] = { name = "Search and replace" },
       ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
       ["<leader>le"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Show definition" },
       ["<leader>ln"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Show declaration" },
       ["<leader>lm"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Show implementations" },
       ["<leader>lR"] = { "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Show references" },
-
       ["<leader>lh"] = { "<cmd>lua require('hover').hover()<cr>", desc = "Hover" },
       ["<leader>lH"] = { "<cmd>lua require('hover').hover_select()<cr>", desc = "Hover (select)" },
-
       ["<leader>Ct"] = { "<cmd>lua require('crates').toggle()<cr>", desc = "Toggle extra crates.io information" },
       ["<leader>Cr"] = { "<cmd>lua require('crates').reload()<cr>", desc = "Reload information from crates.io" },
       ["<leader>CU"] = { "<cmd>lua require('crates').upgrade_crate()<cr>", desc = "Upgrade a crate" },
       ["<leader>CA"] = { "<cmd>lua require('crates').upgrade_all_crates()<cr>", desc = "Upgrade all crates" },
-
       ["<leader>Tr"] = { "<cmd>lua require('neotest').run.run()<cr>", desc = "Run closest test" },
       ["<leader>Tf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run current file" },
       ["<leader>Td"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Debug closest test" },
@@ -278,29 +287,12 @@ local config = {
       -- also make pasting in visual mode not overwrite the clipboard
       p = { "\"_d\"+p" },
       P = { "\"_d\"+P" },
-
+      ["<leader>C"] = { name = "Crates" },
       ["<C-X>"] = { "x", desc = "Cut" },
       ["<C-C>"] = { "y", desc = "Copy" },
       ["<C-V>"] = { "p", desc = "Paste" },
-
       ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
-
       ["<leader>CU"] = { "<cmd>lua require('crates').upgrade_crates()<cr>", desc = "Upgrade selected crates" }
-    },
-  },
-  ["which-key"] = {
-    register = {
-      n = {
-        ["<leader>"] = {
-          ["C"] = { name = "Crates" },
-          ["T"] = { name = "Tests" },
-        },
-      },
-      v = {
-        ["<leader>"] = {
-          ["C"] = { name = "Crates" },
-        },
-      },
     },
   },
   polish = function()
@@ -332,7 +324,11 @@ local config = {
         type = 'lldb',
         request = 'launch',
         program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          return vim.fn.input({
+            prompt = 'Path to executable: ',
+            default = vim.fn.getcwd() .. '/',
+            completion = 'file'
+          })
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
@@ -347,7 +343,7 @@ local config = {
     })
 
     for _, language in ipairs({ "typescript", "javascript" }) do
-      require("dap").configurations[language] = {
+      dap.configurations[language] = {
         {
           {
             type = "pwa-node",
