@@ -194,6 +194,18 @@ local config = {
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-lua/popup.nvim' },
       },
+      config = function()
+        local lspactions = require('lspactions')
+
+        vim.ui.select = lspactions.select
+        vim.ui.input = lspactions.input
+      
+        vim.lsp.handlers["textDocument/codeAction"] = lspactions.codeaction
+        vim.lsp.handlers["textDocument/references"] = lspactions.references
+        vim.lsp.handlers["textDocument/definition"] = lspactions.definition
+        vim.lsp.handlers["textDocument/declaration"] = lspactions.declaration
+        vim.lsp.handlers["textDocument/implementation"] = lspactions.implementation
+      end
     },
     {
       "lewis6991/hover.nvim",
@@ -234,7 +246,10 @@ local config = {
     {
       "mxsdev/nvim-dap-vscode-js",
       lazy = false,
-      requires = { "mfussenegger/nvim-dap" }
+      requires = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
+      opts = {
+        adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+      }
     },
     {
       "microsoft/vscode-js-debug",
@@ -309,14 +324,6 @@ local config = {
     },
   },
   polish = function()
-    vim.ui.select = require 'lspactions'.select
-    vim.ui.input = require 'lspactions'.input
-    vim.lsp.handlers["textDocument/codeAction"] = require 'lspactions'.codeaction
-    vim.lsp.handlers["textDocument/references"] = require 'lspactions'.references
-    vim.lsp.handlers["textDocument/definition"] = require 'lspactions'.definition
-    vim.lsp.handlers["textDocument/declaration"] = require 'lspactions'.declaration
-    vim.lsp.handlers["textDocument/implementation"] = require 'lspactions'.implementation
-
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.offsetEncoding = { "utf-16" }
     require("lspconfig").clangd.setup({ capabilities = capabilities })
@@ -350,10 +357,6 @@ local config = {
     }
     dap.configurations.c = dap.configurations.cpp
     dap.configurations.rust = dap.configurations.cpp
-
-    require("dap-vscode-js").setup({
-      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
-    })
 
     for _, language in ipairs({ "typescript", "javascript" }) do
       dap.configurations[language] = {
