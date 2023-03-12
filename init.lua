@@ -266,6 +266,7 @@ local config = {
       ["<leader>T"] = { name = "Tests" },
       ["<leader>r"] = { name = "Search and replace" },
       ["<leader>lr"] = { "<cmd>lua require'lspactions'.rename()<cr>", desc = "Rename symbol" },
+      ["<leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code actions" },
       ["<leader>le"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Show definition" },
       ["<leader>ln"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Show declaration" },
       ["<leader>lm"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Show implementations" },
