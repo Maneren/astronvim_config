@@ -30,6 +30,11 @@ local config = {
           }
         },
       },
+      clangd = {
+        capabilities = {
+          offsetEncoding = "utf-8",
+        },
+      },
     },
   },
   plugins = {
@@ -324,10 +329,6 @@ local config = {
     },
   },
   polish = function()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.offsetEncoding = { "utf-16" }
-    require("lspconfig").clangd.setup({ capabilities = capabilities })
-
     require("neodev").setup({
       library = { plugins = { "neotest" }, types = true },
     })
