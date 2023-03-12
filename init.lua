@@ -256,6 +256,16 @@ local config = {
         ensure_installed = { "rust_analyzer" },
       },
     },
+    {
+      "ggandor/leap.nvim",
+      lazy = false,
+      dependencies = {
+         "tpope/vim-repeat"
+      },
+      config = function()
+        require('leap').add_default_mappings()
+      end
+    }
   },
   mappings = {
     -- make copy-pasting use the system clipboard by default
