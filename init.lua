@@ -119,41 +119,69 @@ local config = {
       after = "nvim-cmp",
       config = true,
     },
-    {
-      "tzachar/cmp-tabnine",
-      requires = "nvim-cmp",
-      build = "./install.sh",
-      config = function()
-        local tabnine = require "cmp_tabnine.config"
-        tabnine:setup {
-          max_lines = 5,
-          max_num_results = 4,
-          sort = true,
-          run_on_every_keystroke = true,
-          snippet_placeholder = "..",
-          ignored_file_types = {},
-          show_prediction_strength = false,
-        }
-      end,
-    },
+    -- {
+    --   "tzachar/cmp-tabnine",
+    --   requires = "nvim-cmp",
+    --   build = "./install.sh",
+    --   config = function()
+    --     local tabnine = require "cmp_tabnine.config"
+    --     tabnine:setup {
+    --       max_lines = 5,
+    --       max_num_results = 4,
+    --       sort = true,
+    --       run_on_every_keystroke = true,
+    --       snippet_placeholder = "..",
+    --       ignored_file_types = {},
+    --       show_prediction_strength = false,
+    --     }
+    --   end,
+    -- },
     {
       "hrsh7th/nvim-cmp",
       lazy = false,
       dependencies = {
-        "tzachar/cmp-tabnine",
+        "zbirenbaum/copilot.lua",
       },
       opts = function(_, opts)
         local cmp = require "cmp"
         opts.sources = cmp.config.sources {
+          { name = "crates",   priority = 1100 },
           { name = "nvim_lsp", priority = 1000 },
+          { name = "copilot",  priority = 800 },
           { name = "luasnip",  priority = 750 },
           { name = "buffer",   priority = 500 },
           { name = "path",     priority = 250 },
-          { name = "tabnine",  priority = 700 },
-          { name = "crates",   priority = 1100 }
         }
+        -- opts.mappings = cmp.mapping.preset.insert {
+        --   mapping = {
+        --     ["<CR>"] = cmp.mapping.confirm({
+        --       behavior = cmp.ConfirmBehavior.Replace,
+        --       select = false,
+        --     }),
+        --   }
+        -- }
         return opts
       end,
+    },
+    {
+      "zbirenbaum/copilot.lua",
+      requires = "nvim-cmp",
+      cmd = "Copilot",
+      lazy = false,
+      event = "InsertEnter",
+      opts = {
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      }
+    },
+    {
+      "zbirenbaum/copilot-cmp",
+      lazy = false,
+      after = { "copilot.lua" },
+      event = "InsertEnter",
+      config = function()
+        require("copilot_cmp").setup()
+      end
     },
     {
       's1n7ax/nvim-search-and-replace',
