@@ -130,39 +130,55 @@ local config = {
         opts.sources = cmp.config.sources {
           { name = "crates", priority = 1100 },
           { name = "nvim_lsp", priority = 1000 },
-          { name = "copilot", priority = 800 },
           { name = "luasnip", priority = 750 },
           { name = "buffer", priority = 500 },
           { name = "path", priority = 250 },
         }
-        -- opts.mappings = cmp.mapping.preset.insert {
-        --   mapping = {
-        --     ["<CR>"] = cmp.mapping.confirm({
-        --       behavior = cmp.ConfirmBehavior.Replace,
-        --       select = false,
-        --     }),
-        --   }
-        -- }
+        opts.mapping = cmp.mapping.preset.insert {
+          ["<CR>"] = cmp.mapping({
+            i = function(fallback)
+              if cmp.visible() then
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+              else
+                fallback()
+              end
+            end,
+            s = cmp.mapping.confirm({ select = true }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+          }),
+        }
         return opts
       end,
     },
     {
       "zbirenbaum/copilot.lua",
-      requires = "nvim-cmp",
       cmd = "Copilot",
       lazy = false,
-      event = "InsertEnter",
       opts = {
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      },
-    },
-    {
-      "zbirenbaum/copilot-cmp",
-      lazy = false,
-      after = { "copilot.lua" },
-      event = "InsertEnter",
-      config = function() require("copilot_cmp").setup() end,
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<TAB>",
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        panel = {
+          enabled = true,
+          auto_refresh = false,
+          keymap = {
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>"
+          },
+          layout = {
+            position = "right", ratio = 0.4
+          },
+        },
+      }
     },
     {
       "s1n7ax/nvim-search-and-replace",
