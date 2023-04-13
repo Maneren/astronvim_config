@@ -17,7 +17,7 @@ local config = {
       rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end,
     },
     config = {
-      -- I use rome for formatting
+      -- I use eslint for js/ts formatting
       tsserver = {
         javascript = {
           format = {
@@ -29,6 +29,14 @@ local config = {
             enable = false,
           },
         },
+      },
+      eslint = {
+        on_attach = function()
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" },
+            command = "silent! EslintFixAll",
+          })
+        end,
       },
       clangd = {
         capabilities = {
