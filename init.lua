@@ -295,6 +295,12 @@ local config = {
       },
       config = function() require("leap").add_default_mappings() end,
     },
+    {
+      "akinsho/toggleterm.nvim",
+      opts = {
+        on_open = function() vim.cmd "startinsert" end
+      }
+    },
   },
   mappings = {
     n = {
@@ -336,6 +342,10 @@ local config = {
       ["<leader>lr"] = { function() require("lspactions").rename() end, desc = "Rename symbol" },
       ["<leader>CU"] = { function() require("crates").upgrade_crates() end, desc = "Upgrade selected crates" },
     },
+    t = {
+      ["<esc>"] = false,
+      ["<esc><esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Exit terminal mode" },
+    }
   },
   polish = function()
     require("neodev").setup {
