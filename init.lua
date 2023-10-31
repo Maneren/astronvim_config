@@ -142,12 +142,12 @@ local config = {
       opts = function(_, opts)
         local cmp = require "cmp"
         opts.sources = cmp.config.sources {
-          { name = "crates",   priority = 1100 },
-          { name = "npm",      priority = 1100 },
+          { name = "crates", priority = 1100 },
+          { name = "npm", priority = 1100 },
           { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip",  priority = 750 },
-          { name = "buffer",   priority = 500 },
-          { name = "path",     priority = 250 },
+          { name = "luasnip", priority = 750 },
+          { name = "buffer", priority = 500 },
+          { name = "path", priority = 250 },
         }
         opts.mapping = cmp.mapping.preset.insert {
           ["<CR>"] = cmp.mapping {
@@ -294,7 +294,10 @@ local config = {
       dependencies = {
         "tpope/vim-repeat",
       },
-      config = function() require("leap").add_default_mappings() end,
+      config = function()
+        local leap = require "leap"
+        leap.add_default_mappings()
+      end,
     },
     {
       "akinsho/toggleterm.nvim",
