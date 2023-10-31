@@ -40,7 +40,7 @@ local config = {
       },
       clangd = {
         capabilities = {
-          offsetEncoding = "utf-8",
+          offsetEncoding = "utf-16",
         },
       },
       rust_analyzer = {
