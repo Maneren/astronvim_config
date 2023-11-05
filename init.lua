@@ -17,7 +17,7 @@ local config = {
       rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end,
     },
     config = {
-      -- I use rome for formatting
+      -- I use eslint for js/ts formatting
       tsserver = {
         javascript = {
           format = {
@@ -128,10 +128,10 @@ local config = {
       config = true,
     },
     {
-      'David-Kunz/cmp-npm',
+      "David-Kunz/cmp-npm",
       event = "BufRead package.json",
       after = "nvim-cmp",
-      opts = { ignore = { 'beta', 'rc' } },
+      opts = { ignore = { "beta", "rc" } },
     },
     {
       "hrsh7th/nvim-cmp",
@@ -143,24 +143,24 @@ local config = {
         local cmp = require "cmp"
         opts.sources = cmp.config.sources {
           { name = "crates",   priority = 1100 },
-          { name = 'npm',      priority = 1100 },
+          { name = "npm",      priority = 1100 },
           { name = "nvim_lsp", priority = 1000 },
           { name = "luasnip",  priority = 750 },
           { name = "buffer",   priority = 500 },
           { name = "path",     priority = 250 },
         }
         opts.mapping = cmp.mapping.preset.insert {
-          ["<CR>"] = cmp.mapping({
+          ["<CR>"] = cmp.mapping {
             i = function(fallback)
               if cmp.visible() then
-                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
               else
                 fallback()
               end
             end,
-            s = cmp.mapping.confirm({ select = true }),
-            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-          }),
+            s = cmp.mapping.confirm { select = true },
+            c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+          },
         }
         return opts
       end,
@@ -265,8 +265,8 @@ local config = {
     {
       "akinsho/toggleterm.nvim",
       opts = {
-        on_open = function() vim.cmd "startinsert" end
-      }
+        on_open = function() vim.cmd "startinsert" end,
+      },
     },
   },
   mappings = {
@@ -312,7 +312,7 @@ local config = {
     t = {
       ["<esc>"] = false,
       ["<esc><esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Exit terminal mode" },
-    }
+    },
   },
   polish = function()
     require("neodev").setup {
