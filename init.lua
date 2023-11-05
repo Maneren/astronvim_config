@@ -183,18 +183,6 @@ local config = {
       }
     },
     {
-      's1n7ax/nvim-search-and-replace',
-      lazy = false,
-      opts = {
-        ignore = { "**/node_modules/**", "**/.git/**", "**/.gitignore", "**/.gitmodules", "build/**", "target/**" },
-        update_changes = false,
-        replace_keymap = "<leader>rr",
-        replace_all_keymap = "<leader>rR",
-        replace_and_save_keymap = "<leader>ru",
-        replace_all_and_save_keymap = "<leader>rU",
-      },
-    },
-    {
       "RishabhRD/lspactions",
       lazy = false,
       dependencies = {
