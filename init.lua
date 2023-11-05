@@ -167,7 +167,6 @@ local config = {
     },
     {
       "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
       lazy = false,
       opts = {
         suggestion = {
@@ -179,18 +178,6 @@ local config = {
             next = "<M-]>",
             prev = "<M-[>",
             dismiss = "<C-]>",
-          },
-        },
-        panel = {
-          enabled = true,
-          auto_refresh = false,
-          keymap = {
-            accept = "<CR>",
-            refresh = "gr",
-            open = "<M-CR>"
-          },
-          layout = {
-            position = "right", ratio = 0.4
           },
         },
       }
