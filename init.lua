@@ -192,9 +192,6 @@ local config = {
       config = function()
         local lspactions = require "lspactions"
 
-        vim.ui.select = lspactions.select
-        vim.ui.input = lspactions.input
-
         vim.lsp.handlers["textDocument/codeAction"] = lspactions.codeaction
         vim.lsp.handlers["textDocument/references"] = lspactions.references
         vim.lsp.handlers["textDocument/definition"] = lspactions.definition
