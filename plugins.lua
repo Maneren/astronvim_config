@@ -25,9 +25,6 @@ return {
   {
     "hrsh7th/nvim-cmp",
     lazy = false,
-    dependencies = {
-      "zbirenbaum/copilot.lua",
-    },
     opts = function(_, opts)
       local cmp = require "cmp"
       opts.sources = cmp.config.sources {
@@ -53,23 +50,6 @@ return {
       }
       return opts
     end,
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    lazy = false,
-    opts = {
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 75,
-        keymap = {
-          accept = "<TAB>",
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        },
-      },
-    }
   },
   {
     "RishabhRD/lspactions",
@@ -158,6 +138,10 @@ return {
     },
   },
   {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter'
+  },
+  {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
       local status = require "astronvim.utils.status"
@@ -195,6 +179,28 @@ return {
             padding = { left = 0 },
           },
         },
+      }
+
+      local codeium_status = {
+        provider = function() return "{…}" .. vim.api.nvim_eval("codeium#GetStatusString()") end,
+        update = true
+      }
+
+      opts.statusline = { -- statusline
+        hl = { fg = "fg", bg = "bg" },
+        status.component.mode(),
+        status.component.git_branch(),
+        status.component.file_info { filetype = {}, filename = false, file_modified = false },
+        status.component.git_diff(),
+        status.component.diagnostics(),
+        status.component.fill(),
+        status.component.cmd_info(),
+        status.component.fill(),
+        codeium_status,
+        status.component.lsp(),
+        status.component.treesitter(),
+        status.component.nav(),
+        status.component.mode { surround = { separator = "right" } },
       }
 
       return opts
