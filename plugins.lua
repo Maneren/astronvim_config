@@ -28,12 +28,12 @@ return {
     opts = function(_, opts)
       local cmp = require "cmp"
       opts.sources = cmp.config.sources {
-        { name = "crates",   priority = 1100 },
-        { name = "npm",      priority = 1100 },
+        { name = "crates", priority = 1100 },
+        { name = "npm", priority = 1100 },
         { name = "nvim_lsp", priority = 1000 },
-        { name = "luasnip",  priority = 750 },
-        { name = "buffer",   priority = 500 },
-        { name = "path",     priority = 250 },
+        { name = "luasnip", priority = 750 },
+        { name = "buffer", priority = 500 },
+        { name = "path", priority = 250 },
       }
       opts.mapping = cmp.mapping.preset.insert {
         ["<CR>"] = cmp.mapping {
@@ -201,8 +201,8 @@ return {
       }
 
       local codeium_status = {
-        provider = function() return "{…}" .. vim.api.nvim_eval("codeium#GetStatusString()") end,
-        update = true
+        provider = function() return "{…}" .. vim.api.nvim_eval "codeium#GetStatusString()" end,
+        update = true,
       }
 
       opts.statusline = { -- statusline
