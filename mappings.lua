@@ -1,0 +1,40 @@
+return {
+  n = {
+    -- make copy-pasting use the system clipboard by default
+    p = { '"+p' },
+    P = { '"+P' },
+    ["<leader>C"] = { name = "Crates" },
+    ["<leader>T"] = { name = "Tests" },
+    ["<leader>r"] = { name = "Search and replace" },
+    ["<leader>lr"] = { function() require("lspactions").rename() end, desc = "Rename symbol" },
+    ["<leader>la"] = { function() vim.lsp.buf.code_action() end, desc = "Code actions" },
+    ["<leader>le"] = { function() vim.lsp.buf.definition() end, desc = "Show definition" },
+    ["<leader>ln"] = { function() vim.lsp.buf.declaration() end, desc = "Show declaration" },
+    ["<leader>lm"] = { function() vim.lsp.buf.implementation() end, desc = "Show implementations" },
+    ["<leader>lR"] = { function() vim.lsp.buf.references() end, desc = "Show references" },
+    ["<leader>lh"] = { function() require("hover").hover() end, desc = "Hover" },
+    ["<leader>lH"] = { function() require("hover").hover_select() end, desc = "Hover (select)" },
+    ["<leader>Ct"] = { function() require("crates").toggle() end, desc = "Toggle extra crates.io information" },
+    ["<leader>Cr"] = { function() require("crates").reload() end, desc = "Reload information from crates.io" },
+    ["<leader>CU"] = { function() require("crates").upgrade_crate() end, desc = "Upgrade a crate" },
+    ["<leader>CA"] = { function() require("crates").upgrade_all_crates() end, desc = "Upgrade all crates" },
+    ["<leader>Tr"] = { function() require("neotest").run.run() end, desc = "Run closest test" },
+    ["<leader>Tf"] = { function() require("neotest").run.run(vim.fn.expand "%") end, desc = "Run current file" },
+    ["<leader>Td"] = { function() require("neotest").run.run { strategy = "dap" } end, desc = "Debug closest test" },
+    ["<leader>Tc"] = { function() require("neotest").summary.toggle() end, desc = "Toggle summary window" },
+  },
+  v = {
+    -- Also in visual mode
+    x = { '"+x' },
+    y = { '"+y' },
+    p = { '"_d"+p' },
+    P = { '"_d"+P' },
+    ["<leader>C"] = { name = "Crates" },
+    ["<leader>lr"] = { function() require("lspactions").rename() end, desc = "Rename symbol" },
+    ["<leader>CU"] = { function() require("crates").upgrade_crates() end, desc = "Upgrade selected crates" },
+  },
+  t = {
+    ["<esc>"] = false,
+    ["<esc><esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Exit terminal mode" },
+  },
+}
