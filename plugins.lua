@@ -138,8 +138,27 @@ return {
     },
   },
   {
-    'Exafunction/codeium.vim',
-    event = 'BufEnter'
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    config = true,
+    opts = {
+      keymaps = {
+        insert = "<C-g>z",
+        insert_line = "gC-gZ",
+        normal = "gz",
+        normal_cur = "gZ",
+        normal_line = "gzz",
+        normal_cur_line = "gZZ",
+        visual = "gz",
+        visual_line = "gZ",
+        delete = "gzd",
+        change = "gzr",
+      },
+    },
+  },
+  {
+    "Exafunction/codeium.vim",
+    event = "BufEnter",
   },
   {
     "rebelot/heirline.nvim",
