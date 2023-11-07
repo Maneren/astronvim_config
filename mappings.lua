@@ -19,7 +19,7 @@ return {
     ["<leader>CU"] = { function() require("crates").upgrade_crate() end, desc = "Upgrade a crate" },
     ["<leader>CA"] = { function() require("crates").upgrade_all_crates() end, desc = "Upgrade all crates" },
     ["<leader>Tr"] = { function() require("neotest").run.run() end, desc = "Run closest test" },
-    ["<leader>Tf"] = { function() require("neotest").run.run(vim.fn.expand "%") end, desc = "Run current file" },
+    ["<leader>Tf"] = { function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run current file" },
     ["<leader>Td"] = { function() require("neotest").run.run { strategy = "dap" } end, desc = "Debug closest test" },
     ["<leader>Tc"] = { function() require("neotest").summary.toggle() end, desc = "Toggle summary window" },
   },

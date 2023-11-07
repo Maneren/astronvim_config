@@ -25,7 +25,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
-      local cmp = require "cmp"
+      local cmp = require("cmp")
       opts.sources = cmp.config.sources {
         { name = "crates", priority = 1100 },
         { name = "npm", priority = 1100 },
@@ -58,7 +58,7 @@ return {
       { "nvim-lua/popup.nvim" },
     },
     config = function()
-      local lspactions = require "lspactions"
+      local lspactions = require("lspactions")
 
       vim.lsp.handlers["textDocument/codeAction"] = lspactions.codeaction
       vim.lsp.handlers["textDocument/references"] = lspactions.references
@@ -70,7 +70,7 @@ return {
   {
     "lewis6991/hover.nvim",
     opts = {
-      init = function() require "hover.providers.lsp" end,
+      init = function() require("hover.providers.lsp") end,
       preview_window = true,
       title = false,
     },
@@ -87,8 +87,8 @@ return {
     opts = function()
       return {
         adapters = {
-          require "neotest-rust",
-          require "neotest-jest" {
+          require("neotest-rust"),
+          require("neotest-jest") {
             jestCommand = "pnpm jest",
             jestConfigFile = "jest.config.js",
             env = { CI = true },
@@ -131,7 +131,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     opts = {
-      on_open = function() vim.cmd "startinsert" end,
+      on_open = function() vim.cmd("startinsert") end,
     },
   },
   {
@@ -160,7 +160,7 @@ return {
   {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
-      local status = require "astronvim.utils.status"
+      local status = require("astronvim.utils.status")
 
       -- VSCode style winbar
       opts.winbar = {
@@ -170,7 +170,7 @@ return {
           condition = function() return not status.condition.is_active() end,
           status.component.separated_path { path_func = status.provider.filename { modify = ":.:h" } },
           status.component.file_info {
-            file_icon = { hl = status.hl.file_icon "winbar", padding = { left = 0 } },
+            file_icon = { hl = status.hl.file_icon("winbar"), padding = { left = 0 } },
             file_modified = false,
             file_read_only = false,
             hl = status.hl.get_attributes("winbarnc", true),
@@ -198,7 +198,7 @@ return {
       }
 
       local codeium_status = {
-        provider = function() return "{…}" .. vim.api.nvim_eval "codeium#GetStatusString()" end,
+        provider = function() return "{…}" .. vim.api.nvim_eval("codeium#GetStatusString()") end,
         update = true,
       }
 

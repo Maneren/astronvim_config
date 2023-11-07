@@ -11,7 +11,7 @@ local config = {
       relativenumber = false,
       number = true,
     },
-  }
+  },
 }
 
 return config
