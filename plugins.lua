@@ -7,24 +7,23 @@ return {
   },
   {
     "simrat39/rust-tools.nvim",
-    after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+    dependencies = { "mason-lspconfig.nvim" },
     event = "User AstroLspSetup",
   },
   {
     "saecki/crates.nvim",
     event = "BufRead Cargo.toml",
-    after = "nvim-cmp",
+    dependencies = { "nvim-cmp" },
     config = true,
   },
   {
     "David-Kunz/cmp-npm",
     event = "BufRead package.json",
-    after = "nvim-cmp",
+    dependencies = { "nvim-cmp" },
     opts = { ignore = { "beta", "rc" } },
   },
   {
     "hrsh7th/nvim-cmp",
-    lazy = false,
     opts = function(_, opts)
       local cmp = require "cmp"
       opts.sources = cmp.config.sources {
@@ -70,7 +69,6 @@ return {
   },
   {
     "lewis6991/hover.nvim",
-    lazy = false,
     opts = {
       init = function() require "hover.providers.lsp" end,
       preview_window = true,
@@ -103,7 +101,7 @@ return {
   {
     "mxsdev/nvim-dap-vscode-js",
     lazy = false,
-    requires = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
+    dependencies = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
     opts = {
       adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
     },
@@ -118,14 +116,13 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    lazy = false,
+    dependencies = { "williamboman/mason.nvim" },
     opts = {
       ensure_installed = { "rust_analyzer" },
     },
   },
   {
     "ggandor/leap.nvim",
-    lazy = false,
     dependencies = {
       "tpope/vim-repeat",
     },
