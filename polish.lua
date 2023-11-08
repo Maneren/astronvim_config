@@ -99,7 +99,7 @@ return function()
 
   for package in pairs(ensure_installed) do
     if not installed[package] then
-      to_install.insert(to_install, package)
+      table.insert(to_install, package)
     end
   end
 
