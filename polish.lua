@@ -103,9 +103,15 @@ return function()
     end
   end
 
+  local printed_error = false
+
   for package in pairs(installed) do
     if not ensure_installed[package] then
-      vim.print("'" .. package .. "' is installed but not in ensure_installed")
+      if not printed_error then
+        vim.print("The following packages are installed but not declared:")
+        printed_error = true
+      end
+      vim.print('"' .. package .. '"')
     end
   end
 
