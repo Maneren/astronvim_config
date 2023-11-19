@@ -1,1 +1,5 @@
 std = "vim"
+
+[rules]
+multiple_statements = "allow"
+mixed_table = "allow"
