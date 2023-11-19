@@ -123,6 +123,7 @@ return {
   },
   {
     "ggandor/leap.nvim",
+    event = "BufEnter",
     dependencies = {
       "tpope/vim-repeat",
     },
