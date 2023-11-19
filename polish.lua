@@ -69,6 +69,7 @@ return function()
     "lua-language-server",
     "markdownlint",
     "mdformat",
+    "mypy",
     "omnisharp",
     "python-lsp-server",
     "quick-lint-js",
