@@ -21,7 +21,7 @@ return {
   colorscheme = "catppuccin",
   options = {
     opt = {
-      relativenumber = false,
+      relativenumber = true,
       number = true,
     },
   },
