@@ -142,7 +142,7 @@ return {
     opts = {
       keymaps = {
         insert = "<C-g>z",
-        insert_line = "gC-gZ",
+        insert_line = "<C-g>gZ",
         normal = "gz",
         normal_cur = "gZ",
         normal_line = "gzz",
