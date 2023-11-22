@@ -155,6 +155,25 @@ return {
     },
   },
   {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  },
+  {
+    "ixru/nvim-markdown",
+    init = function()
+      vim.g.vim_markdown_math = 1
+      vim.g.tex_conceal = ""
+    end,
+    ft = { "markdown" },
+  },
+  {
+    "allen-mack/nvim-table-md",
+    ft = { "markdown" },
+  },
+  {
     "Exafunction/codeium.vim",
     event = "BufEnter",
   },
