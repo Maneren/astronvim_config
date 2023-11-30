@@ -33,6 +33,15 @@ return {
     ["<leader>mj"] = { function() require("tablemd").alignColumn("left") end, desc = "Align column left" },
     ["<leader>mk"] = { function() require("tablemd").alignColumn("center") end, desc = "Align column center" },
     ["<leader>ml"] = { function() require("tablemd").alignColumn("right") end, desc = "Align column right" },
+    ["<leader>ss"] = { function() require("spectre").toggle() end, desc = "Toggle Spectre" },
+    ["<leader>sw"] = {
+      function() require("spectre").open_visual { select_word = true } end,
+      desc = "Search current word",
+    },
+    ["<leader>sf"] = {
+      function() require("spectre").open_file_search { select_word = true } end,
+      desc = "Search word in current file",
+    },
   },
   v = {
     -- Also in visual mode
@@ -47,5 +56,11 @@ return {
   t = {
     ["<esc>"] = false,
     ["<esc><esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Exit terminal mode" },
+    ["<leader>sw"] = {
+      function()
+        vim.cmd("startnormal")
+        require("spectre").open_visual()
+      end,
+    },
   },
 }

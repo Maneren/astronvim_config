@@ -99,6 +99,19 @@ return {
     end,
   },
   {
+    "nvim-pack/nvim-spectre",
+    event = "BufRead",
+    build = "sh build.sh",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      default = {
+        replace = {
+          cmd = "oxi",
+        },
+      },
+    },
+  },
+  {
     "mxsdev/nvim-dap-vscode-js",
     lazy = false,
     dependencies = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
