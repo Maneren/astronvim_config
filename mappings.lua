@@ -52,10 +52,6 @@ return {
     ["<leader>C"] = { name = "Crates" },
     ["<leader>lr"] = { function() require("lspactions").rename() end, desc = "Rename symbol" },
     ["<leader>CU"] = { function() require("crates").upgrade_crates() end, desc = "Upgrade selected crates" },
-  },
-  t = {
-    ["<esc>"] = false,
-    ["<esc><esc>"] = { "<C-\\><C-n>:q<cr>", desc = "Exit terminal mode" },
     ["<leader>sw"] = {
       function()
         vim.cmd("startnormal")
