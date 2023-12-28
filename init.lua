@@ -1,10 +1,9 @@
 -- use different font sizes for desktop and laptop
 if vim.fn.hostname() == "maneren-pc" then
-  vim.opt.guifont = { "Iosevka", ":h14" }
+  vim.opt.guifont = { "Iosevka", ":h13" }
 else
-  vim.opt.guifont = { "Iosevka", ":h10" }
+  vim.opt.guifont = { "Iosevka", ":h9" }
 end
-vim.g.neovide_fullscreen = true
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_scroll_animation_length = 0
