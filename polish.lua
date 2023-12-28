@@ -92,29 +92,35 @@ return function()
     "yamllint",
   }
 
-  local installed = set(require("mason-registry").get_installed_package_names())
+  vim.api.nvim_create_user_command("SyncMason", function()
+    local installed = set(require("mason-registry").get_installed_package_names())
 
-  local to_install = {}
+    local to_install = {}
 
-  for package in pairs(ensure_installed) do
-    if not installed[package] then
-      table.insert(to_install, package)
-    end
-  end
-
-  local printed_error = false
-
-  for package in pairs(installed) do
-    if not ensure_installed[package] then
-      if not printed_error then
-        vim.print("The following packages are installed but not declared:")
-        printed_error = true
+    for package in pairs(ensure_installed) do
+      if not installed[package] then
+        table.insert(to_install, package)
       end
-      vim.print('"' .. package .. '"')
     end
-  end
 
-  if #to_install > 0 then
-    vim.cmd("MasonInstall " .. table.concat(to_install, " "))
-  end
+    local printed_error = false
+
+    for package in pairs(installed) do
+      if not ensure_installed[package] then
+        if not printed_error then
+          vim.print("The following packages are installed but not declared:")
+          printed_error = true
+        end
+        vim.print('"' .. package .. '"')
+      end
+    end
+
+    if #to_install > 0 then
+      vim.ui.input({ prompt = table.concat(to_install, ", ") .. "\n\nInstall packages (Y/n) " }, function(input)
+        if input == "Y" or input == "y" or input == "" then
+          vim.cmd("MasonInstall " .. table.concat(to_install, " "))
+        end
+      end)
+    end
+  end, {})
 end
