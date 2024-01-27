@@ -81,6 +81,8 @@ return function()
     "shfmt",
     "sourcery",
     "sqlfmt",
+    "sql-formatter",
+    "sqlls",
     "stylelint-lsp",
     "stylua",
     "tailwindcss-language-server",
