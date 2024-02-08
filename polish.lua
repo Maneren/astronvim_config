@@ -73,7 +73,6 @@ return function()
     "quick-lint-js",
     "ruff",
     "ruff-lsp",
-    "rust-analyzer",
     "rustywind",
     "selene",
     "shellcheck",
