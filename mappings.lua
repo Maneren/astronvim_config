@@ -10,7 +10,7 @@ return {
     ["<leader>lr"] = { function() require("lspactions").rename() end, desc = "Rename symbol" },
     ["<leader>la"] = { function() vim.lsp.buf.code_action() end, desc = "Code actions" },
     ["<leader>le"] = { function() vim.lsp.buf.definition() end, desc = "Show definition" },
-    ["<leader>ln"] = { function() vim.lsp.buf.declaration() end, desc = "Show declaration" },
+    ["<leader>ld"] = { function() vim.lsp.buf.declaration() end, desc = "Show declaration" },
     ["<leader>lm"] = { function() vim.lsp.buf.implementation() end, desc = "Show implementations" },
     ["<leader>lR"] = { function() vim.lsp.buf.references() end, desc = "Show references" },
     ["<leader>lh"] = { function() require("hover").hover() end, desc = "Hover" },
