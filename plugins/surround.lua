@@ -1,10 +1,9 @@
 return {
   "kylechui/nvim-surround",
-  event = "VeryLazy",
   opts = {
     keymaps = {
       insert = "<C-g>z",
-      insert_line = "<C-g>gZ",
+      insert_line = "<C-g>Z",
       normal = "gz",
       normal_cur = "gZ",
       normal_line = "gzz",

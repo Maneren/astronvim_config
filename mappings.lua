@@ -3,9 +3,11 @@ return {
     -- make copy-pasting use the system clipboard by default
     p = { '"+p' },
     P = { '"+P' },
+    J = { function() require("treesj").join() end, desc = "Join line" },
+    gj = { function() require("treesj").split() end, desc = "Split line" },
+    gJ = { function() require("treesj").toggle() end, desc = "Toggle line split" },
     ["<leader>C"] = { name = "Crates" },
     ["<leader>T"] = { name = "Tests" },
-    ["<leader>r"] = { name = "Search and replace" },
     ["<leader>m"] = { name = "Markdown" },
     ["<leader>lr"] = { function() require("lspactions").rename() end, desc = "Rename symbol" },
     ["<leader>la"] = { function() vim.lsp.buf.code_action() end, desc = "Code actions" },
@@ -29,15 +31,6 @@ return {
     ["<leader>mj"] = { function() require("tablemd").alignColumn("left") end, desc = "Align column left" },
     ["<leader>mk"] = { function() require("tablemd").alignColumn("center") end, desc = "Align column center" },
     ["<leader>ml"] = { function() require("tablemd").alignColumn("right") end, desc = "Align column right" },
-    ["<leader>ss"] = { function() require("spectre").toggle() end, desc = "Toggle Spectre" },
-    ["<leader>sw"] = {
-      function() require("spectre").open_visual { select_word = true } end,
-      desc = "Search current word",
-    },
-    ["<leader>sf"] = {
-      function() require("spectre").open_file_search { select_word = true } end,
-      desc = "Search word in current file",
-    },
   },
   v = {
     -- Also in visual mode
