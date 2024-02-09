@@ -3,9 +3,6 @@ return {
     -- make copy-pasting use the system clipboard by default
     p = { '"+p' },
     P = { '"+P' },
-    J = { function() require("treesj").join() end, desc = "Join line" },
-    gj = { function() require("treesj").split() end, desc = "Split line" },
-    gJ = { function() require("treesj").toggle() end, desc = "Toggle line split" },
     ["<leader>C"] = { name = "Crates" },
     ["<leader>T"] = { name = "Tests" },
     ["<leader>m"] = { name = "Markdown" },
