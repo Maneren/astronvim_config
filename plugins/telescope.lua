@@ -13,7 +13,6 @@ return {
     telescope.load_extension("dap")
     telescope.load_extension("cmdline")
   end,
-  lazy = false,
   keys = {
     { ":", "<cmd>Telescope cmdline<cr>", desc = "Cmdline" },
   },
