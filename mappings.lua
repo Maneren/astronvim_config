@@ -45,4 +45,7 @@ return {
       end,
     },
   },
+  i = {
+    ["<S-CR>"] = { function() return vim.fn["codeium#Accept"]() end, desc = "Accept codeium suggestion", expr = true },
+  },
 }
