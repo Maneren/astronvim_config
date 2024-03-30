@@ -27,6 +27,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python-ruff" },
+  { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.typescript" },
@@ -36,4 +37,24 @@ return {
   { import = "astrocommunity.project.project-nvim" },
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.workflow.hardtime-nvim" },
+
+  -- TODO: Remove those overrides after astrocommunity updates to v4
+  {
+    "simrat39/rust-tools.nvim",
+    enabled = false,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = function(_, opts)
+      local s = {}
+      local i = 0
+      for _, v in pairs(opts.ensure_installed) do
+        if v ~= "rust_analyzer" then
+          s[i] = v
+          i = i + 1
+        end
+      end
+      opts.ensure_installed = s
+    end,
+  },
 }
