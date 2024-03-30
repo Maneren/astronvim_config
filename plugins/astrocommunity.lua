@@ -20,6 +20,7 @@ return {
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.cs" },
   { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.haskell" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.just" },
