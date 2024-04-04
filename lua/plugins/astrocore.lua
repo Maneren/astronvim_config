@@ -40,10 +40,6 @@ return {
         ["<Leader>C"] = { name = "Crates" },
         ["<Leader>T"] = { name = "Tests" },
         ["<Leader>m"] = { name = "Markdown" },
-        ["<Leader>lr"] = { function() require("lspactions").rename() end, desc = "Rename symbol" },
-        ["<Leader>la"] = { function() vim.lsp.buf.code_action() end, desc = "Code actions" },
-        ["<Leader>ld"] = { function() vim.lsp.buf.declaration() end, desc = "Show declaration" },
-        ["<Leader>lm"] = { function() vim.lsp.buf.implementation() end, desc = "Show implementations" },
         ["<Leader>Ct"] = { function() require("crates").toggle() end, desc = "Toggle extra crates.io information" },
         ["<Leader>Cr"] = { function() require("crates").reload() end, desc = "Reload information from crates.io" },
         ["<Leader>CU"] = { function() require("crates").upgrade_crate() end, desc = "Upgrade a crate" },
@@ -73,7 +69,6 @@ return {
         p = { '"_d"+p' },
         P = { '"_d"+P' },
         ["<Leader>C"] = { name = "Crates" },
-        ["<Leader>lr"] = { function() require("lspactions").rename() end, desc = "Rename symbol" },
         ["<Leader>CU"] = { function() require("crates").upgrade_crates() end, desc = "Upgrade selected crates" },
         ["<Leader>sw"] = {
           function()
