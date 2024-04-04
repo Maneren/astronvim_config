@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
@@ -9,7 +10,6 @@ return {
   { import = "astrocommunity.editing-support.dial-nvim" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.editing-support.suda-vim" },
-  { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.lsp.garbage-day-nvim" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
@@ -38,26 +38,9 @@ return {
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.project.project-nvim" },
+  { import = "astrocommunity.recipes.neovide" },
+  { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
+  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.workflow.hardtime-nvim" },
-
-  -- TODO: Remove those overrides after astrocommunity updates to v4
-  {
-    "simrat39/rust-tools.nvim",
-    enabled = false,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      local s = {}
-      local i = 0
-      for _, v in pairs(opts.ensure_installed) do
-        if v ~= "rust_analyzer" then
-          s[i] = v
-          i = i + 1
-        end
-      end
-      opts.ensure_installed = s
-    end,
-  },
 }
