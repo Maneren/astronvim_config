@@ -22,7 +22,7 @@ return {
         spell = false,
         signcolumn = "auto",
         wrap = false,
-        guifont = { "Iosevka", ":h13" },
+        guifont = { "Iosevka", ":h14" },
       },
       g = {
         neovide_cursor_vfx_mode = "pixiedust",
@@ -37,14 +37,6 @@ return {
         -- make copy-pasting use the system clipboard by default
         p = { '"+p' },
         P = { '"+P' },
-        ["<Leader>T"] = { name = "Tests" },
-        ["<Leader>Tr"] = { function() require("neotest").run.run() end, desc = "Run closest test" },
-        ["<Leader>Tf"] = { function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run current file" },
-        ["<Leader>Td"] = {
-          function() require("neotest").run.run { strategy = "dap", suite = false } end,
-          desc = "Debug closest test",
-        },
-        ["<Leader>Tc"] = { function() require("neotest").summary.toggle() end, desc = "Toggle summary window" },
       },
       v = {
         -- Also in visual mode
