@@ -52,12 +52,6 @@ return {
         y = { '"+y' },
         p = { '"_d"+p' },
         P = { '"_d"+P' },
-        ["<Leader>sw"] = {
-          function()
-            vim.cmd("startnormal")
-            require("spectre").open_visual()
-          end,
-        },
       },
     },
   },
