@@ -12,7 +12,7 @@ return {
   { import = "astrocommunity.editing-support.suda-vim" },
   { import = "astrocommunity.lsp.garbage-day-nvim" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
-  { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
+  { import = "astrocommunity.markdown-and-latex.peek-nvim" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
   { import = "astrocommunity.media.vim-wakatime" },
   { import = "astrocommunity.motion.flash-nvim" },
