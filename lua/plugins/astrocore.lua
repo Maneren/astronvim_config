@@ -37,12 +37,7 @@ return {
         -- make copy-pasting use the system clipboard by default
         p = { '"+p' },
         P = { '"+P' },
-        ["<Leader>C"] = { name = "Crates" },
         ["<Leader>T"] = { name = "Tests" },
-        ["<Leader>Ct"] = { function() require("crates").toggle() end, desc = "Toggle extra crates.io information" },
-        ["<Leader>Cr"] = { function() require("crates").reload() end, desc = "Reload information from crates.io" },
-        ["<Leader>CU"] = { function() require("crates").upgrade_crate() end, desc = "Upgrade a crate" },
-        ["<Leader>CA"] = { function() require("crates").upgrade_all_crates() end, desc = "Upgrade all crates" },
         ["<Leader>Tr"] = { function() require("neotest").run.run() end, desc = "Run closest test" },
         ["<Leader>Tf"] = { function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run current file" },
         ["<Leader>Td"] = {
@@ -57,20 +52,11 @@ return {
         y = { '"+y' },
         p = { '"_d"+p' },
         P = { '"_d"+P' },
-        ["<Leader>C"] = { name = "Crates" },
-        ["<Leader>CU"] = { function() require("crates").upgrade_crates() end, desc = "Upgrade selected crates" },
         ["<Leader>sw"] = {
           function()
             vim.cmd("startnormal")
             require("spectre").open_visual()
           end,
-        },
-      },
-      i = {
-        ["<S-CR>"] = {
-          function() return vim.fn["codeium#Accept"]() end,
-          desc = "Accept codeium suggestion",
-          expr = true,
         },
       },
     },
