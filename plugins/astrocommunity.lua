@@ -6,6 +6,7 @@ return {
   { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
   { import = "astrocommunity.debugging.persistent-breakpoints-nvim" },
   { import = "astrocommunity.debugging.telescope-dap-nvim" },
+  { import = "astrocommunity.editing-support.dial-nvim" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.lsp.garbage-day-nvim" },
