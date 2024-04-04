@@ -43,7 +43,7 @@ return {
       },
       inlayHints = {
         enable = true,
-        bindingModeHints = { enable = true },
+        bindingModeHints = { enable = false },
         chainingHints = { enable = true },
         closingBraceHints = {
           enable = true,
@@ -54,10 +54,10 @@ return {
         parameterHints = { enable = false },
         typeHints = { enable = true },
       },
-      checkOnSave = {
+      check = {
         enable = true,
         command = "clippy",
-        features = "all",
+        extraArgs = { "--no-deps" },
       },
     },
   },
