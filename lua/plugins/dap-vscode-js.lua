@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "mxsdev/nvim-dap-vscode-js",
   lazy = false,

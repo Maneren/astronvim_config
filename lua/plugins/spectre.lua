@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "nvim-pack/nvim-spectre",
   opts = {

@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "David-Kunz/cmp-npm",
   event = "BufRead package.json",

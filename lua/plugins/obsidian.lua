@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "epwalsh/obsidian.nvim",
   opts = {
