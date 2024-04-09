@@ -2,6 +2,6 @@
 return {
   "akinsho/toggleterm.nvim",
   opts = {
-    on_open = function() vim.cmd("startinsert") end,
+    start_in_insert = true,
   },
 }
