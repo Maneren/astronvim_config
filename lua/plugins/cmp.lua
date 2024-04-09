@@ -4,7 +4,6 @@ return {
   opts = function(_, opts)
     local cmp = require("cmp")
     opts.sources = cmp.config.sources {
-      { name = "crates", priority = 1100 },
       { name = "npm", priority = 1100 },
       { name = "nvim_lsp", priority = 1000 },
       { name = "luasnip", priority = 750 },
