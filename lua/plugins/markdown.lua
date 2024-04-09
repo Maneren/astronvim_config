@@ -20,11 +20,8 @@ return {
   },
   {
     "toppair/peek.nvim",
-    build = "deno task --quiet build:fast",
     ft = { "markdown" },
-    opts = {
-      app = "firefox",
-    },
+    opts = { app = "firefox" },
     keys = {
       { "<Leader>mP", function() require("peek").open() end, desc = "Open preview window" },
       { "<Leader>mp", function() require("peek").close() end, desc = "Close preview window" },
