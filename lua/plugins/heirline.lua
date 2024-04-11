@@ -28,7 +28,7 @@ return {
           hl.git_added = comment_fg
           hl.git_changed = comment_fg
           hl.git_removed = comment_fg
-          hl.blank_bg = get_hlgroup("Folded").fg
+          hl.blank_bg = get_hlgroup("FoldColumn").fg
           hl.file_info_bg = get_hlgroup("Visual").bg
           hl.nav_icon_bg = get_hlgroup("String").fg
           hl.nav_fg = hl.nav_icon_bg
@@ -59,6 +59,7 @@ return {
           mode_text = {
             icon = { kind = "VimIcon", padding = { right = 1, left = 1 } },
           },
+          padding = { right = 1 },
           surround = {
             separator = "left",
             color = function() return { main = status.hl.mode_bg(), right = "blank_bg" } end,
@@ -76,7 +77,6 @@ return {
         status.component.file_info {
           filename = { fallback = "Empty" },
           filetype = false,
-          -- file_read_only = false,
           padding = { right = 1 },
           surround = { separator = "left", condition = false },
         },
