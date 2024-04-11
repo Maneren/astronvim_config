@@ -19,26 +19,22 @@ return {
     },
   },
   {
-    "toppair/peek.nvim",
-    ft = { "markdown" },
-    opts = { app = "firefox" },
-    keys = {
-      { "<Leader>mP", function() require("peek").open() end, desc = "Open preview window" },
-      { "<Leader>mp", function() require("peek").close() end, desc = "Close preview window" },
-    },
-  },
-  {
     "astrocore",
     opts = {
       mappings = {
         n = {
           ["<Leader>m"] = { name = "󰈙 Markdown" },
+          ["<Leader>mp"] = { function() vim.cmd("MarkdownPreview") end, desc = "Open preview" },
+          ["<Leader>mP"] = { function() vim.cmd("MarkdownPreviewStop") end, desc = "Close preview" },
         },
       },
       options = {
         g = {
           vim_markdown_math = 1,
           vim_markdown_conceal = 0,
+
+          mkdp_page_title = "${name}",
+          mkdp_port = "4333",
         },
       },
     },
