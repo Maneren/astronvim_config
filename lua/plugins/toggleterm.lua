@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   "akinsho/toggleterm.nvim",
-  opts = {
-    start_in_insert = true,
+  keys = {
+    { "<Leader>tt", "<Cmd>ToggleTerm direction=tab<CR>", desc = "ToggleTerm tab" },
   },
 }
