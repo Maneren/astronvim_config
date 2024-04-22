@@ -46,4 +46,17 @@ return {
       })
     end,
   },
+  {
+    "williamboman/mason.nvim",
+    dependencies = { "Zeioth/mason-extra-cmds", config = true },
+    cmd = {
+      "Mason",
+      "MasonInstall",
+      "MasonUninstall",
+      "MasonUninstallAll",
+      "MasonLog",
+      "MasonUpdate",
+      "MasonUpdateAll", -- this cmd is provided by mason-extra-cmds
+    },
+  },
 }
