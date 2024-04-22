@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   "chrisgrieser/nvim-early-retirement",
-  config = {
+  opts = {
     retirementAgeMins = 10,
   },
   event = "VeryLazy",

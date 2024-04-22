@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   {
-    "saecki/crates.nvim",
+    "Saecki/crates.nvim",
     keys = {
       {
         "<Leader>rt",
