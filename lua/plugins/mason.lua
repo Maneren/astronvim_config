@@ -7,7 +7,6 @@ return {
         "asm_lsp",
         "diagnosticls",
         "ltex",
-        "omnisharp",
         "sourcery",
         "stylelint_lsp",
         "texlab",
