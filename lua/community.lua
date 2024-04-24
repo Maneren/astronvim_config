@@ -44,5 +44,4 @@ return {
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.utility.noice-nvim" },
-  { import = "astrocommunity.workflow.hardtime-nvim" },
 }
