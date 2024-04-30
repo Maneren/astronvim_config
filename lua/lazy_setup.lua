@@ -1,4 +1,5 @@
-require("lazy").setup({
+--- @type LazySpec
+local spec = {
   {
     "AstroNvim/AstroNvim",
     version = "^4",
@@ -11,7 +12,10 @@ require("lazy").setup({
   },
   { import = "community" },
   { import = "plugins" },
-} --[[@as LazySpec]], {
+}
+
+--- @type LazyConfig
+local opts = {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "catppuccin" } },
   ui = { backdrop = 100 },
@@ -26,4 +30,6 @@ require("lazy").setup({
       },
     },
   },
-} --[[@as LazyConfig]])
+}
+
+require("lazy").setup(spec, opts)
