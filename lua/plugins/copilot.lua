@@ -1,24 +1,19 @@
 --- @type LazySpec
 return {
   {
-    "zbirenbaum/copilot.lua",
-    event = "User AstroFile",
-    opts = {},
-  },
-  {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
-    event = "User AstroFile",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope.nvim" },
+      { "zbirenbaum/copilot.lua", opts = {} },
     },
     opts = {
-      model = "gpt-4", -- GPT model to use, 'gpt-3.5-turbo' or 'gpt-4'
-      question_header = "## User ", -- Header to use for user questions
-      answer_header = "## Copilot ", -- Header to use for AI answers
-      error_header = "## Error ", -- Header to use for errors
-      separator = "---", -- Separator to use in chat
+      model = "gpt-4",
+      question_header = "## User ",
+      answer_header = "## Copilot ",
+      error_header = "## Error ",
+      separator = "---",
 
       show_folds = true,
       show_help = true,
