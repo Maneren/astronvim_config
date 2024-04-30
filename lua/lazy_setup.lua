@@ -12,6 +12,7 @@ local spec = {
   },
   { import = "community" },
   { import = "plugins" },
+  { import = "plugins.dap" },
 }
 
 --- @type LazyConfig

@@ -1,13 +1,13 @@
----@type LazySpec
+--- @type LazySpec
 return {
   "niuiic/dap-utils.nvim",
+  event = "VeryLazy",
   dependencies = {
     "mfussenegger/nvim-dap",
     "niuiic/core.nvim",
     "rcarriga/nvim-dap-ui",
     "nvim-telescope/telescope.nvim",
   },
-  event = "BufReadPost",
   opts = {
     rust = function(run)
       local config = {
@@ -73,6 +73,7 @@ return {
         end)
       end
     end,
+
     javascript = function(run)
       local core = require("core")
       run {
