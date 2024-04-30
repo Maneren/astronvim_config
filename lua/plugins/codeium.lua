@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   "Exafunction/codeium.vim",
-  event = "User AstroFile",
+  event = "InsertEnter",
   config = function() vim.g.codeium_no_map_tab = 1 end,
   keys = {
     {
