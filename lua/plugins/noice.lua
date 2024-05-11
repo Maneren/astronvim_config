@@ -1,6 +1,11 @@
 ---@type LazySpec
 return {
   "folke/noice.nvim",
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    "nvim-telescope/telescope.nvim",
+    "rcarriga/nvim-notify",
+  },
   opts = {
     messages = {
       enabled = false,
@@ -34,4 +39,8 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    require("noice").setup(opts)
+    require("telescope").load_extension("noice")
+  end,
 }
