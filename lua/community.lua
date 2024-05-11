@@ -38,7 +38,6 @@ return {
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.typst" },
   { import = "astrocommunity.pack.yaml" },
-  { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.project.project-nvim" },
   { import = "astrocommunity.recipes.neovide" },
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
