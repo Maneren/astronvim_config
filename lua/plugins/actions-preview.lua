@@ -18,7 +18,7 @@ return {
       opts = {
         mappings = {
           n = keymaps,
-          v = keymaps,
+          x = keymaps,
         },
       },
     },

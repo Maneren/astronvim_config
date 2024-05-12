@@ -2,7 +2,6 @@
 return {
   "MagicDuck/grug-far.nvim",
   opts = {},
-  command = "GrugFar",
   dependencies = {
     { "AstroNvim/astroui", opts = { icons = { GrugFar = "󰛔" } } },
     {
