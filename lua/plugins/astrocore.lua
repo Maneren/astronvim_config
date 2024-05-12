@@ -33,18 +33,8 @@ return {
       },
     },
     mappings = {
-      n = {
-        -- make copy-pasting use the system clipboard by default
-        p = { '"+p' },
-        P = { '"+P' },
-      },
-      v = {
-        x = { '"+x' },
-        y = { '"+y' },
-        p = { '"_d"+p' },
-        P = { '"_d"+P' },
-      },
       t = {
+        -- escape in terminal mode
         ["<C-ESC>"] = { "<C-\\><C-n>" },
       },
     },
