@@ -30,6 +30,8 @@ return {
         neovide_scroll_animation_length = 0,
         neovide_hide_mouse_when_typing = true,
         neovide_cursor_animate_command_line = false,
+
+        vimtex_compiler_method = "tectonic",
       },
     },
     mappings = {
