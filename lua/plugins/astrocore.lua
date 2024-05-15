@@ -38,6 +38,8 @@ return {
       t = {
         -- escape in terminal mode
         ["<C-ESC>"] = { "<C-\\><C-n>" },
+        -- paste in terminal
+        ["<C-v>"] = { "<C-\\><C-n>pi", desc = "Paste from clipboard" },
       },
     },
   },
