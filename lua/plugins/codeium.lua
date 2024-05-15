@@ -3,13 +3,21 @@ return {
   "Exafunction/codeium.vim",
   event = "InsertEnter",
   config = function() vim.g.codeium_no_map_tab = 1 end,
-  keys = {
+  dependencies = {
     {
-      "<S-CR>",
-      function() return vim.fn["codeium#Accept"]() end,
-      desc = "Accept codeium suggestion",
-      expr = true,
-      mode = "i",
+      "astrocore",
+      ---@type AstroCoreOpts
+      opts = {
+        mappings = {
+          i = {
+            ["<S-CR>"] = {
+              function() return vim.fn["codeium#Accept"]() end,
+              desc = "Accept codeium suggestion",
+              expr = true,
+            },
+          },
+        },
+      },
     },
   },
 }

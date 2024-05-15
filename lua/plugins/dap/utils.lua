@@ -119,5 +119,7 @@ return {
     local utils = require("dap-utils")
     require("dap").continue = utils.continue
     utils.setup(opts)
+
+    require("telescope").load_extension("dap")
   end,
 }

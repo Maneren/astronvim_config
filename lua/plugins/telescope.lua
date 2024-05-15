@@ -10,6 +10,5 @@ return {
     local telescope = require("telescope")
     telescope.setup(opts)
     telescope.load_extension("i23")
-    telescope.load_extension("dap")
   end,
 }

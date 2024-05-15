@@ -1,7 +1,8 @@
 --- @type LazySpec
 return {
   "MagicDuck/grug-far.nvim",
-  opts = {},
+  config = true,
+  event = "VeryLazy",
   dependencies = {
     { "AstroNvim/astroui", opts = { icons = { GrugFar = "󰛔" } } },
     {
