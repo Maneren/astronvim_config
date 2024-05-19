@@ -26,10 +26,14 @@ return {
       },
       g = {
         neovide_cursor_vfx_mode = "pixiedust",
-        neovide_remember_window_size = true,
         neovide_scroll_animation_length = 0,
         neovide_hide_mouse_when_typing = true,
         neovide_cursor_animate_command_line = false,
+        neovide_far_scroll_lines = 200,
+        neovide_floating_shadow = true,
+        neovide_floating_z_height = 10,
+        neovide_light_angle_degrees = 45,
+        neovide_light_radius = 5,
 
         vimtex_compiler_method = "tectonic",
       },
