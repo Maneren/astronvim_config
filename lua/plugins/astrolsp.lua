@@ -14,14 +14,14 @@ return {
         enabled = true,
         ignore_filetypes = {},
       },
-      disabled = { -- disable formatting capabilities for the listed language servers
-        -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
-        -- "lua_ls",
+      disabled = {
+        "csharp_ls",
       },
-      timeout_ms = 1000,
+      timeout_ms = 2000,
     },
-    -- enable servers that you already have installed without mason
-    servers = {},
+    handlers = {
+      rust_analyzer = false, -- rustacean.nvim
+    },
     ---@diagnostic disable: missing-fields
     config = {
       clangd = { capabilities = { offsetEncoding = "utf-8" } },
@@ -120,9 +120,6 @@ return {
           },
         },
       },
-    },
-    handlers = {
-      rust_analyzer = false,
     },
     autocmds = {
       lsp_document_highlight = {
