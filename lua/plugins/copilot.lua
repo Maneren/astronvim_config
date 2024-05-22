@@ -7,7 +7,8 @@ local prompts = {
   FixCode = "Please fix the following code to make it work as intended.",
   FixError = "Please explain the error in the following text and provide a solution.",
   BetterNamings = "Please provide better names for the following variables and functions.",
-  Documentation = "Please provide documentation for the following code.",
+  Documentation = "Please provide outside API documentation for the following code. It should contain a concise one line summary, detailed description, arguments, and return values in format fitting to the language.",
+  Comments = "Please add short comments to the following code where needed.",
   -- Text related prompts
   Summarize = "Please summarize the following text.",
   Spelling = "Please correct any grammar and spelling errors in the following text.",
