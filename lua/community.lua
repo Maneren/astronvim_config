@@ -24,7 +24,6 @@ return {
   { import = "astrocommunity.note-taking.obsidian-nvim" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.cpp" },
-  { import = "astrocommunity.pack.cs" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.haskell" },
   { import = "astrocommunity.pack.html-css" },

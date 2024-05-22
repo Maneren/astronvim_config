@@ -16,11 +16,13 @@ return {
       },
       disabled = {
         "csharp_ls",
+        "omnisharp",
       },
       timeout_ms = 2000,
     },
     handlers = {
       rust_analyzer = false, -- rustacean.nvim
+      omnisharp = false, -- csharp.nvim
     },
     ---@diagnostic disable: missing-fields
     config = {
