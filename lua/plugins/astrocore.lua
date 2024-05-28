@@ -26,7 +26,6 @@ return {
       },
       g = {
         neovide_cursor_vfx_mode = "pixiedust",
-        neovide_scroll_animation_length = 0,
         neovide_hide_mouse_when_typing = true,
         neovide_cursor_animate_command_line = false,
         neovide_far_scroll_lines = 200,
