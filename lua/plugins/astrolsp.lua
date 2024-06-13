@@ -122,6 +122,9 @@ return {
           },
         },
       },
+      ltex = {
+        on_attach = function(_, _) require("ltex_extra").setup() end,
+      },
     },
     autocmds = {
       lsp_document_highlight = {
