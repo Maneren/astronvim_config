@@ -74,10 +74,7 @@ return {
               enable = true,
               bindingModeHints = { enable = false },
               chainingHints = { enable = true },
-              closingBraceHints = {
-                enable = true,
-                minLines = 10,
-              },
+              closingBraceHints = { enable = false },
               closureReturnTypeHints = { enable = "always" },
               lifetimeElisionHints = { enable = "skip_trivial" },
               parameterHints = { enable = false },
