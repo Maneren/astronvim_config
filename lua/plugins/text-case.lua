@@ -3,7 +3,7 @@ local mappings = {
   ["ga."] = { function() require("telescope").extensions.textcase.textcase() end, desc = "Telescope" },
 }
 
---- @type LazySpec
+---@type LazySpec
 return {
   "johmsalas/text-case.nvim",
   event = "User AstroFile",

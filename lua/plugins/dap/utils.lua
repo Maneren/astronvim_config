@@ -1,4 +1,4 @@
---- @type LazySpec
+---@type LazySpec
 return {
   "niuiic/dap-utils.nvim",
   event = "VeryLazy",

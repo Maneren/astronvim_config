@@ -1,4 +1,4 @@
---- @type LazySpec
+---@type LazySpec
 local spec = {
   {
     "AstroNvim/AstroNvim",
@@ -15,7 +15,7 @@ local spec = {
   { import = "plugins.dap" },
 }
 
---- @type LazyConfig
+---@type LazyConfig
 local opts = {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "catppuccin" } },

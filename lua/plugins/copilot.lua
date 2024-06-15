@@ -16,7 +16,7 @@ local prompts = {
   Concise = "Please rewrite the following text to make it more concise.",
 }
 
---- @type LazySpec
+---@type LazySpec
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",

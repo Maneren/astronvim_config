@@ -1,4 +1,4 @@
---- @type LazySpec
+---@type LazySpec
 return {
   "mxsdev/nvim-dap-vscode-js",
   event = "VeryLazy",

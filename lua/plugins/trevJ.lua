@@ -1,4 +1,4 @@
---- @type LazySpec
+---@type LazySpec
 return {
   "AckslD/nvim-trevJ.lua",
   event = "User AstroFile",
@@ -6,7 +6,7 @@ return {
   dependencies = {
     {
       "astrocore",
-      --- @type AstroCoreOpts
+      ---@type AstroCoreOpts
       opts = {
         mappings = {
           n = {

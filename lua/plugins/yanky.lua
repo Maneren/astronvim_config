@@ -1,4 +1,4 @@
---- @type LazySpec
+---@type LazySpec
 return {
   "gbprod/yanky.nvim",
   event = "User AstroFile",
@@ -6,7 +6,7 @@ return {
     { "kkharji/sqlite.lua" },
     {
       "AstroNvim/astrocore",
-      --- @type AstroCoreOpts
+      ---@type AstroCoreOpts
       opts = {
         mappings = {
           n = {

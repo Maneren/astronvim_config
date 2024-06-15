@@ -1,11 +1,11 @@
---- @type LazySpec
+---@type LazySpec
 return {
   "t-troebst/perfanno.nvim",
   opts = {},
   dependencies = {
     {
       "astrocore",
-      --- @type AstroCoreOpts
+      ---@type AstroCoreOpts
       opts = {
         mappings = {
           n = {

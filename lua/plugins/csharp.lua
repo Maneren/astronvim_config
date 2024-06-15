@@ -1,4 +1,4 @@
---- @type LazySpec
+---@type LazySpec
 return {
   "iabdelkareem/csharp.nvim",
   ft = { "cs" },

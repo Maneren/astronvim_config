@@ -1,4 +1,4 @@
---- @type LazySpec
+---@type LazySpec
 return {
   "Wansmer/binary-swap.nvim",
   event = "User AstroFile",
@@ -6,7 +6,7 @@ return {
     { "nvim-treesitter/nvim-treesitter" },
     {
       "astrocore",
-      --- @type AstroCoreOpts
+      ---@type AstroCoreOpts
       opts = {
         mappings = {
           n = {
