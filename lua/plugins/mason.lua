@@ -29,6 +29,7 @@ return {
         "jsonlint",
         "markdownlint",
         "rustywind",
+        "shellcheck",
         "shellharden",
         "sqlfmt",
         "yamlfmt",
