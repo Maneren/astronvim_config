@@ -22,7 +22,7 @@ return {
         spell = false,
         signcolumn = "auto",
         wrap = false,
-        guifont = { "Iosevka", vim.fn.hostname() == "swift5pro" and ":h8" or ":h14" },
+        guifont = { "Iosevka", vim.fn.hostname() == "swift5pro" and ":h14" or ":h8" },
       },
       g = {
         neovide_cursor_vfx_mode = "pixiedust",
