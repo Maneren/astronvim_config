@@ -32,7 +32,6 @@ return {
           hl.file_info_bg = get_hlgroup("Visual").bg
           hl.nav_icon_bg = get_hlgroup("String").fg
           hl.nav_fg = hl.nav_icon_bg
-          hl.folder_icon_bg = get_hlgroup("Error").fg
           return hl
         end,
         attributes = {
@@ -99,34 +98,6 @@ return {
           lsp_progress = false,
           surround = { separator = "right" },
         },
-        -- NvChad has some nice icons to go along with information, so we can create a parent component to do this
-        -- all of the children of this table will be treated together as a single component
-        {
-          status.component.builder {
-            { provider = require("astroui").get_icon("FolderClosed") },
-            padding = { right = 1 },
-            hl = { fg = "bg" },
-            surround = { separator = "right", color = "folder_icon_bg" },
-          },
-          -- cwd
-          status.component.file_info {
-            filename = {
-              fname = function(nr) return vim.fn.getcwd(nr) end,
-              padding = { left = 1 },
-            },
-            -- disable all other elements of the file_info component
-            filetype = false,
-            file_icon = false,
-            file_modified = false,
-            file_read_only = false,
-            -- use no separator for this part but define a background color
-            surround = {
-              separator = "none",
-              color = "file_info_bg",
-              condition = false,
-            },
-          },
-        },
         -- file percentage
         {
           status.component.builder {
@@ -135,7 +106,7 @@ return {
             hl = { fg = "bg" },
             surround = {
               separator = "right",
-              color = { main = "nav_icon_bg", left = "file_info_bg" },
+              color = { main = "nav_icon_bg" },
             },
           },
           status.component.nav {
