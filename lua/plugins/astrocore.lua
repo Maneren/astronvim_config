@@ -45,6 +45,10 @@ return {
         -- paste in terminal
         ["<C-v>"] = { "<C-\\><C-n>pi", desc = "Paste from clipboard" },
       },
+      n = {
+        H = { "^", desc = "First non-blank" },
+        L = { "$", desc = "Last non-blank" },
+      },
     },
   },
 }
