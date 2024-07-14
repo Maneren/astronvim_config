@@ -3,24 +3,50 @@
 
 ---@type LazySpec
 return {
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        filtered_items = {
-          always_show = {
-            ".gitignored",
-          },
-        },
-        follow_current_file = {
-          enabled = true,
+  "nvim-neo-tree/neo-tree.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons",
+    "MunifTanjim/nui.nvim",
+    "mrbjarksen/neo-tree-diagnostics.nvim",
+  },
+  opts = {
+    filesystem = {
+      async_directory_scan = "auto",
+      scan_mode = "deep",
+      group_empty_dirs = true,
+      filtered_items = {
+        always_show = {
+          ".gitignored",
         },
       },
+      follow_current_file = {
+        enabled = true,
+      },
+      find_by_full_path_words = true,
     },
-  },
-  {
-    "mrbjarksen/neo-tree-diagnostics.nvim",
-    dependencies = "nvim-neo-tree/neo-tree.nvim",
-    module = "neo-tree.sources.diagnostics",
+    sources = {
+      "filesystem",
+      "git_status",
+      "document_symbols",
+      "diagnostics",
+    },
+    source_selector = {
+      sources = {
+        { source = "filesystem" },
+        { source = "git_status" },
+        { source = "diagnostics" },
+        { source = "document_symbols" },
+      },
+    },
+    event_handlers = {
+      {
+        event = "file_open_requested",
+        handler = function() require("neo-tree.command").execute { action = "close" } end,
+      },
+    },
+    window = {
+      width = 50,
+    },
   },
 }
