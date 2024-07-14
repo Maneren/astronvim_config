@@ -16,7 +16,7 @@ return {
       mappings = {
         n = {
           ["<Leader>uv"] = {
-            function() require("nvim_context_vt").toggle() end,
+            function() require("nvim_context_vt").toggle_context() end,
             desc = "Toggle virtual text context",
           },
         },
