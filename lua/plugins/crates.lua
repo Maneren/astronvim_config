@@ -10,7 +10,7 @@ return {
     opts = {
       mappings = {
         n = {
-          [prefix] = { name = " Crates" },
+          [prefix] = { group = " Crates" },
           [prefix .. "t"] = {
             function() require("crates").toggle() end,
             desc = "Toggle extra crates.io information",

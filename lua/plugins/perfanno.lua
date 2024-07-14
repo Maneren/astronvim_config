@@ -9,8 +9,8 @@ return {
       opts = {
         mappings = {
           n = {
-            ["<Leader>P"] = { name = "PerfAnno" },
-            ["<Leader>Pl"] = { name = "Load perf profile" },
+            ["<Leader>P"] = { group = "PerfAnno" },
+            ["<Leader>Pl"] = { group = "Load perf profile" },
             ["<Leader>Plf"] = {
               ":PerfLoadFlat<CR>",
               desc = "Flat profile",
@@ -53,7 +53,7 @@ return {
             },
           },
           v = {
-            ["<Leader>P"] = { name = "PerfAnno" },
+            ["<Leader>P"] = { group = "PerfAnno" },
             ["<Leader>Pa"] = {
               ":PerfAnnotateSelection<CR>",
               desc = "Annotate performance data for selected code",

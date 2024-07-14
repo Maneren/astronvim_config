@@ -23,7 +23,7 @@ return {
     opts = {
       mappings = {
         n = {
-          ["<Leader>m"] = { name = "󰈙 Markdown" },
+          ["<Leader>m"] = { group = "󰈙 Markdown" },
           ["<Leader>mp"] = { function() vim.cmd("MarkdownPreview") end, desc = "Open preview" },
           ["<Leader>mP"] = { function() vim.cmd("MarkdownPreviewStop") end, desc = "Close preview" },
         },

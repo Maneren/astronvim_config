@@ -1,5 +1,5 @@
 local mappings = {
-  ["ga"] = { name = "Text Case" },
+  ["ga"] = { group = "Text Case" },
   ["ga."] = { function() require("telescope").extensions.textcase.textcase() end, desc = "Telescope" },
 }
 
