@@ -7,11 +7,6 @@
 return {
   "nvimtools/hydra.nvim",
   event = "VeryLazy",
-  dependencies = {
-    "jlanzarotta/bufexplorer",
-    "sindrets/winshift.nvim",
-    "mrjones2014/smart-splits.nvim",
-  },
   config = function()
     local Hydra = require("hydra")
 
