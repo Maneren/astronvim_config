@@ -1,3 +1,6 @@
+--- Lightweight copilot alternative
+--- https://github.com/Exafunction/codeium.vim
+
 ---@type LazySpec
 return {
   "Exafunction/codeium.vim",

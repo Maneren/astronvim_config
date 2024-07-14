@@ -1,3 +1,6 @@
+--- Reverse operation to J[oin]
+--- https://github.com/AckslD/nvim-trevJ
+
 ---@type LazySpec
 return {
   "AckslD/nvim-trevJ.lua",

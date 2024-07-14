@@ -1,3 +1,6 @@
+--- Surround text with pairs
+--- https://github.com/kylechui/nvim-surround
+
 ---@type LazySpec
 return {
   "kylechui/nvim-surround",

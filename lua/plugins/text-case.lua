@@ -1,3 +1,6 @@
+--- Change text case
+--- https://github.com/johmsalas/text-case.nvim
+
 local mappings = {
   ["ga"] = { group = "Text Case" },
   ["ga."] = { function() require("telescope").extensions.textcase.textcase() end, desc = "Telescope" },

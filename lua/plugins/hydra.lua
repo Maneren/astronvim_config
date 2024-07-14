@@ -1,3 +1,8 @@
+--- Sticky keybinds
+--- https://github.com/anuvyklack/hydra.nvim
+
+-- currently only used for side scroll
+
 ---@type LazySpec
 return {
   "nvimtools/hydra.nvim",

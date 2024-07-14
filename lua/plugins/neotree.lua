@@ -1,3 +1,7 @@
+--- Config for neo-tree file explorer
+--- https://github.com/nvim-neo-tree/neo-tree.nvim
+
+---@type LazySpec
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",

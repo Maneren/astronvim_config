@@ -1,3 +1,6 @@
+--- Modern search and replace
+--- https://github.com/MagicDuck/grug-far.nvim
+
 ---@type LazySpec
 return {
   "MagicDuck/grug-far.nvim",

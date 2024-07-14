@@ -1,3 +1,6 @@
+--- GUI for cmdline and popupmenu
+--- https://github.com/folke/noice.nvim
+
 ---@type LazySpec
 return {
   "folke/noice.nvim",

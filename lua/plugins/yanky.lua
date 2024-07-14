@@ -1,3 +1,6 @@
+--- Yank history manager
+--- https://github.com/gbprod/yanky.nvim
+
 ---@type LazySpec
 return {
   "gbprod/yanky.nvim",

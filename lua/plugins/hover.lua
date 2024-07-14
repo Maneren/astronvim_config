@@ -1,3 +1,6 @@
+--- Improved hover window
+--- https://github.com/lewis6991/hover.nvim
+
 ---@type LazySpec
 return {
   "lewis6991/hover.nvim",

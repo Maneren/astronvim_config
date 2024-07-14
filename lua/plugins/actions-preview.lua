@@ -1,3 +1,6 @@
+--- Shows a preview of LSP code actions in telescope
+--- https://github.com/aznhe21/actions-preview.nvim
+
 local keymaps = {
   ["<Leader>la"] = {
     function() require("actions-preview").code_actions() end,

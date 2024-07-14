@@ -1,3 +1,6 @@
+--- Swaps binary operands
+--- https://github.com/Wansmer/binary-swap.nvim
+
 ---@type LazySpec
 return {
   "Wansmer/binary-swap.nvim",

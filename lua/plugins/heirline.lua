@@ -1,3 +1,6 @@
+--- Statusline
+--- https://github.com/NTBBloodbath/heirline.nvim
+
 -- based on AstroNvim's recipes heirline-nvchad-statusline and heirline-clock-statusline
 -- with slight modifications
 --

@@ -1,3 +1,6 @@
+--- Shows completion sources for NPM packages
+--- https://github.com/David-Kunz/cmp-npm
+
 ---@type LazySpec
 return {
   "David-Kunz/cmp-npm",

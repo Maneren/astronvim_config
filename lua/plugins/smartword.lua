@@ -1,3 +1,6 @@
+--- Better word-wise navigation
+--- https://github.com/anuvyklack/vim-smartword
+
 ---@type LazySpec
 return {
   "anuvyklack/vim-smartword",
