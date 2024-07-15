@@ -4,17 +4,28 @@
 ---@type LazySpec
 return {
   "MagicDuck/grug-far.nvim",
-  config = true,
-  event = "VeryLazy",
+  opts = {},
+  keys = { "<Leader>s" },
   dependencies = {
-    { "AstroNvim/astroui", opts = { icons = { GrugFar = "󰛔" } } },
     {
       "AstroNvim/astrocore",
-      opts = function(_, opts)
-        local maps = opts.mappings
-        maps.n["<Leader>s"] = { desc = require("astroui").get_icon("GrugFar", 1, true) .. "Search / Replace" }
-        maps.n["<Leader>sg"] = { function() require("grug-far").grug_far() end, desc = "Grug Find and Replace" }
-      end,
+      ---@type AstroCoreOpts
+      opts = {
+        mappings = {
+          n = {
+            ["<Leader>s"] = {
+              function() require("grug-far").grug_far() end,
+              desc = "󰛔 Search / Replace",
+            },
+          },
+          x = {
+            ["<Leader>s"] = {
+              function() require("grug-far").with_visual_selection() end,
+              desc = "󰛔 Search / Replace (current selection)",
+            },
+          },
+        },
+      },
     },
   },
 }
