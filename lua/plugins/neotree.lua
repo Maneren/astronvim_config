@@ -39,12 +39,6 @@ return {
         { source = "document_symbols" },
       },
     },
-    event_handlers = {
-      {
-        event = "file_open_requested",
-        handler = function() require("neo-tree.command").execute { action = "close" } end,
-      },
-    },
     window = {
       width = 50,
     },
