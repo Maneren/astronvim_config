@@ -1,17 +1,14 @@
 --- Sticky keybinds
---- https://github.com/anuvyklack/hydra.nvim
+--- https://github.com/nvimtools/hydra.nvim
 
 -- currently only used for side scroll
 
 ---@type LazySpec
 return {
   "nvimtools/hydra.nvim",
-  event = "VeryLazy",
-  config = function()
-    local Hydra = require("hydra")
-
-    Hydra {
-      name = "Side scroll",
+  -- applying the config is handled by astrocommunity
+  opts = {
+    ["Side scroll"] = {
       mode = "n",
       body = "z",
       heads = {
@@ -20,6 +17,6 @@ return {
         { "H", "zH" },
         { "L", "zL", { desc = "←/→ half screen" } },
       },
-    }
-  end,
+    },
+  },
 }
