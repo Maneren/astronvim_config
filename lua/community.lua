@@ -47,6 +47,7 @@ return {
   { import = "astrocommunity.recipes.neovide" },
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
+  { import = "astrocommunity.terminal-integration.toggleterm-manager-nvim" },
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.utility.noice-nvim" },
 }
