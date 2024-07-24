@@ -38,4 +38,37 @@ return {
       },
     },
   },
+  {
+    "OXY2DEV/markview.nvim",
+    ft = "markdown",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      code_blocks = {
+        style = "language",
+
+        hl = "Layer2",
+
+        min_width = 80,
+        pad_char = " ",
+        pad_amount = 2,
+
+        language_names = {
+          { "py", "python" },
+          { "cpp", "C++" },
+          { "cs", "C#" },
+        },
+        name_hl = "Layer2",
+        language_direction = "left",
+      },
+      inline_codes = {
+        hl = "Layer",
+
+        padding_left = "",
+        padding_right = "",
+      },
+    },
+  },
 }
