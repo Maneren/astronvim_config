@@ -5,7 +5,6 @@
 return {
   "Exafunction/codeium.vim",
   event = "InsertEnter",
-  config = true,
   dependencies = {
     {
       "astrocore",
