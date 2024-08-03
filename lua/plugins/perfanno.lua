@@ -90,18 +90,4 @@ return {
       },
     }
   end,
-  commands = {
-    "PerfLoadFlat",
-    "PerfLoadCallGraph",
-    "PerfLoadFlameGraph",
-    "PerfPickEvent",
-    "PerfAnnotate",
-    "PerfAnnotateFunction",
-    "PerfToggleAnnotations",
-    "PerfHottestLines",
-    "PerfHottestSymbols",
-    "PerfHottestCallersFunction",
-    "PerfAnnotateSelection",
-    "PerfHottestCallersSelection",
-  },
 }

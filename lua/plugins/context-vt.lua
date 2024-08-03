@@ -5,7 +5,6 @@
 return {
   "andersevenrud/nvim_context_vt",
   event = "User AstroFile",
-  cmd = { "NvimContextVtToggle" },
   opts = {
     min_rows = 15,
   },
