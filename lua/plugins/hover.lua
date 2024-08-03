@@ -4,6 +4,7 @@
 ---@type LazySpec
 return {
   "lewis6991/hover.nvim",
+  event = "User AstroFile",
   opts = {
     init = function()
       require("hover.providers.lsp")

@@ -2,6 +2,7 @@
 return {
   "t-troebst/perfanno.nvim",
   opts = {},
+  keys = { "<Leader>P" },
   dependencies = {
     {
       "astrocore",
