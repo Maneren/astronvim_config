@@ -19,6 +19,28 @@ local prompts = {
 ---@type LazySpec
 return {
   {
+    "jpmcb/nvim-llama",
+    cmd = "Llama",
+    opts = {
+      model = "codegemma:instruct",
+    },
+  },
+  {
+    "David-Kunz/gen.nvim",
+    cmd = "Gen",
+    opts = {
+      model = "codegemma:instruct",
+      host = "localhost",
+      port = "11434",
+      quit_map = "q",
+      retry_map = "<c-r>",
+      display_mode = "split",
+      show_prompt = true,
+      show_model = true,
+      no_auto_close = true,
+    },
+  },
+  {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
     keys = { "<leader>i" },
