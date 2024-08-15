@@ -46,8 +46,17 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
+      hybrid_modes = { "n" },
+      callbacks = {
+        on_enable = function(_, win)
+          vim.wo[win].conceallevel = 2
+          vim.wo[win].concealcursor = "c"
+        end,
+      },
+      headings = { shift_width = 0 },
       code_blocks = {
         style = "language",
+        icons = true,
 
         hl = "Layer2",
 
@@ -62,6 +71,7 @@ return {
         },
         name_hl = "Layer2",
         language_direction = "left",
+        sign = false,
       },
       inline_codes = {
         hl = "Layer",
