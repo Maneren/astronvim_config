@@ -1,11 +1,31 @@
 --- Modern search and replace
 --- https://github.com/MagicDuck/grug-far.nvim
 
+---@type AstroCoreMappings
+local mappings = {
+  ["<Leader>s"] = { group = "󰛔 Search / Replace" },
+  ["<Leader>ss"] = {
+    function() require("grug-far").open() end,
+    desc = "󰛔 Search / Replace",
+  },
+  ["<Leader>sS"] = {
+    function() require("grug-far").open { paths = vim.fn.expand("%"):gsub(" ", "\\ ") } end,
+    desc = "󰛔 Search / Replace (current file)",
+  },
+}
+
 ---@type LazySpec
 return {
   {
     "MagicDuck/grug-far.nvim",
-    opts = {},
+    ---@type GrugFarOptions
+    opts = {
+      engines = {
+        astgrep = {
+          path = "ast-grep",
+        },
+      },
+    },
     keys = { "<Leader>s" },
     dependencies = {
       {
@@ -13,32 +33,8 @@ return {
         ---@type AstroCoreOpts
         opts = {
           mappings = {
-            n = {
-              ["<Leader>s"] = { group = "󰛔 Search / Replace" },
-              ["<Leader>ss"] = {
-                function() require("grug-far").grug_far() end,
-                desc = "󰛔 Search / Replace",
-              },
-              ["<Leader>sS"] = {
-                function() require("grug-far").grug_far { flags = vim.fn.expand("%") } end,
-                desc = "󰛔 Search / Replace (current file)",
-              },
-            },
-            x = {
-              ["<Leader>s"] = { group = "󰛔 Search / Replace" },
-              ["<Leader>ss"] = {
-                function() require("grug-far").with_visual_selection { prefills = { flags = vim.fn.expand("%") } } end,
-                desc = "󰛔 Search / Replace (current selection)",
-              },
-              ["<Leader>sS"] = {
-                function()
-                  require("grug-far").with_visual_selection {
-                    prefills = { flags = vim.fn.expand("%"), path = vim.fn.expand("%") },
-                  }
-                end,
-                desc = "󰛔 Search / Replace (current selection and file)",
-              },
-            },
+            n = mappings,
+            x = mappings,
           },
         },
       },
@@ -61,7 +57,7 @@ return {
           }
 
           if not grugFar.has_instance("tree") then
-            grugFar.grug_far {
+            grugFar.open {
               instanceName = "tree",
               prefills = prefills,
               staticTitle = "Find and Replace from Tree",
