@@ -59,27 +59,27 @@ return {
         opts = {
           mappings = {
             n = {
-              ["<leader>i"] = { group = " Copilot" },
-              ["<leader>ih"] = {
+              ["<Leader>i"] = { group = " Copilot" },
+              ["<Leader>ih"] = {
                 function()
                   local actions = require("CopilotChat.actions")
                   require("CopilotChat.integrations.telescope").pick(actions.help_actions())
                 end,
                 desc = "CopilotChat - Help actions",
               },
-              ["<leader>ip"] = {
+              ["<Leader>ip"] = {
                 function()
                   local actions = require("CopilotChat.actions")
                   require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
                 end,
                 desc = "CopilotChat - Prompt actions",
               },
-              ["<leader>ie"] = { "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-              ["<leader>it"] = { "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
-              ["<leader>ir"] = { "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
-              ["<leader>iR"] = { "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
-              ["<leader>in"] = { "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
-              ["<leader>ii"] = {
+              ["<Leader>ie"] = { "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+              ["<Leader>it"] = { "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+              ["<Leader>ir"] = { "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
+              ["<Leader>iR"] = { "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
+              ["<Leader>in"] = { "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
+              ["<Leader>ii"] = {
                 function()
                   local input = vim.fn.input("Ask Copilot: ")
                   if input ~= "" then
@@ -88,15 +88,15 @@ return {
                 end,
                 desc = "CopilotChat - Ask input",
               },
-              ["<leader>im"] = {
+              ["<Leader>im"] = {
                 "<cmd>CopilotChatCommit<cr>",
                 desc = "CopilotChat - Generate commit message for all changes",
               },
-              ["<leader>iM"] = {
+              ["<Leader>iM"] = {
                 "<cmd>CopilotChatCommitStaged<cr>",
                 desc = "CopilotChat - Generate commit message for staged changes",
               },
-              ["<leader>iq"] = {
+              ["<Leader>iq"] = {
                 function()
                   local input = vim.fn.input("Quick Chat: ")
                   if input ~= "" then
@@ -105,15 +105,15 @@ return {
                 end,
                 desc = "CopilotChat - Quick chat",
               },
-              ["<leader>id"] = { "<cmd>CopilotChatDebugInfo<cr>", desc = "CopilotChat - Debug Info" },
-              ["<leader>if"] = { "<cmd>CopilotChatFixDiagnostic<cr>", desc = "CopilotChat - Fix Diagnostic" },
-              ["<leader>il"] = { "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
-              ["<leader>iv"] = { "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
-              ["<leader>is"] = { "<cmd>CopilotChatStop<cr>", desc = "CopilotChat - Stop" },
+              ["<Leader>id"] = { "<cmd>CopilotChatDebugInfo<cr>", desc = "CopilotChat - Debug Info" },
+              ["<Leader>if"] = { "<cmd>CopilotChatFixDiagnostic<cr>", desc = "CopilotChat - Fix Diagnostic" },
+              ["<Leader>il"] = { "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
+              ["<Leader>iv"] = { "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
+              ["<Leader>is"] = { "<cmd>CopilotChatStop<cr>", desc = "CopilotChat - Stop" },
             },
             x = {
-              ["<leader>i"] = { group = " Copilot" },
-              ["<leader>ip"] = {
+              ["<Leader>i"] = { group = " Copilot" },
+              ["<Leader>ip"] = {
                 function()
                   local actions = require("CopilotChat.actions")
                   local select = require("CopilotChat.select")
@@ -123,8 +123,8 @@ return {
                 end,
                 desc = "CopilotChat - Prompt actions",
               },
-              ["<leader>iv"] = { ":CopilotChatVisual", desc = "CopilotChat - Open in vertical split" },
-              ["<leader>ix"] = { ":CopilotChatInline<cr>", desc = "CopilotChat - Inline chat" },
+              ["<Leader>iv"] = { ":CopilotChatVisual", desc = "CopilotChat - Open in vertical split" },
+              ["<Leader>ix"] = { ":CopilotChatInline<cr>", desc = "CopilotChat - Inline chat" },
             },
           },
         },
