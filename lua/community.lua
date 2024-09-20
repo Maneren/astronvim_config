@@ -51,6 +51,8 @@ return {
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   { import = "astrocommunity.search.grug-far-nvim" },
+  { import = "astrocommunity.split-and-window.neominimap-nvim" },
+  { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.terminal-integration.toggleterm-manager-nvim" },
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.utility.noice-nvim" },
