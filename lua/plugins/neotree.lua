@@ -41,9 +41,6 @@ return {
     },
     window = {
       width = 40,
-      mappings = {
-        ["z"] = "grug_far",
-      },
     },
   },
 }
