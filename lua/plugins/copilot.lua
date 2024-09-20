@@ -42,103 +42,141 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
-    keys = { "<leader>i" },
+    version = "^2",
+    cmd = {
+      "CopilotChat",
+      "CopilotChatOpen",
+      "CopilotChatClose",
+      "CopilotChatToggle",
+      "CopilotChatStop",
+      "CopilotChatReset",
+      "CopilotChatSave",
+      "CopilotChatLoad",
+      "CopilotChatDebugInfo",
+      "CopilotChatModels",
+      "CopilotChatExplain",
+      "CopilotChatReview",
+      "CopilotChatFix",
+      "CopilotChatOptimize",
+      "CopilotChatDocs",
+      "CopilotChatFixDiagnostic",
+      "CopilotChatCommit",
+      "CopilotChatCommitStaged",
+    },
     dependencies = {
+      { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope.nvim" },
       {
-        "zbirenbaum/copilot.lua",
-        opts = {
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        },
+        "AstroNvim/astrocore",
+        ---@param opts AstroCoreOpts
+        opts = function(_, opts)
+          local maps = assert(opts.mappings)
+          local prefix = "<Leader>i"
+          local astroui = require("astroui")
+
+          maps.n[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "CopilotChat" }
+          maps.v[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "CopilotChat" }
+
+          maps.n[prefix .. "o"] = { ":CopilotChatOpen<CR>", desc = "Open Chat" }
+          maps.n[prefix .. "c"] = { ":CopilotChatClose<CR>", desc = "Close Chat" }
+          maps.n[prefix .. "t"] = { ":CopilotChatToggle<CR>", desc = "Toggle Chat" }
+          maps.n[prefix .. "r"] = { ":CopilotChatReset<CR>", desc = "Reset Chat" }
+          maps.n[prefix .. "s"] = { ":CopilotChatStop<CR>", desc = "Stop Chat" }
+
+          maps.n[prefix .. "S"] = {
+            function()
+              vim.ui.input({ prompt = "Save Chat: " }, function(input)
+                if input ~= nil and input ~= "" then
+                  require("CopilotChat").save(input)
+                end
+              end)
+            end,
+            desc = "Save Chat",
+          }
+
+          maps.n[prefix .. "L"] = {
+            function()
+              local copilot_chat = require("CopilotChat")
+              local path = copilot_chat.config.history_path
+              local chats = require("plenary.scandir").scan_dir(path, { depth = 1, hidden = true })
+              -- Remove the path from the chat names and .json
+              for i, chat in ipairs(chats) do
+                chats[i] = chat:sub(#path + 2, -6)
+              end
+              vim.ui.select(chats, { prompt = "Load Chat: " }, function(selected)
+                if selected ~= nil and selected ~= "" then
+                  copilot_chat.load(selected)
+                end
+              end)
+            end,
+            desc = "Load Chat",
+          }
+
+          -- Helper function to create mappings
+          local function create_mapping(action_type, selection_type)
+            return function()
+              require("CopilotChat.integrations.telescope").pick(require("CopilotChat.actions")[action_type] {
+                selection = require("CopilotChat.select")[selection_type],
+              })
+            end
+          end
+
+          maps.n[prefix .. "p"] = {
+            create_mapping("prompt_actions", "buffer"),
+            desc = "Prompt actions",
+          }
+
+          maps.v[prefix .. "p"] = {
+            create_mapping("prompt_actions", "visual"),
+            desc = "Prompt actions",
+          }
+
+          maps.n[prefix .. "d"] = {
+            create_mapping("help_actions", "buffer"),
+            desc = "LSP Diagnostics actions",
+          }
+
+          maps.v[prefix .. "d"] = {
+            create_mapping("help_actions", "visual"),
+            desc = "LSP Diagnostics actions",
+          }
+
+          -- Quick Chat function
+          local function quick_chat(selection_type)
+            return function()
+              vim.ui.input({ prompt = "Quick Chat: " }, function(input)
+                if input ~= nil and input ~= "" then
+                  require("CopilotChat").ask(input, { selection = require("CopilotChat.select")[selection_type] })
+                end
+              end)
+            end
+          end
+
+          maps.n[prefix .. "q"] = {
+            quick_chat("buffer"),
+            desc = "Quick Chat",
+          }
+
+          maps.v[prefix .. "q"] = {
+            quick_chat("visual"),
+            desc = "Quick Chat",
+          }
+        end,
       },
-      {
-        "astrocore",
-        opts = {
-          mappings = {
-            n = {
-              ["<Leader>i"] = { group = " Copilot" },
-              ["<Leader>ih"] = {
-                function()
-                  local actions = require("CopilotChat.actions")
-                  require("CopilotChat.integrations.telescope").pick(actions.help_actions())
-                end,
-                desc = "CopilotChat - Help actions",
-              },
-              ["<Leader>ip"] = {
-                function()
-                  local actions = require("CopilotChat.actions")
-                  require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-                end,
-                desc = "CopilotChat - Prompt actions",
-              },
-              ["<Leader>ie"] = { "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-              ["<Leader>it"] = { "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
-              ["<Leader>ir"] = { "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
-              ["<Leader>iR"] = { "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
-              ["<Leader>in"] = { "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
-              ["<Leader>ii"] = {
-                function()
-                  local input = vim.fn.input("Ask Copilot: ")
-                  if input ~= "" then
-                    vim.cmd("CopilotChat " .. input)
-                  end
-                end,
-                desc = "CopilotChat - Ask input",
-              },
-              ["<Leader>im"] = {
-                "<cmd>CopilotChatCommit<cr>",
-                desc = "CopilotChat - Generate commit message for all changes",
-              },
-              ["<Leader>iM"] = {
-                "<cmd>CopilotChatCommitStaged<cr>",
-                desc = "CopilotChat - Generate commit message for staged changes",
-              },
-              ["<Leader>iq"] = {
-                function()
-                  local input = vim.fn.input("Quick Chat: ")
-                  if input ~= "" then
-                    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-                  end
-                end,
-                desc = "CopilotChat - Quick chat",
-              },
-              ["<Leader>id"] = { "<cmd>CopilotChatDebugInfo<cr>", desc = "CopilotChat - Debug Info" },
-              ["<Leader>if"] = { "<cmd>CopilotChatFixDiagnostic<cr>", desc = "CopilotChat - Fix Diagnostic" },
-              ["<Leader>il"] = { "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
-              ["<Leader>iv"] = { "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
-              ["<Leader>is"] = { "<cmd>CopilotChatStop<cr>", desc = "CopilotChat - Stop" },
-            },
-            x = {
-              ["<Leader>i"] = { group = " Copilot" },
-              ["<Leader>ip"] = {
-                function()
-                  local actions = require("CopilotChat.actions")
-                  local select = require("CopilotChat.select")
-                  require("CopilotChat.integrations.telescope").pick(
-                    actions.prompt_actions { selection = select.visual }
-                  )
-                end,
-                desc = "CopilotChat - Prompt actions",
-              },
-              ["<Leader>iv"] = { ":CopilotChatVisual", desc = "CopilotChat - Open in vertical split" },
-              ["<Leader>ix"] = { ":CopilotChatInline<cr>", desc = "CopilotChat - Inline chat" },
-            },
-          },
-        },
-      },
+      { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
     },
     opts = {
-      model = "gpt-4",
+      window = {
+        width = 0.4,
+        height = vim.o.lines - 4, -- absolute height in rows, subtract for command line and status line
+        row = 1, -- row position of the window, starting from the top
+      },
+
+      model = "gpt-4o",
       question_header = "## User ",
       answer_header = "## Copilot ",
       error_header = "## Error ",
-
-      context = nil,
-      history_path = vim.fn.stdpath("data") .. "/copilotchat_history",
-      callback = nil,
 
       prompts = prompts,
 
@@ -156,7 +194,7 @@ return {
           insert = "<C-l>",
         },
         submit_prompt = {
-          normal = "<CR>",
+          normal = "<C-CR>",
           insert = "<C-CR>",
         },
         accept_diff = {
@@ -177,56 +215,5 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      local chat = require("CopilotChat")
-      local select = require("CopilotChat.select")
-
-      -- Use unnamed register for the selection
-      opts.selection = function(source) return select.visual(source) or select.line(source) end
-
-      chat.setup(opts)
-
-      vim.api.nvim_create_user_command(
-        "CopilotChatVisual",
-        function(args) chat.ask(args.args, { selection = select.visual }) end,
-        { nargs = "*", range = true }
-      )
-
-      vim.api.nvim_create_user_command(
-        "CopilotChatInline",
-        function(args)
-          chat.ask(args.args, {
-            selection = select.visual,
-            window = {
-              layout = "float",
-              relative = "cursor",
-              width = 1,
-              height = 0.4,
-              row = 1,
-            },
-          })
-        end,
-        { nargs = "*", range = true }
-      )
-
-      vim.api.nvim_create_user_command(
-        "CopilotChatBuffer",
-        function(args) chat.ask(args.args, { selection = select.buffer }) end,
-        { nargs = "*", range = true }
-      )
-
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "copilot-*",
-        callback = function()
-          vim.opt_local.relativenumber = true
-          vim.opt_local.number = true
-
-          local ft = vim.bo.filetype
-          if ft == "copilot-chat" then
-            vim.bo.filetype = "markdown"
-          end
-        end,
-      })
-    end,
   },
 }
