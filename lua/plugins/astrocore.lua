@@ -22,6 +22,7 @@ return {
         spell = false,
         signcolumn = "auto",
         wrap = false,
+        textwidth = 80,
         -- use slightly larger font on my laptop
         guifont = { "Iosevka Nerd Font", vim.fn.hostname() == "swift5pro" and ":h14" or ":h12" },
       },
