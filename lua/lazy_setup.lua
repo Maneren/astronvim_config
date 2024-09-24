@@ -20,6 +20,7 @@ local opts = {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "catppuccin" } },
   ui = { backdrop = 100 },
+  defaults = { lazy = true },
   performance = {
     rtp = {
       disabled_plugins = {
