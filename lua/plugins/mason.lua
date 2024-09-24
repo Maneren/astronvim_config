@@ -7,6 +7,7 @@ return {
         "asm_lsp",
         "diagnosticls",
         "ltex",
+        "sonarlint-language-server",
         "sourcery",
         "stylelint_lsp",
         "texlab",
