@@ -4,6 +4,7 @@ return {
   opts = {
     start_in_insert = true,
     on_open = function() vim.cmd("startinsert!") end,
+    direction = "vertical",
   },
   dependencies = {
     "astrocore",
