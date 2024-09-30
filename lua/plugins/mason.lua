@@ -7,7 +7,6 @@ return {
         "asm_lsp",
         "diagnosticls",
         "ltex",
-        "sonarlint-language-server",
         "sourcery",
         "stylelint_lsp",
         "texlab",
@@ -35,6 +34,8 @@ return {
         "sqlfmt",
         "yamlfmt",
         "yamllint",
+
+        "sonarlint-language-server",
       })
     end,
   },

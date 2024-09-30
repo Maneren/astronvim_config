@@ -1,7 +1,9 @@
+local filetypes = { "c", "cpp", "h", "hpp", "html", "javascript", "php", "python", "typescript", "xml" }
+
 ---@type LazySpec
 return {
   "https://gitlab.com/schrieveslaach/sonarlint.nvim",
-  ft = { "c", "cpp", "h", "hpp", "javascript", "php", "python", "typescript" },
+  ft = filetypes,
   opts = {
     server = {
       cmd = {
@@ -10,9 +12,11 @@ return {
         "-stdio",
         "-analyzers",
         vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+        vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarhtml.jar"),
         vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
         vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarphp.jar"),
         vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
+        vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarxml.jar"),
       },
 
       settings = {
@@ -21,15 +25,6 @@ return {
         },
       },
     },
-    filetypes = {
-      "c",
-      "cpp",
-      "h",
-      "hpp",
-      "javascript",
-      "php",
-      "python",
-      "typescript",
-    },
+    filetypes = filetypes,
   },
 }
