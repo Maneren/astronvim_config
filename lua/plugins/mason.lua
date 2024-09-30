@@ -31,11 +31,10 @@ return {
         "rustywind",
         "shellcheck",
         "shellharden",
+        "sonarlint-language-server",
         "sqlfmt",
         "yamlfmt",
         "yamllint",
-
-        "sonarlint-language-server",
       })
     end,
   },
