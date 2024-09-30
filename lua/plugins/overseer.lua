@@ -39,6 +39,17 @@ return {
           maps.n[prefix .. "i"] = { "<Cmd>OverseerInfo<CR>", desc = "Info" }
         end,
       },
+      {
+        "nvim-neotest/neotest",
+        ---@type NeotestConfig
+        opts = function()
+          return {
+            consumers = {
+              overseer = require("neotest.consumers.overseer"),
+            },
+          }
+        end,
+      },
     },
   },
   {
