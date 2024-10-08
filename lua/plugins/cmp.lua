@@ -1,15 +1,18 @@
 ---@type LazySpec
 return {
   "hrsh7th/nvim-cmp",
+  dependencies = {
+    { "kdheepak/cmp-latex-symbols" },
+    {
+      "David-Kunz/cmp-npm",
+      opts = { ignore = { "beta", "rc" } },
+    },
+  },
   opts = function(_, opts)
+    table.insert(opts.sources, { name = "latex_symbols", priority = 700 })
+    table.insert(opts.sources, { name = "npm", priority = 1100 })
+
     local cmp = require("cmp")
-    opts.sources = cmp.config.sources {
-      { name = "npm", priority = 1100 },
-      { name = "nvim_lsp", priority = 1000 },
-      { name = "luasnip", priority = 750 },
-      { name = "buffer", priority = 500 },
-      { name = "path", priority = 250 },
-    }
     opts.mapping = cmp.mapping.preset.insert {
       ["<CR>"] = cmp.mapping {
         i = function(fallback)
