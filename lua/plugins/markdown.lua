@@ -59,40 +59,68 @@ return {
         end,
       },
     },
-    opts = {
-      hybrid_modes = { "n" },
-      callbacks = {
-        on_enable = function(_, win)
-          vim.wo[win].conceallevel = 2
-          vim.wo[win].concealcursor = "c"
-        end,
-      },
-      headings = { shift_width = 0 },
-      code_blocks = {
-        style = "language",
-        icons = true,
-
-        hl = "Layer2",
-
-        min_width = 80,
-        pad_char = " ",
-        pad_amount = 2,
-
-        language_names = {
-          { "py", "python" },
-          { "cpp", "C++" },
-          { "cs", "C#" },
+    opts = function()
+      local presets = require("markview.presets")
+      return {
+        hybrid_modes = { "n" },
+        callbacks = {
+          on_enable = function(_, win)
+            vim.wo[win].conceallevel = 2
+            vim.wo[win].concealcursor = "c"
+          end,
         },
-        name_hl = "Layer2",
-        language_direction = "left",
-        sign = false,
-      },
-      inline_codes = {
-        hl = "Layer",
+        headings = presets.marker,
+        checkboxes = presets.checkboxes.nerd,
+        code_blocks = {
+          style = "language",
+          icons = true,
 
-        padding_left = "",
-        padding_right = "",
-      },
-    },
+          hl = "Layer2",
+
+          min_width = 80,
+          pad_char = " ",
+          pad_amount = 2,
+
+          language_names = {
+            { "py", "Python" },
+            { "cpp", "C++" },
+            { "cs", "C#" },
+          },
+          name_hl = "Layer2",
+          language_direction = "left",
+          sign = false,
+        },
+        inline_codes = {
+          hl = "Layer",
+
+          padding_left = "",
+          padding_right = "",
+        },
+        latex = {
+          enable = true,
+          inline = {
+            enable = true,
+          },
+          operators = {
+            enable = true,
+          },
+          symbols = {
+            enable = true,
+            overwrite = {
+              dots = "…",
+              quad = "  ",
+              [" "] = " ",
+              enspace = " ",
+              thinspace = "",
+              iff = "⇔",
+              leftrightarrows = "⇆",
+              to = "→",
+              forall = "∀",
+              emptyset = "∅",
+            },
+          },
+        },
+      }
+    end,
   },
 }
