@@ -13,7 +13,6 @@ return {
       require("hover.providers.dap")
       require("hover.providers.fold_preview")
       require("hover.providers.man")
-      require("hover.providers.dictionary")
     end,
     preview_window = true,
     title = false,
