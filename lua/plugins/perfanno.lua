@@ -3,6 +3,17 @@ return {
   "t-troebst/perfanno.nvim",
   opts = {},
   keys = { "<Leader>P" },
+  cmd = {
+    "PerfLoadFlat",
+    "PerfLoadCallGraph",
+    "PerfLoadFlameGraph",
+    "PerfPickEvent",
+    "PerfAnnotate",
+    "PerfAnnotateFunction",
+    "PerfAnnotateSelection",
+    "PerfHottestCallersFunction",
+    "PerfHottestCallersSelection",
+  },
   dependencies = {
     {
       "astrocore",
@@ -69,6 +80,9 @@ return {
     },
   },
   config = function(_, opts)
+    opts.line_highlights = require("perfanno.util").make_bg_highlights("#1B1B28", "#d0164a", 10)
+    opts.vt_highlight = require("perfanno.util").make_fg_highlight("#d0164a")
+
     require("perfanno").setup(opts)
 
     local telescope = require("telescope")
