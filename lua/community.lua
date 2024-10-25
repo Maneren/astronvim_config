@@ -18,7 +18,6 @@ return {
   { import = "astrocommunity.git.octo-nvim" },
   { import = "astrocommunity.keybinding.hydra-nvim" },
   { import = "astrocommunity.lsp.actions-preview-nvim" },
-  { import = "astrocommunity.lsp.nvim-lsp-endhints" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
