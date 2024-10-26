@@ -41,6 +41,7 @@ return {
   {
     "OXY2DEV/markview.nvim",
     ft = { "markdown", "quarto", "rmd" },
+    commit = "e2c3e56",
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
       {
