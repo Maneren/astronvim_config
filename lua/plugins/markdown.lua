@@ -8,23 +8,24 @@ return {
     "allen-mack/nvim-table-md",
     ft = { "markdown" },
   },
+  { "AstroNvim/astroui", opts = { icons = { Markdown = "" } } },
   {
     "astrocore",
     opts = {
       mappings = {
         n = {
-          ["<Leader>m"] = { group = "󰈙 Markdown" },
-          ["<Leader>mp"] = { function() vim.cmd("MarkdownPreview") end, desc = "Open preview" },
-          ["<Leader>mP"] = { function() vim.cmd("MarkdownPreviewStop") end, desc = "Close preview" },
+          ["<Leader>M"] = { desc = require("astroui").get_icon("Markdown", 1, true) .. "Markdown" },
+          ["<Leader>Mp"] = { function() vim.cmd("MarkdownPreview") end, desc = "Open preview" },
+          ["<Leader>MP"] = { function() vim.cmd("MarkdownPreviewStop") end, desc = "Close preview" },
 
-          ["<Leader>mf"] = { function() require("tablemd").format() end, desc = "Format table" },
-          ["<Leader>mc"] = { function() require("tablemd").insertColumn(false) end, desc = "Insert column" },
-          ["<Leader>md"] = { function() require("tablemd").deleteColumn() end, desc = "Delete column" },
-          ["<Leader>mr"] = { function() require("tablemd").insertRow(false) end, desc = "Insert row above" },
-          ["<Leader>mR"] = { function() require("tablemd").insertRow(true) end, desc = "Insert row below" },
-          ["<Leader>mj"] = { function() require("tablemd").alignColumn("left") end, desc = "Align column left" },
-          ["<Leader>mk"] = { function() require("tablemd").alignColumn("center") end, desc = "Align column center" },
-          ["<Leader>ml"] = { function() require("tablemd").alignColumn("right") end, desc = "Align column right" },
+          ["<Leader>Mf"] = { function() require("tablemd").format() end, desc = "Format table" },
+          ["<Leader>Mc"] = { function() require("tablemd").insertColumn(false) end, desc = "Insert column" },
+          ["<Leader>Md"] = { function() require("tablemd").deleteColumn() end, desc = "Delete column" },
+          ["<Leader>Mr"] = { function() require("tablemd").insertRow(false) end, desc = "Insert row above" },
+          ["<Leader>MR"] = { function() require("tablemd").insertRow(true) end, desc = "Insert row below" },
+          ["<Leader>Mj"] = { function() require("tablemd").alignColumn("left") end, desc = "Align column left" },
+          ["<Leader>Mk"] = { function() require("tablemd").alignColumn("center") end, desc = "Align column center" },
+          ["<Leader>Ml"] = { function() require("tablemd").alignColumn("right") end, desc = "Align column right" },
         },
       },
       options = {
