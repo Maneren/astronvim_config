@@ -29,9 +29,6 @@ return {
       },
       options = {
         g = {
-          vim_markdown_math = 1,
-          vim_markdown_conceal = 0,
-
           mkdp_page_title = "${name}",
           mkdp_port = "4333",
         },
