@@ -11,8 +11,20 @@ return {
   opts = function(_, opts)
     table.insert(opts.sources, { name = "latex_symbols", priority = 700 })
     table.insert(opts.sources, { name = "npm", priority = 1100 })
-    opts.experimental = {
-      ghost_text = true,
+
+    local cmp = require("cmp")
+    opts.mapping = cmp.mapping.preset.insert {
+      ["<CR>"] = cmp.mapping {
+        i = function(fallback)
+          if cmp.visible() then
+            cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+          else
+            fallback()
+          end
+        end,
+        s = cmp.mapping.confirm { select = true },
+        c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+      },
     }
     return opts
   end,
