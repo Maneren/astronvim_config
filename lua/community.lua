@@ -34,6 +34,7 @@ return {
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.cs" },
   { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.full-dadbod" },
   { import = "astrocommunity.pack.haskell" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.json" },
