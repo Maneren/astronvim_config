@@ -1,49 +1,18 @@
 --- Lightweight copilot alternative
---- https://github.com/Exafunction/codeium.vim
+--- https://github.com/Exafunction/codeium.nvim
 
 ---@type LazySpec
 return {
-  "Exafunction/codeium.vim",
-  cmd = {
-    "Codeium",
-    "CodeiumEnable",
-    "CodeiumDisable",
-    "CodeiumToggle",
-    "CodeiumAuto",
-    "CodeiumManual",
-  },
-  event = "InsertEnter",
+  "Exafunction/codeium.nvim",
+  event = "BufEnter",
   dependencies = {
-    "AstroNvim/astrocore",
-    ---@type AstroCoreOpts
-    opts = {
-      mappings = {
-        n = {
-          ["<Leader>;"] = {
-            "<Cmd>CodeiumToggle<CR>",
-            noremap = true,
-            desc = "Toggle Codeium active",
-          },
-        },
-        i = {
-          ["<C-g>"] = {
-            function() return vim.fn["codeium#Accept"]() end,
-            expr = true,
-          },
-          ["<C-,>"] = {
-            function() return vim.fn["codeium#CycleCompletions"](1) end,
-            expr = true,
-          },
-          ["<C-.>"] = {
-            function() return vim.fn["codeium#CycleCompletions"](-1) end,
-            expr = true,
-          },
-          ["<C-x>"] = {
-            function() return vim.fn["codeium#Clear"]() end,
-            expr = true,
-          },
-        },
-      },
+    "nvim-lua/plenary.nvim",
+  },
+  opts = {
+    enable_cmp_source = false,
+    enable_chat = false,
+    virtual_text = {
+      enabled = true,
     },
   },
 }
