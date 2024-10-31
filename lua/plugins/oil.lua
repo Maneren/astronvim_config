@@ -167,7 +167,7 @@ return {
 
           local dir_status = git_status[dir]
           -- mark as hidden either ignored files or untracked dotfiles
-          return (is_dotfile and not dir_status.tracked[name]) or dir_status.ingored[name]
+          return (is_dotfile and not dir_status.tracked[name]) or dir_status.ignored[name]
         end,
       },
     }
