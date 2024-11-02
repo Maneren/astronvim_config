@@ -118,6 +118,7 @@ return {
               coloneqq = "≔",
               E = "E",
               Var = "Var",
+              bit = "bit",
             },
           },
         },
