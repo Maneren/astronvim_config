@@ -13,6 +13,9 @@ return {
     enable_chat = false,
     virtual_text = {
       enabled = true,
+      key_bindings = {
+        accept = "<S-CR>",
+      },
     },
   },
 }
