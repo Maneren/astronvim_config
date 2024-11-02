@@ -1,3 +1,8 @@
+--- File system explorer inside Neovim buffer
+--- https://github.com/stevearc/oil.nvim
+--- adapted from astrocommunity
+
+---@type LazySpec
 return {
   "stevearc/oil.nvim",
   cmd = "Oil",
