@@ -4,7 +4,7 @@
 ---@type LazySpec
 return {
   "Exafunction/codeium.nvim",
-  event = "BufEnter",
+  event = "InsertEnter",
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
