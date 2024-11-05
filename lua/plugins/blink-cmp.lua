@@ -16,29 +16,19 @@ return {
   opts = {
     accept = {
       create_undo_point = true,
-      auto_brackets = {
-        enabled = true,
-        default_brackets = { "(", ")" },
-      },
     },
     keymap = "enter",
     windows = {
       autocomplete = {
         auto_show = true,
-        max_width = 10,
         selection = "manual",
+        border = "rounded",
         winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
       },
       documentation = {
         auto_show = true,
+        border = "rounded",
         winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
-      },
-      signature_help = {
-        auto_show = true,
-        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
-      },
-      virtual_text = {
-        enabled = true,
       },
     },
 
@@ -64,7 +54,7 @@ return {
     },
 
     exclude_filetypes = { "TelescopePrompt" },
-    trigger = { signature_help = { enabled = true } },
+
     highlight = {
       use_nvim_cmp_as_default = true,
     },
@@ -73,7 +63,7 @@ return {
     -- disable built in completion plugins
     { "hrsh7th/nvim-cmp", enabled = false },
     { "rcarriga/cmp-dap", enabled = false },
-    { "nvim-autopairs", enabled = false },
+    { "L3MON4D3/LuaSnip", enabled = false },
     { "onsails/lspkind.nvim", enabled = false },
   },
 }
