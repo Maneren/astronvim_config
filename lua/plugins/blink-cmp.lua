@@ -5,8 +5,7 @@ return {
   version = "v0.*",
   dependencies = {
     {
-      "saghen/blink.compat",
-      dependencies = "Saghen/blink.cmp",
+      "Maneren/blink.compat",
       opts = { impersonate_nvim_cmp = true, enable_events = true },
     },
     "rafamadriz/friendly-snippets",
