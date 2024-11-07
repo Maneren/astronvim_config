@@ -22,8 +22,7 @@ return {
         signcolumn = "auto",
         wrap = false,
         textwidth = 80,
-        -- use slightly larger font on my laptop
-        guifont = { "Iosevka Nerd Font", vim.fn.hostname() == "swift5pro" and ":h13" or ":h12" },
+        guifont = { "Iosevka Nerd Font", ":h13" },
       },
       g = {
         neovide_cursor_vfx_mode = "pixiedust",
