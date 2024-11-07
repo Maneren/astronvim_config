@@ -12,6 +12,7 @@ return {
     "kdheepak/cmp-latex-symbols",
     "haskell-snippets.nvim",
   },
+  ---@type blink.cmp.Config
   opts = {
     accept = {
       create_undo_point = true,
@@ -42,6 +43,12 @@ return {
         },
       },
       providers = {
+        lsp = {
+          score_offset = 100,
+        },
+        buffer = {
+          score_offset = -10,
+        },
         latex = {
           name = "latex_symbols",
           module = "blink.compat.source",
