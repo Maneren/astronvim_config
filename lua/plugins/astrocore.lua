@@ -12,7 +12,6 @@ return {
       notifications = true,
     },
     diagnostics = {
-      virtual_text = true,
       underline = true,
     },
     options = {
