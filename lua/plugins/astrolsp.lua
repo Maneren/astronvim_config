@@ -17,6 +17,7 @@ return {
       disabled = {
         "csharp_ls",
         "omnisharp",
+        "sqls",
       },
       timeout_ms = 2000,
     },
