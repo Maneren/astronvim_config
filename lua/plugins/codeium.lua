@@ -3,7 +3,8 @@
 
 ---@type LazySpec
 return {
-  "Exafunction/codeium.nvim",
+  "dimfeld/codeium.nvim",
+  branch = "all-fixes",
   event = "InsertEnter",
   dependencies = {
     "nvim-lua/plenary.nvim",
