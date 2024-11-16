@@ -24,6 +24,10 @@ return {
             function() require("astrocore").toggle_term_cmd { cmd = "ipython", direction = "float" } end,
             desc = "ToggleTerm ipython",
           },
+          ["<Leader>ts"] = {
+            function() require("astrocore").toggle_term_cmd { cmd = "lazysql", direction = "float" } end,
+            desc = "ToggleTerm lazysql",
+          },
           ["<Leader>tu"] = {
             function() require("astrocore").toggle_term_cmd { cmd = "dua i", direction = "float" } end,
             desc = "ToggleTerm Dua",
