@@ -11,6 +11,8 @@ return {
     },
     "rafamadriz/friendly-snippets",
     "kdheepak/cmp-latex-symbols",
+    -- TODO: Remove when new version of lazydev is released
+    { "folke/lazydev.nvim", branch = "main", tag = nil, commit = nil, version = false },
     "haskell-snippets.nvim",
   },
   ---@type blink.cmp.Config
@@ -41,12 +43,16 @@ return {
           "snippets",
           "buffer",
           "latex",
+          "lazydev",
         },
       },
       providers = {
         lsp = {
           score_offset = 100,
+          -- dont show LuaLS require statements when lazydev has items
+          fallback_for = { "lazydev" },
         },
+        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
         buffer = {
           score_offset = -10,
         },
