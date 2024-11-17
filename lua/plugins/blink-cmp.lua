@@ -5,12 +5,13 @@ return {
   version = "v0.*",
   dependencies = {
     {
-      "saghen/blink.compat",
-      dependencies = "Saghen/blink.cmp",
+      "Saghen/blink.compat",
       opts = { impersonate_nvim_cmp = true, enable_events = true },
+      dependencies = {
+        "kdheepak/cmp-latex-symbols",
+      },
     },
     "rafamadriz/friendly-snippets",
-    "kdheepak/cmp-latex-symbols",
     -- TODO: Remove when new version of lazydev is released
     { "folke/lazydev.nvim", branch = "main", tag = nil, commit = nil, version = false },
     "haskell-snippets.nvim",
