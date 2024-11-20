@@ -15,11 +15,13 @@ return {
     -- TODO: Remove when new version of lazydev is released
     { "folke/lazydev.nvim", branch = "main", tag = nil, commit = nil, version = false },
     "haskell-snippets.nvim",
+    "L3MON4D3/LuaSnip",
   },
   ---@type blink.cmp.Config
   opts = {
     accept = {
       create_undo_point = true,
+      expand_snippet = require("luasnip").lsp_expand,
     },
     keymap = "enter",
     windows = {
