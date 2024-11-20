@@ -2,7 +2,7 @@
 return {
   "Saghen/blink.cmp",
   event = "BufEnter",
-  version = "v0.*",
+  build = "cargo build --release",
   dependencies = {
     {
       "Saghen/blink.compat",
@@ -65,6 +65,10 @@ return {
           },
         },
       },
+    },
+
+    prebuilt_binaries = {
+      download = false,
     },
 
     exclude_filetypes = { "TelescopePrompt" },
