@@ -2,7 +2,7 @@
 return {
   "Saghen/blink.cmp",
   event = "BufEnter",
-  build = "cargo build --release",
+  build = "cargo build --release --target-dir=target",
   dependencies = {
     {
       "Saghen/blink.compat",
