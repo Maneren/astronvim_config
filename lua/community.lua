@@ -55,5 +55,6 @@ return {
   { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.split-and-window.colorful-winsep-nvim" },
   { import = "astrocommunity.test.neotest" },
+  { import = "astrocommunity.utility.lua-json5" },
   { import = "astrocommunity.utility.noice-nvim" },
 }
