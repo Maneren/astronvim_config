@@ -28,6 +28,7 @@ return {
         "fixjson",
         "jsonlint",
         "markdownlint",
+        "prettierd",
         "rustywind",
         "shellcheck",
         "shellharden",
@@ -36,6 +37,12 @@ return {
         "yamlfmt",
         "yamllint",
       })
+      opts.handlers.prettierd = function(source_name, methods)
+        local null_ls = require("null-ls")
+        for _, method in ipairs(methods) do
+          null_ls.register(null_ls.builtins[method][source_name].with { filetypes = { "php", "twig" } })
+        end
+      end
     end,
   },
   {
