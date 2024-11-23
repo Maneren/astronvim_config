@@ -1,79 +1,96 @@
 ---@type LazySpec
 return {
-  "mfussenegger/nvim-dap",
-  config = function()
-    local dap = require("dap")
-
-    dap.adapters.python = {
-      type = "executable",
-      command = "python",
-      args = { "-m", "debugpy.adapter" },
-    }
-
-    dap.adapters.lldb = {
-      type = "executable",
-      command = "lldb-vscode",
-      name = "lldb",
-    }
-
-    dap.adapters.codelldb = {
-      type = "server",
-      port = "${port}",
-      executable = {
-        command = "codelldb",
-        args = { "--port", "${port}" },
-      },
-    }
-
-    dap.adapters.coreclr = {
-      type = "executable",
-      command = "netcoredbg",
-      args = { "--interpreter=vscode" },
-    }
-
-    dap.configurations.python = {
-      {
-        type = "python",
-        request = "launch",
-        name = "Launch file",
-        program = "${file}",
-        pythonPath = function()
-          local venv = os.getenv("VIRTUAL_ENV")
-          if venv then
-            return venv .. "/bin/python"
-          else
-            return "python"
-          end
-        end,
-      },
-    }
-
-    dap.configurations.cpp = {
-      {
-        name = "Launch",
-        type = "codelldb",
-        request = "launch",
-        program = function()
-          return vim.fn.input {
-            prompt = "Path to executable: ",
-            default = vim.fn.getcwd() .. "/",
-            completion = "file",
+  {
+    "julianolf/nvim-dap-lldb",
+    event = "VeryLazy",
+    dependencies = { "mfussenegger/nvim-dap" },
+    opts = { codelldb_path = "codelldb" },
+  },
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    event = "VeryLazy",
+    dependencies = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
+    opts = { adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" } },
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+      handlers = {
+        python = function()
+          local dap = require("dap")
+          dap.adapters.python = {
+            type = "executable",
+            command = "/usr/bin/python3",
+            args = {
+              "-m",
+              "debugpy.adapter",
+            },
           }
         end,
-        cwd = "${workspaceFolder}",
-        stopOnEntry = false,
-        args = {},
+        codelldb = function()
+          local dap = require("dap")
+          dap.adapters.codelldb = {
+            type = "server",
+            port = "${port}",
+            executable = {
+              command = "codelldb",
+              args = { "--port", "${port}" },
+            },
+          }
+        end,
+        coreclr = function()
+          local dap = require("dap")
+          dap.adapters.coreclr = {
+            type = "executable",
+            command = "netcoredbg",
+            args = { "--interpreter=vscode" },
+          }
+        end,
       },
-    }
-    dap.configurations.c = dap.configurations.cpp
-
-    dap.configurations.cs = {
-      {
-        type = "coreclr",
-        name = "launch - netcoredbg",
-        request = "launch",
-        program = function() return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file") end,
+    },
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "ChristianChiarulli/neovim-codicons" },
+    opts = {
+      layouts = {
+        {
+          elements = {
+            {
+              id = "scopes",
+              size = 0.30,
+            },
+            {
+              id = "stacks",
+              size = 0.30,
+            },
+            {
+              id = "watches",
+              size = 0.20,
+            },
+            {
+              id = "breakpoints",
+              size = 0.20,
+            },
+          },
+          position = "left",
+          size = 40,
+        },
+        {
+          elements = {
+            {
+              id = "repl",
+              size = 0.4,
+            },
+            {
+              id = "console",
+              size = 0.6,
+            },
+          },
+          position = "bottom",
+          size = 10,
+        },
       },
-    }
-  end,
+    },
+  },
 }

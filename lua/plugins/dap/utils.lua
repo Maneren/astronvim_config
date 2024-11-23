@@ -1,3 +1,58 @@
+local function filter_list(list, filter)
+  local filtered = {}
+  for _, item in ipairs(list) do
+    if item:match(filter) then
+      table.insert(filtered, item)
+    end
+  end
+  return filtered
+end
+
+local function find_executable(root_path, callback)
+  local search_dirs = { "build", "target", "dist", "bin" }
+
+  local candidates = {}
+  for _, target in ipairs(search_dirs) do
+    local search_path = root_path .. "/" .. target
+    local handle = io.popen("fd -I --search-path='" .. search_path .. "' --type=executable 2>/dev/null")
+    if handle ~= nil then
+      local result = handle:read("*a")
+      handle:close()
+      if result ~= nil and result ~= "" then
+        for _, filename in ipairs(vim.split(result, "\n")) do
+          table.insert(candidates, filename)
+        end
+      end
+    end
+  end
+
+  if #candidates == 0 then
+    local handle = io.popen("fd -I --search-path='" .. root_path .. "' --type=executable -E node_modules 2>/dev/null")
+    if handle ~= nil then
+      local result = handle:read("*a")
+      handle:close()
+      if result ~= nil and result ~= "" then
+        for _, filename in ipairs(vim.split(result, "\n")) do
+          table.insert(candidates, filename)
+        end
+      end
+    end
+  end
+
+  table.sort(candidates)
+
+  local parent = vim.fn.fnamemodify(root_path, ":t")
+
+  local name_same_as_parent = filter_list(candidates, "^.*" .. parent .. "[^/]*$")
+  if #name_same_as_parent > 0 then
+    return vim.print(
+      vim.ui.select(name_same_as_parent, { prompt = "Select executable" }, function(choice) callback(choice) end)
+    )
+  end
+
+  callback(candidates)
+end
+
 ---@type LazySpec
 return {
   "niuiic/dap-utils.nvim",
@@ -7,6 +62,18 @@ return {
     "niuiic/core.nvim",
     "rcarriga/nvim-dap-ui",
     "nvim-telescope/telescope.nvim",
+    {
+      "astrocore",
+      opts = {
+        mappings = {
+          n = {
+            ["<F5>"] = { function() require("dap-utils").continue() end, desc = "Start/Continue" },
+            ["<Leader>dc"] = { function() require("dap-utils").continue() end, desc = "Start/Continue (F5)" },
+            ["<Leader>dl"] = { function() require("dap").run_last() end, desc = "Run last config" },
+          },
+        },
+      },
+    },
   },
   opts = {
     rust = function(run)
@@ -112,6 +179,79 @@ return {
           cwd = "${workspaceFolder}",
         },
       }
+    end,
+
+    python = function(run)
+      run {
+        {
+          name = "Launch file",
+          type = "python",
+          request = "launch",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+        },
+      }
+    end,
+
+    cpp = function(run)
+      local core = require("core")
+      find_executable(core.file.root_path(), function(executable)
+        run {
+          {
+            name = "Launch",
+            type = "codelldb",
+            request = "launch",
+            program = executable,
+            cwd = "${workspaceFolder}",
+          },
+          {
+            name = "Launch with args",
+            type = "codelldb",
+            request = "launch",
+            program = executable,
+            args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
+            cwd = "${workspaceFolder}",
+          },
+        }
+      end)
+    end,
+
+    c = function(run)
+      local core = require("core")
+      find_executable(core.file.root_path(), function(executable)
+        run {
+          {
+            name = "Launch",
+            type = "lldb",
+            request = "launch",
+            program = executable,
+            cwd = "${workspaceFolder}",
+          },
+          {
+            name = "Launch with args",
+            type = "lldb",
+            request = "launch",
+            program = executable,
+            args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
+            cwd = "${workspaceFolder}",
+          },
+        }
+      end)
+    end,
+
+    cs = function(run)
+      local core = require("core")
+      find_executable(
+        core.file.root_path(),
+        function(executable)
+          run {
+            type = "coreclr",
+            name = "launch - netcoredbg",
+            request = "launch",
+            program = executable,
+          }
+        end
+      )
     end,
   },
 
