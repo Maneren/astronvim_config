@@ -24,54 +24,54 @@ return {
             ["<Leader>P"] = { group = "PerfAnno" },
             ["<Leader>Pl"] = { group = "Load perf profile" },
             ["<Leader>Plf"] = {
-              ":PerfLoadFlat<CR>",
+              "<Cmd>PerfLoadFlat<CR>",
               desc = "Flat profile",
             },
             ["<Leader>Plg"] = {
-              ":PerfLoadCallGraph<CR>",
+              "<Cmd>PerfLoadCallGraph<CR>",
               desc = "Call graph profile",
             },
             ["<Leader>Plo"] = {
-              ":PerfLoadFlameGraph<CR>",
+              "<Cmd>PerfLoadFlameGraph<CR>",
               desc = "Flame graph profile",
             },
             ["<Leader>Pe"] = {
-              ":PerfPickEvent<CR>",
+              "<Cmd>PerfPickEvent<CR>",
               desc = "Pick an event for profiling",
             },
             ["<Leader>Pa"] = {
-              ":PerfAnnotate<CR>",
+              "<Cmd>PerfAnnotate<CR>",
               desc = "Annotate performance data",
             },
             ["<Leader>Pf"] = {
-              ":PerfAnnotateFunction<CR>",
+              "<Cmd>PerfAnnotateFunction<CR>",
               desc = "Annotate performance data for a specific function",
             },
             ["<Leader>Pt"] = {
-              ":PerfToggleAnnotations<CR>",
+              "<Cmd>PerfToggleAnnotations<CR>",
               desc = "Toggle performance annotations",
             },
             ["<Leader>Ph"] = {
-              ":PerfHottestLines<CR>",
+              "<Cmd>PerfHottestLines<CR>",
               desc = "Show hottest lines",
             },
             ["<Leader>Ps"] = {
-              ":PerfHottestSymbols<CR>",
+              "<Cmd>PerfHottestSymbols<CR>",
               desc = "Show hottest symbols",
             },
             ["<Leader>Pc"] = {
-              ":PerfHottestCallersFunction<CR>",
+              "<Cmd>PerfHottestCallersFunction<CR>",
               desc = "Show hottest callers of a function",
             },
           },
           v = {
             ["<Leader>P"] = { group = "PerfAnno" },
             ["<Leader>Pa"] = {
-              ":PerfAnnotateSelection<CR>",
+              "<Cmd>PerfAnnotateSelection<CR>",
               desc = "Annotate performance data for selected code",
             },
             ["<Leader>Pc"] = {
-              ":PerfHottestCallersSelection<CR>",
+              "<Cmd>PerfHottestCallersSelection<CR>",
               desc = "Show hottest callers for selected code in performance profile",
             },
           },
