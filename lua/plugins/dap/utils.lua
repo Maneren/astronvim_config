@@ -9,7 +9,7 @@ local function filter_list(list, filter)
 end
 
 local function find_executable(root_path, callback)
-  local search_dirs = { "build", "target", "dist", "bin" }
+  local search_dirs = { "build", "target", "dist", "bin", "out" }
 
   local candidates = {}
   for _, target in ipairs(search_dirs) do
@@ -20,11 +20,15 @@ local function find_executable(root_path, callback)
       handle:close()
       if result ~= nil and result ~= "" then
         for _, filename in ipairs(vim.split(result, "\n")) do
-          table.insert(candidates, filename)
+          if filename ~= "" then
+            table.insert(candidates, filename)
+          end
         end
       end
     end
   end
+
+  vim.notify(vim.inspect(candidates), vim.log.levels.INFO)
 
   if #candidates == 0 then
     local handle = io.popen("fd -I --search-path='" .. root_path .. "' --type=executable -E node_modules 2>/dev/null")
@@ -33,7 +37,9 @@ local function find_executable(root_path, callback)
       handle:close()
       if result ~= nil and result ~= "" then
         for _, filename in ipairs(vim.split(result, "\n")) do
-          table.insert(candidates, filename)
+          if filename ~= "" then
+            table.insert(candidates, filename)
+          end
         end
       end
     end
@@ -50,13 +56,13 @@ local function find_executable(root_path, callback)
     )
   end
 
-  callback(candidates)
+  callback(candidates[1])
 end
 
 ---@type LazySpec
 return {
   "niuiic/dap-utils.nvim",
-  event = "VeryLazy",
+  event = "BufEnter",
   dependencies = {
     "mfussenegger/nvim-dap",
     "niuiic/core.nvim",
