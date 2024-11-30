@@ -6,35 +6,67 @@ return {
   dependencies = {
     {
       "Saghen/blink.compat",
-      opts = { impersonate_nvim_cmp = true, enable_events = true },
+      opts = { impersonate_nvim_cmp = true, enable_events = false },
       dependencies = {
         "kdheepak/cmp-latex-symbols",
       },
     },
     "rafamadriz/friendly-snippets",
-    -- TODO: Remove when new version of lazydev is released
-    { "folke/lazydev.nvim", branch = "main", tag = nil, commit = nil, version = false },
     "haskell-snippets.nvim",
+    "L3MON4D3/LuaSnip",
+    {
+      "kristijanhusak/vim-dadbod-completion",
+      ft = { "sql", "mysql", "plsql" },
+    },
     "L3MON4D3/LuaSnip",
   },
   ---@type blink.cmp.Config
   opts = {
-    accept = {
-      create_undo_point = true,
-      expand_snippet = require("luasnip").lsp_expand,
+    keymap = {
+      preset = "enter",
     },
-    keymap = "enter",
-    windows = {
-      autocomplete = {
-        auto_show = true,
-        selection = "manual",
+
+    snippets = {
+      expand = function(snippet) require("luasnip").lsp_expand(snippet) end,
+      active = function(filter)
+        if filter and filter.direction then
+          return require("luasnip").jumpable(filter.direction)
+        end
+        return require("luasnip").in_snippet()
+      end,
+      jump = function(direction) require("luasnip").jump(direction) end,
+    },
+
+    completion = {
+      list = {
+        max_items = 100,
+        selection = "auto_insert",
+      },
+      accept = {
+        auto_brackets = {
+          enabled = false,
+        },
+      },
+      menu = {
         border = "rounded",
         winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        direction_priority = { "s", "n" },
       },
       documentation = {
         auto_show = true,
-        border = "rounded",
-        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        window = {
+          border = "rounded",
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        },
+      },
+      ghost_text = {
+        enabled = false,
+      },
+    },
+
+    fuzzy = {
+      prebuilt_binaries = {
+        download = false,
       },
     },
 
@@ -47,6 +79,9 @@ return {
           "buffer",
           "latex",
           "lazydev",
+          "npm",
+          "dadbod",
+          "luasnip",
         },
       },
       providers = {
@@ -66,11 +101,24 @@ return {
             strategy = 0,
           },
         },
-      },
-    },
+        npm = {
+          name = "npm",
+          module = "blink.compat.source",
+          opts = { ignore = { "beta", "rc" }, only_latest_version = true },
+        },
+        dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+        luasnip = {
+          name = "luasnip",
+          module = "blink.compat.source",
 
-    prebuilt_binaries = {
-      download = false,
+          score_offset = -3,
+
+          opts = {
+            use_show_condition = false,
+            show_autosnippets = true,
+          },
+        },
+      },
     },
 
     exclude_filetypes = { "TelescopePrompt" },
