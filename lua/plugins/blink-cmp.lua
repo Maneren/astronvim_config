@@ -11,9 +11,10 @@ return {
         "kdheepak/cmp-latex-symbols",
       },
     },
-    "rafamadriz/friendly-snippets",
-    "haskell-snippets.nvim",
-    "L3MON4D3/LuaSnip",
+    {
+      "L3MON4D3/LuaSnip",
+      dependencies = { "rafamadriz/friendly-snippets" },
+    },
     {
       "kristijanhusak/vim-dadbod-completion",
       ft = { "sql", "mysql", "plsql" },
