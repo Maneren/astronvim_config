@@ -1,6 +1,16 @@
 ---@type LazySpec
 return {
   {
+    "williamboman/mason.nvim",
+    enabled = false,
+  },
+  {
+    -- TODO: switch back once https://github.com/williamboman/mason.nvim/pull/1640 is merged
+    "KingMichaelPark/mason.nvim",
+    name = "mason",
+    opts = { pip = { use_uv = true } },
+  },
+  {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
