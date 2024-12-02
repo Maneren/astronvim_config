@@ -18,7 +18,6 @@ return {
       "kristijanhusak/vim-dadbod-completion",
       ft = { "sql", "mysql", "plsql" },
     },
-    "L3MON4D3/LuaSnip",
   },
   ---@type blink.cmp.Config
   opts = {
