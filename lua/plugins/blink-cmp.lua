@@ -6,7 +6,8 @@ return {
   dependencies = {
     {
       "Saghen/blink.compat",
-      opts = { impersonate_nvim_cmp = true, enable_events = false },
+      ---@type blink.compat.Config
+      opts = { impersonate_nvim_cmp = true },
       dependencies = {
         "kdheepak/cmp-latex-symbols",
       },
