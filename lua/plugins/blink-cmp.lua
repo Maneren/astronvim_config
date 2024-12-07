@@ -41,7 +41,7 @@ return {
     completion = {
       list = {
         max_items = 100,
-        selection = "auto_insert",
+        selection = "manual",
       },
       accept = {
         auto_brackets = {
