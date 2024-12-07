@@ -16,6 +16,7 @@ return {
       enabled = true,
       key_bindings = {
         accept = "<S-CR>",
+        accept_word = "<M-S-CR>",
       },
     },
   },
