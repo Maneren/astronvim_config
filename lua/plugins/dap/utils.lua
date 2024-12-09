@@ -28,8 +28,6 @@ local function find_executable(root_path, callback)
     end
   end
 
-  vim.notify(vim.inspect(candidates), vim.log.levels.INFO)
-
   if #candidates == 0 then
     local handle = io.popen("fd -I --search-path='" .. root_path .. "' --type=executable -E node_modules 2>/dev/null")
     if handle ~= nil then
