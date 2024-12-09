@@ -8,5 +8,7 @@ return {
     "HexAssemble",
     "HexToggle",
   },
-  opts = {},
+  opts = {
+    assemle_cmd = "sed -z '$ s/\n$//' | xxd -r",
+  },
 }
