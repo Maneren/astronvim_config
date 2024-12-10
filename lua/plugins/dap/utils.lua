@@ -54,7 +54,16 @@ local function find_executable(root_path, callback)
     )
   end
 
-  callback(candidates[1])
+  if #candidates == 0 then
+    vim.notify("No executable found", vim.log.levels.WARN)
+    vim.ui.input({
+      prompt = "Path to executable: ",
+      default = root_path,
+      completion = "file",
+    }, function(path) return callback(path) end)
+  else
+    callback(candidates[1])
+  end
 end
 
 ---@type LazySpec
