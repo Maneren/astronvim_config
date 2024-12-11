@@ -39,6 +39,7 @@ return {
         "jsonlint",
         "markdownlint",
         "prettierd",
+        "robotframework-lsp",
         "rustywind",
         "shellcheck",
         "shellharden",
