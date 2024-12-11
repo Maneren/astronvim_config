@@ -7,7 +7,7 @@ return {
     {
       "Saghen/blink.compat",
       ---@type blink.compat.Config
-      opts = { impersonate_nvim_cmp = true },
+      opts = {},
       dependencies = {
         "kdheepak/cmp-latex-symbols",
       },
@@ -72,26 +72,47 @@ return {
     },
 
     sources = {
-      completion = {
-        enabled_providers = {
+      default = {
+        "lsp",
+        "path",
+        "snippets",
+        "buffer",
+        "latex",
+        "luasnip",
+      },
+      per_filetype = {
+        sql = {
+          "lsp",
+          "path",
+          "snippets",
+          "buffer",
+          "dadbod",
+          "luasnip",
+        },
+        lua = {
           "lsp",
           "path",
           "snippets",
           "buffer",
           "latex",
-          "lazydev",
-          "npm",
-          "dadbod",
           "luasnip",
+          "lazydev",
+        },
+        json = {
+          "lsp",
+          "path",
+          "snippets",
+          "buffer",
+          "latex",
+          "luasnip",
+          "npm",
         },
       },
       providers = {
         lsp = {
           score_offset = 100,
-          -- dont show LuaLS require statements when lazydev has items
-          fallback_for = { "lazydev" },
         },
-        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" } },
         buffer = {
           score_offset = -10,
         },
@@ -109,11 +130,7 @@ return {
         },
         dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
         luasnip = {
-          name = "luasnip",
-          module = "blink.compat.source",
-
           score_offset = -3,
-
           opts = {
             use_show_condition = false,
             show_autosnippets = true,
