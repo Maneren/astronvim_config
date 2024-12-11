@@ -4,7 +4,6 @@
 ---@type LazySpec
 return {
   "Wansmer/binary-swap.nvim",
-  event = "User AstroFile",
   dependencies = {
     { "nvim-treesitter/nvim-treesitter" },
     {
