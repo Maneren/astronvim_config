@@ -5,6 +5,7 @@ return {
   opts = {
     term_colors = true,
     integrations = {
+      blink_cmp = true,
       grug_far = true,
       indent_blankline = { enabled = true },
       neotest = true,
