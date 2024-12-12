@@ -138,12 +138,6 @@ return {
         },
       },
     },
-
-    exclude_filetypes = { "TelescopePrompt" },
-
-    highlight = {
-      use_nvim_cmp_as_default = true,
-    },
   },
   specs = {
     -- disable built in completion plugins
