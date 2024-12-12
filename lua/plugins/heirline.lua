@@ -97,6 +97,37 @@ return {
         },
         status.component.fill(),
         status.component.diagnostics { surround = { separator = "right" } },
+        status.component.builder {
+          {
+            static = {
+              symbols = {
+                status = {
+                  [0] = "󰚩 ", -- Enabled
+                  [1] = "󱚧 ", -- Disabled Globally
+                  [2] = "󱙻 ", -- Disabled for Buffer
+                  [3] = "󱙺 ", -- Disabled for Buffer filetype
+                  [4] = "󱙺 ", -- Disabled for Buffer with enabled function
+                  [5] = "󱚠 ", -- Disabled for Buffer encoding
+                },
+                server_status = {
+                  [0] = "󰣺 ", -- Connected
+                  [1] = "󰣻 ", -- Connecting
+                  [2] = "󰣽 ", -- Disconnected
+                },
+              },
+            },
+            provider = function(self)
+              local symbols = self.symbols
+              local client_status, server_status = require("neocodeium").get_status()
+              return symbols.status[client_status] .. symbols.server_status[server_status]
+            end,
+          },
+          update = {
+            "User",
+            pattern = { "NeoCodeiumServer*", "NeoCodeium*{En,Dis}abled" },
+            callback = function() vim.cmd.redrawstatus() end,
+          },
+        },
         status.component.lsp {
           lsp_progress = false,
           surround = { separator = "right" },

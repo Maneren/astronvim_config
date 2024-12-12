@@ -3,20 +3,34 @@
 
 ---@type LazySpec
 return {
-  "dimfeld/codeium.nvim",
-  branch = "all-fixes",
-  event = "InsertEnter",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
+  "monkoose/neocodeium",
+  event = "VeryLazy",
   opts = {
-    enable_cmp_source = false,
-    enable_chat = false,
-    virtual_text = {
-      enabled = true,
-      key_bindings = {
-        accept = "<S-CR>",
-        accept_word = "<M-S-CR>",
+    show_label = false,
+    debounce = false,
+    silent = true,
+  },
+  dependencies = {
+    {
+      "astrocore",
+      ---@type AstroCoreOpts
+      opts = {
+        mappings = {
+          i = {
+            ["<S-Enter>"] = {
+              function() require("neocodeium").accept() end,
+              desc = "Codeium accept",
+            },
+            ["<M-S-Enter>"] = {
+              function() require("neocodeium").accept_word() end,
+              desc = "Codeium accept word",
+            },
+            ["<C-S-Enter>"] = {
+              function() require("neocodeium").accept_line() end,
+              desc = "Codeium accept line",
+            },
+          },
+        },
       },
     },
   },
