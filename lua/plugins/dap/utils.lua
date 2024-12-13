@@ -1,71 +1,3 @@
-local function filter_list(list, filter)
-  local filtered = {}
-  for _, item in ipairs(list) do
-    if item:match(filter) then
-      table.insert(filtered, item)
-    end
-  end
-  return filtered
-end
-
-local function find_executable(root_path, callback)
-  local search_dirs = { "build", "target", "dist", "bin", "out" }
-
-  local candidates = {}
-  for _, target in ipairs(search_dirs) do
-    local search_path = root_path .. "/" .. target
-    local handle = io.popen("fd -I --search-path='" .. search_path .. "' --type=executable 2>/dev/null")
-    if handle ~= nil then
-      local result = handle:read("*a")
-      handle:close()
-      if result ~= nil and result ~= "" then
-        for _, filename in ipairs(vim.split(result, "\n")) do
-          if filename ~= "" then
-            table.insert(candidates, filename)
-          end
-        end
-      end
-    end
-  end
-
-  if #candidates == 0 then
-    local handle = io.popen("fd -I --search-path='" .. root_path .. "' --type=executable -E node_modules 2>/dev/null")
-    if handle ~= nil then
-      local result = handle:read("*a")
-      handle:close()
-      if result ~= nil and result ~= "" then
-        for _, filename in ipairs(vim.split(result, "\n")) do
-          if filename ~= "" then
-            table.insert(candidates, filename)
-          end
-        end
-      end
-    end
-  end
-
-  table.sort(candidates)
-
-  local parent = vim.fn.fnamemodify(root_path, ":t")
-
-  local name_same_as_parent = filter_list(candidates, "^.*" .. parent .. "[^/]*$")
-  if #name_same_as_parent > 0 then
-    return vim.print(
-      vim.ui.select(name_same_as_parent, { prompt = "Select executable" }, function(choice) callback(choice) end)
-    )
-  end
-
-  if #candidates == 0 then
-    vim.notify("No executable found", vim.log.levels.WARN)
-    vim.ui.input({
-      prompt = "Path to executable: ",
-      default = root_path,
-      completion = "file",
-    }, function(path) return callback(path) end)
-  else
-    callback(candidates[1])
-  end
-end
-
 ---@type LazySpec
 return {
   "niuiic/dap-utils.nvim",
@@ -207,64 +139,61 @@ return {
     end,
 
     cpp = function(run)
-      local core = require("core")
-      find_executable(core.file.root_path(), function(executable)
-        run {
-          {
-            name = "Launch",
-            type = "codelldb",
-            request = "launch",
-            program = executable,
-            cwd = "${workspaceFolder}",
-          },
-          {
-            name = "Launch with args",
-            type = "codelldb",
-            request = "launch",
-            program = executable,
-            args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
-            cwd = "${workspaceFolder}",
-          },
-        }
-      end)
+      run {
+        {
+          name = "Launch",
+          type = "codelldb",
+          request = "launch",
+          program = require("dap.utils").pick_file,
+          cwd = "${workspaceFolder}",
+        },
+        {
+          name = "Launch with args",
+          type = "codelldb",
+          request = "launch",
+          program = require("dap.utils").pick_file,
+          args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
+          cwd = "${workspaceFolder}",
+        },
+      }
     end,
 
     c = function(run)
-      local core = require("core")
-      find_executable(core.file.root_path(), function(executable)
-        run {
-          {
-            name = "Launch",
-            type = "lldb",
-            request = "launch",
-            program = executable,
-            cwd = "${workspaceFolder}",
-          },
-          {
-            name = "Launch with args",
-            type = "lldb",
-            request = "launch",
-            program = executable,
-            args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
-            cwd = "${workspaceFolder}",
-          },
-        }
-      end)
+      run {
+        {
+          name = "Launch",
+          type = "lldb",
+          request = "launch",
+          program = require("dap.utils").pick_file,
+          cwd = "${workspaceFolder}",
+        },
+        {
+          name = "Launch with args",
+          type = "lldb",
+          request = "launch",
+          program = require("dap.utils").pick_file,
+          args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
+          cwd = "${workspaceFolder}",
+        },
+      }
     end,
 
     cs = function(run)
-      local core = require("core")
-      find_executable(
-        core.file.root_path(),
-        function(executable)
-          run {
-            type = "coreclr",
-            name = "launch - netcoredbg",
-            request = "launch",
-            program = executable,
-          }
-        end
-      )
+      run {
+        {
+          type = "coreclr",
+          name = "launch - netcoredbg",
+          request = "launch",
+          program = require("dap.utils").pick_file,
+        },
+        {
+          type = "coreclr",
+          name = "launch - netcoredbg",
+          request = "launch",
+          program = require("dap.utils").pick_file,
+          args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
+        },
+      }
     end,
   },
 
