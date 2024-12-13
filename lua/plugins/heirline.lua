@@ -97,6 +97,10 @@ return {
         },
         status.component.fill(),
         status.component.diagnostics { surround = { separator = "right" } },
+        status.component.lsp {
+          lsp_progress = false,
+          surround = { separator = "right" },
+        },
         status.component.builder {
           {
             static = {
@@ -122,15 +126,12 @@ return {
               return symbols.status[client_status] .. symbols.server_status[server_status]
             end,
           },
+          surround = { separator = { " ", "" } },
           update = {
             "User",
             pattern = { "NeoCodeiumServer*", "NeoCodeium*{En,Dis}abled" },
             callback = function() vim.cmd.redrawstatus() end,
           },
-        },
-        status.component.lsp {
-          lsp_progress = false,
-          surround = { separator = "right" },
         },
         -- file percentage
         {
