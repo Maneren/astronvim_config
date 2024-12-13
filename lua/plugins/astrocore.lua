@@ -49,5 +49,15 @@ return {
         L = { "$", desc = "Last non-blank" },
       },
     },
+    rooter = {
+      detector = {
+        "lsp",
+        { ".git", "_darcs", ".hg", ".bzr", ".svn" },
+        { "lua", "MakeFile", "package.json", "Cargo.toml", "CMakeLists.txt" },
+      },
+      autochdir = true,
+      scope = "global",
+      notify = true,
+    },
   },
 }
