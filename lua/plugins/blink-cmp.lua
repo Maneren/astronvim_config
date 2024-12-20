@@ -2,6 +2,7 @@
 return {
   "Saghen/blink.cmp",
   event = "BufEnter",
+  version = "v0.*",
   build = "cargo build --release --target-dir=target",
   dependencies = {
     {
@@ -45,7 +46,7 @@ return {
       },
       accept = {
         auto_brackets = {
-          enabled = false,
+          enabled = true,
         },
       },
       menu = {
@@ -67,7 +68,7 @@ return {
 
     fuzzy = {
       prebuilt_binaries = {
-        download = false,
+        download = true,
       },
     },
 
