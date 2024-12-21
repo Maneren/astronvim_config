@@ -1,21 +1,3 @@
-local prompts = {
-  -- Code related prompts
-  Explain = "Please explain how the following code works.",
-  Review = "Please review the following code and provide suggestions for improvement.",
-  Tests = "Please explain how the selected code works, then generate unit tests for it.",
-  Refactor = "Please refactor the following code to improve its clarity and readability.",
-  FixCode = "Please fix the following code to make it work as intended.",
-  FixError = "Please explain the error in the following text and provide a solution.",
-  BetterNamings = "Please provide better names for the following variables and functions.",
-  Documentation = "Please provide outside API documentation for the following code. It should contain a concise one line summary, detailed description, arguments, and return values in format fitting to the language.",
-  Comments = "Please add short comments to the following code where needed.",
-  -- Text related prompts
-  Summarize = "Please summarize the following text.",
-  Spelling = "Please correct any grammar and spelling errors in the following text.",
-  Wording = "Please improve the grammar and wording of the following text.",
-  Concise = "Please rewrite the following text to make it more concise.",
-}
-
 ---@type LazySpec
 return {
   {
@@ -42,7 +24,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    version = "^2",
+    version = "^3",
     cmd = {
       "CopilotChat",
       "CopilotChatOpen",
@@ -78,11 +60,11 @@ return {
           maps.n[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "CopilotChat" }
           maps.v[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "CopilotChat" }
 
-          maps.n[prefix .. "o"] = { "<Cmd>CopilotChatOpen<CR>", desc = "Open Chat" }
-          maps.n[prefix .. "c"] = { "<Cmd>CopilotChatClose<CR>", desc = "Close Chat" }
-          maps.n[prefix .. "t"] = { "<Cmd>CopilotChatToggle<CR>", desc = "Toggle Chat" }
-          maps.n[prefix .. "r"] = { "<Cmd>CopilotChatReset<CR>", desc = "Reset Chat" }
-          maps.n[prefix .. "s"] = { "<Cmd>CopilotChatStop<CR>", desc = "Stop Chat" }
+          maps.n[prefix .. "o"] = { ":CopilotChatOpen<CR>", desc = "Open Chat" }
+          maps.n[prefix .. "c"] = { ":CopilotChatClose<CR>", desc = "Close Chat" }
+          maps.n[prefix .. "t"] = { ":CopilotChatToggle<CR>", desc = "Toggle Chat" }
+          maps.n[prefix .. "r"] = { ":CopilotChatReset<CR>", desc = "Reset Chat" }
+          maps.n[prefix .. "s"] = { ":CopilotChatStop<CR>", desc = "Stop Chat" }
 
           maps.n[prefix .. "S"] = {
             function()
@@ -166,54 +148,50 @@ return {
       },
       { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
     },
-    opts = {
-      window = {
-        width = 0.4,
-        height = vim.o.lines - 4, -- absolute height in rows, subtract for command line and status line
-        row = 1, -- row position of the window, starting from the top
-      },
+    config = function()
+      local utils = require("astrocore")
+      local prompts = utils.extend_tbl(require("CopilotChat.config").prompts, {
+        -- Code related prompts
+        Review = {
+          prompt = "/COPILOT_REVIEW\n\nPlease review the following code and provide suggestions for improvement.",
+        },
+        Tests = {
+          prompt = "/COPILOT_GENERATE\n\nPlease explain how the selected code works, then generate unit tests for it.",
+        },
+        FixError = {
+          prompt = "/COPILOT_EXPLAIN\n\nPlease explain the error in the following code and provide a solution.",
+        },
+        BetterNamings = {
+          prompt = "/COPILOT_GENERATE\n\nPlease provide better names for the following variables and functions.",
+        },
+        Docs = {
+          prompt = "/COPILOT_GENERATE\n\nPlease write a documentation for the following code in a format fitting to the language. It should contain a concise one line summary, detailed description, arguments, return values and possible error conditions.",
+        },
+        Comments = { prompt = "/COPILOT_GENERATE\n\nPlease add short comments to the following code where needed." },
+        -- Text related prompts
+        Summarize = { prompt = "/COPILOT_GENERATE\n\nPlease summarize the following text." },
+        Spelling = {
+          prompt = "/COPILOT_REVIEW\n\nPlease correct any grammar and spelling errors in the following text.",
+        },
+        Wording = { prompt = "/COPILOT_GENERATE\n\nPlease improve the grammar and wording of the following text." },
+        Concise = { prompt = "/COPILOT_GENERATE\n\nPlease rewrite the following text to make it more concise." },
+      })
 
-      model = "gpt-4o",
-      question_header = "## User ",
-      answer_header = "## Copilot ",
-      error_header = "## Error ",
+      ---@type CopilotChat.config
+      local opts = {
+        window = {
+          width = 0.4,
+        },
 
-      prompts = prompts,
+        model = "gpt-4o",
+        prompts = prompts,
 
-      mappings = {
-        complete = {
-          detail = "Use @<Tab> or /<Tab> for options.",
-          insert = "<Tab>",
-        },
-        close = {
-          normal = "q",
-          insert = "<C-c>",
-        },
-        reset = {
-          normal = "<C-l>",
-          insert = "<C-l>",
-        },
-        submit_prompt = {
-          normal = "<C-CR>",
-          insert = "<C-CR>",
-        },
-        accept_diff = {
-          normal = "<C-y>",
-          insert = "<C-y>",
-        },
-        yank_diff = {
-          normal = "gy",
-        },
-        show_diff = {
-          normal = "gd",
-        },
-        show_system_prompt = {
-          normal = "gp",
-        },
-        show_user_selection = {
-          normal = "gs",
-        },
-      },
-    },
+        highlight_headers = false,
+        auto_follow_cursor = true,
+        auto_insert_mode = true,
+      }
+
+      require("CopilotChat").setup(opts)
+    end,
   },
 }
