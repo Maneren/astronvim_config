@@ -116,6 +116,9 @@ return {
           },
         },
       },
+      list = {
+        selection = "manual",
+      },
       accept = {
         auto_brackets = { enabled = true },
       },
