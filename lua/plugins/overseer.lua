@@ -50,6 +50,17 @@ return {
           }
         end,
       },
+      {
+        "stevearc/resession.nvim",
+        ---@type ResessionConfig
+        opts = {
+          extensions = {
+            overseer = {
+              bundleable = true,
+            },
+          },
+        },
+      },
     },
   },
   {
