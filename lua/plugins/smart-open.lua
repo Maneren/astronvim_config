@@ -9,6 +9,8 @@ return {
   dependencies = {
     "kkharji/sqlite.lua",
     { "nvim-telescope/telescope-fzy-native.nvim" },
+  },
+  specs = {
     {
       "astrocore",
       opts = {

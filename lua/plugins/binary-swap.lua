@@ -4,8 +4,11 @@
 ---@type LazySpec
 return {
   "Wansmer/binary-swap.nvim",
+  keys = { "gS", "gs" },
   dependencies = {
     { "nvim-treesitter/nvim-treesitter" },
+  },
+  specs = {
     {
       "astrocore",
       ---@type AstroCoreOpts

@@ -1,12 +1,12 @@
 --- Sticky keybinds
 --- https://github.com/nvimtools/hydra.nvim
+--- extends astrocommunity
 
 -- currently only used for side scroll
 
 ---@type LazySpec
 return {
   "nvimtools/hydra.nvim",
-  -- applying the config is handled by astrocommunity
   opts = {
     ["Side scroll"] = {
       mode = "n",

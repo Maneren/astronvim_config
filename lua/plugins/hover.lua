@@ -17,7 +17,7 @@ return {
     preview_window = true,
     title = false,
   },
-  dependencies = {
+  specs = {
     "astrocore",
     ---@type AstroCoreOpts
     opts = {

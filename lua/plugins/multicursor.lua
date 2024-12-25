@@ -1,10 +1,12 @@
 --- Multicursors
 --- https://github.com/smoka7/multicursors.nvim
+--- adapted from astrocommunity
 
 ---@type LazySpec
 return {
   "smoka7/multicursors.nvim",
-  event = "VeryLazy",
+  event = "BufEnter",
+  cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
   dependencies = {
     "nvimtools/hydra.nvim",
   },
@@ -24,7 +26,6 @@ return {
       },
     },
   },
-  cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
   keys = {
     {
       mode = { "v", "n" },

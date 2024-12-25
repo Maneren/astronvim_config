@@ -1,16 +1,16 @@
---- Lightweight copilot alternative
---- https://github.com/Exafunction/codeium.nvim
+--- Lightweight copilot alternative (unofficial plugin)
+--- https://github.com/monkoose/neocodeium
 
 ---@type LazySpec
 return {
   "monkoose/neocodeium",
-  event = "VeryLazy",
+  event = "User AstroFile",
   opts = {
     show_label = false,
     debounce = false,
     silent = true,
   },
-  dependencies = {
+  specs = {
     {
       "astrocore",
       ---@type AstroCoreOpts

@@ -1,5 +1,6 @@
 --- Window size auto-resizer
 --- https://github.com/anuvyklack/windows.nvim
+--- extends astrocommunity
 
 ---@type LazySpec
 return {

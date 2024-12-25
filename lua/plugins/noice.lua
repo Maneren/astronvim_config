@@ -1,14 +1,10 @@
 --- GUI for cmdline and popupmenu
 --- https://github.com/folke/noice.nvim
+--- extends astrocommunity
 
 ---@type LazySpec
 return {
   "folke/noice.nvim",
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-    "nvim-telescope/telescope.nvim",
-    "rcarriga/nvim-notify",
-  },
   opts = {
     messages = {
       enabled = false,

@@ -1,12 +1,12 @@
--- Toggle terminal in current buffer
--- https://github.com/jaimecgomezz/here.term
+--- Toggle terminal in current buffer
+--- https://github.com/jaimecgomezz/here.term
 
 ---@type LazySpec
 return {
   "jaimecgomezz/here.term",
-  event = "VeryLazy",
+  event = "BufEnter",
   opts = {},
-  dependencies = {
+  specs = {
     {
       "astrocore",
       ---@type AstroCoreOpts

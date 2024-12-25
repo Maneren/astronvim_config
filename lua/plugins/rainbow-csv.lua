@@ -1,3 +1,6 @@
+--- Rainbow colors for CSV files
+--- https://github.com/cameron-wags/rainbow_csv.nvim
+
 ---@type LazySpec
 return {
   "cameron-wags/rainbow_csv.nvim",

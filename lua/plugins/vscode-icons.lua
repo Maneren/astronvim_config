@@ -1,8 +1,6 @@
 --- VSCode Icons
----
---- adapted from
---- https://docs.astronvim.com/recipes/icons/#vs-code-style-icons
---- https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/recipes/vscode-icons/init.lua
+--- https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/recipes/vscode-icons
+--- adapted from astrocommunity
 
 ---@type LazySpec
 return {

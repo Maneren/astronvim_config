@@ -1,3 +1,7 @@
+--- Completion UI
+--- https://github.com/Saghen/blink-cmp
+--- adapted from astrocommunity
+
 local function has_words_before()
   local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -40,6 +44,7 @@ local function get_icon(ctx)
   return ctx
 end
 
+---@type LazySpec
 return {
   "Saghen/blink.cmp",
   event = { "InsertEnter", "CmdlineEnter" },
@@ -58,6 +63,7 @@ return {
       ft = { "sql", "mysql", "plsql" },
     },
   },
+  ---@type Blink.Config
   opts = {
     keymap = {
       ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },

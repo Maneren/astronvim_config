@@ -12,6 +12,12 @@ return {
   event = "User AstroFile",
   dependencies = {
     "nvim-telescope/telescope.nvim",
+  },
+  config = function(_, opts)
+    require("textcase").setup(opts)
+    require("telescope").load_extension("textcase")
+  end,
+  specs = {
     {
       "astrocore",
       opts = {
@@ -22,8 +28,4 @@ return {
       },
     },
   },
-  config = function()
-    require("textcase").setup {}
-    require("telescope").load_extension("textcase")
-  end,
 }

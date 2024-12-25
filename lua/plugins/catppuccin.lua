@@ -1,3 +1,8 @@
+--- Colorscheme
+--- https://github.com/catppuccin/nvim
+--- extends astrocommunity
+
+---@type LazySpec
 return {
   "catppuccin/nvim",
   name = "catppuccin",

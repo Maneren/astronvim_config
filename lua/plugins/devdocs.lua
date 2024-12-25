@@ -1,10 +1,11 @@
 --- Search devdocs
 --- https://github.com/luckasRanarison/nvim-devdocs
-
--- based on astrocommunity recipe
+--- adapted from astrocommunity
 
 -- install command:
 -- nvim --headless +"DevdocsInstall rust javascript typescript html css http dom bash docker git latex markdown node lua npm python tailwindcss c"
+-- Note: may take a long time but also often hang when done, so check a task
+-- manager and kill the process if you waited a lot and it seems idle
 
 local prefix = "<Leader>f"
 
@@ -21,14 +22,10 @@ return {
     "DevdocsUninstall",
     "DevdocsOpen",
     "DevdocsOpenFloat",
+    "DevdocsOpenCurrentFloat",
     "DevdocsUpdate",
     "DevdocsUpdateAll",
     "DevdocsToggle",
-  },
-  keys = {
-    { prefix .. "dd", "<Cmd>DevdocsOpenCurrentFloat<CR>", desc = "Find Devdocs for current file", mode = { "n" } },
-    { prefix .. "dt", "<Cmd>DevdocsToggle<CR>", desc = "Toggle last Devdocs item", mode = { "n" } },
-    { prefix .. "D", "<Cmd>DevdocsOpenFloat<CR>", desc = "Find Devdocs", mode = { "n" } },
   },
   opts = {
     previewer_cmd = vim.fn.executable("glow") == 1 and "glow" or nil,
@@ -47,5 +44,20 @@ return {
     after_open = function()
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
     end,
+  },
+  specs = {
+    {
+      "astrocore",
+      ---@type AstroCoreOpts
+      opts = {
+        mappings = {
+          n = {
+            [prefix .. "dd"] = { "<Cmd>DevdocsOpenCurrentFloat<CR>", desc = "Find Devdocs for current file" },
+            [prefix .. "dt"] = { "<Cmd>DevdocsToggle<CR>", desc = "Toggle last Devdocs item" },
+            [prefix .. "D"] = { "<Cmd>DevdocsOpenFloat<CR>", desc = "Find Devdocs" },
+          },
+        },
+      },
+    },
   },
 }

@@ -4,7 +4,7 @@
 ---@type LazySpec
 return {
   "anuvyklack/vim-smartword",
-  event = "VeryLazy",
+  event = "BufEnter",
   keys = {
     { "w", "<Plug>(smartword-w)" },
     { "b", "<Plug>(smartword-b)" },

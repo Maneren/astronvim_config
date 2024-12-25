@@ -1,3 +1,7 @@
+--- Flash movement
+--- https://github.com/folke/flash.nvim
+--- extends astrocommunity
+
 ---@type LazySpec
 return {
   "folke/flash.nvim",

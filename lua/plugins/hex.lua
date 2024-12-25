@@ -1,4 +1,5 @@
--- xxd integration
+--- Hexeditor inside nvim
+--- https://github.com/RaafatTurki/hex.nvim
 
 ---@type LazySpec
 return {

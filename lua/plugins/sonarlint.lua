@@ -1,3 +1,6 @@
+--- SonarLint integration
+--- https://gitlab.com/schrieveslaach/sonarlint.nvim
+
 local filetypes = { "c", "cpp", "h", "hpp", "html", "javascript", "php", "python", "typescript", "xml" }
 
 ---@type LazySpec

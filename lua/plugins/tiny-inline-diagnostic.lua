@@ -1,3 +1,7 @@
+--- Improved inline diagnostics
+--- https://github.com/rachartier/tiny-inline-diagnostic.nvim
+--- extends astrocommunity
+
 ---@type LazySpec
 return {
   "rachartier/tiny-inline-diagnostic.nvim",

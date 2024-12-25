@@ -1,3 +1,7 @@
+--- Toggleable terminal
+--- https://github.com/akinsho/toggleterm.nvim
+--- extends astrocommunity
+
 ---@type LazySpec
 return {
   "akinsho/toggleterm.nvim",
@@ -6,7 +10,7 @@ return {
     on_open = function() vim.cmd("startinsert!") end,
     direction = "vertical",
   },
-  dependencies = {
+  specs = {
     "astrocore",
     ---@type AstroCoreOpts
     opts = {

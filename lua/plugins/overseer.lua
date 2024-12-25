@@ -21,7 +21,7 @@ return {
       "OverseerClearCache",
     },
     opts = {},
-    dependencies = {
+    specs = {
       { "AstroNvim/astroui", opts = { icons = { Overseer = "" } } },
       {
         "AstroNvim/astrocore",

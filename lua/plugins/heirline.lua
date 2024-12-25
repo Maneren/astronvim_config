@@ -1,10 +1,10 @@
 --- Statusline
 --- https://github.com/NTBBloodbath/heirline.nvim
+--- based on AstroNvim's recipes heirline-nvchad-statusline and
+--- heirline-clock-statusline with custom modifications
+---
+--- https://docs.astronvim.com/recipes/status/#default-statusline-with-clock
 
--- based on AstroNvim's recipes heirline-nvchad-statusline and heirline-clock-statusline
--- with slight modifications
---
--- https://docs.astronvim.com/recipes/status/#default-statusline-with-clock
 ---@type LazySpec
 return {
   {

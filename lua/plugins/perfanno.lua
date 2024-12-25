@@ -1,8 +1,9 @@
+--- Performance profiling annotations
+--- https://github.com/t-troebst/perfanno.nvim
+
 ---@type LazySpec
 return {
   "t-troebst/perfanno.nvim",
-  opts = {},
-  keys = { "<Leader>P" },
   cmd = {
     "PerfLoadFlat",
     "PerfLoadCallGraph",
@@ -21,7 +22,7 @@ return {
       opts = {
         mappings = {
           n = {
-            ["<Leader>P"] = { group = "PerfAnno" },
+            ["<Leader>P"] = { group = "󱫐 PerfAnno" },
             ["<Leader>Pl"] = { group = "Load perf profile" },
             ["<Leader>Plf"] = {
               "<Cmd>PerfLoadFlat<CR>",

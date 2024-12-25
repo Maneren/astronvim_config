@@ -1,6 +1,6 @@
 --- Modern search and replace
 --- https://github.com/MagicDuck/grug-far.nvim
---- extends the astrocommunity module
+--- extends astrocommunity
 
 ---@type LazySpec
 return {

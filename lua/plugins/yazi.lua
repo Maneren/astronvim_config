@@ -1,4 +1,4 @@
---- Yazi file manager for neovim
+--- Yazi file manager integration
 --- https://github.com/mikavilpas/yazi.nvim
 
 ---@type LazySpec
@@ -12,7 +12,7 @@ return {
       show_help = "<f1>",
     },
   },
-  dependencies = {
+  specs = {
     {
       "astrocore",
       ---@type AstroCoreOpts
