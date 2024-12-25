@@ -15,7 +15,7 @@ return {
         { "h", "5zh", { desc = "← one column" } },
         { "l", "5zl", { desc = "→ one column" } },
         { "H", "zH", { desc = "← half screen" } },
-        { "L", "zL", { desc = "← half screen" } },
+        { "L", "zL", { desc = "→ half screen" } },
       },
     },
   },
