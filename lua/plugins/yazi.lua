@@ -8,8 +8,9 @@ return {
   ---@type YaziConfig
   opts = {
     open_multiple_tabs = true,
-    keymaps = {
-      show_help = "<f1>",
+    future_features = {
+      ya_emit_reveal = true,
+      ya_emit_open = true,
     },
   },
   specs = {
