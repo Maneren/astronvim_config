@@ -7,6 +7,6 @@ return {
   "chrisgrieser/nvim-early-retirement",
   event = "BufEnter",
   opts = {
-    retirementAgeMins = 10,
+    retirementAgeMins = 15,
   },
 }
