@@ -61,12 +61,7 @@ return {
           },
         },
       },
+      { "catppuccin/nvim", opts = { integrations = { overseer = true } } },
     },
-  },
-  {
-    "catppuccin/nvim",
-    optional = true,
-    ---@type CatppuccinOptions
-    opts = { integrations = { overseer = true } },
   },
 }

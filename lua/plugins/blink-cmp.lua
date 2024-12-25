@@ -222,6 +222,7 @@ return {
         },
       },
     },
+    { "catppuccin", opts = { integrations = { blink_cmp = true } } },
     -- disable built in completion plugins
     { "hrsh7th/nvim-cmp", enabled = false },
     { "rcarriga/cmp-dap", enabled = false },
