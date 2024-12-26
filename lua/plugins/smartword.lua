@@ -1,14 +1,28 @@
 --- Better word-wise navigation
 --- https://github.com/anuvyklack/vim-smartword
 
+local mapping = {
+  ["w"] = { "<Plug>(smartword-w)", desc = "Smart next word" },
+  ["b"] = { "<Plug>(smartword-b)", desc = "Smart prev word" },
+  ["e"] = { "<Plug>(smartword-e)", desc = "Smart next end of word" },
+  ["ge"] = { "<Plug>(smartword-ge)", desc = "Smart prev end of word" },
+}
+
 ---@type LazySpec
 return {
   "anuvyklack/vim-smartword",
   event = "BufEnter",
-  keys = {
-    { "w", "<Plug>(smartword-w)" },
-    { "b", "<Plug>(smartword-b)" },
-    { "e", "<Plug>(smartword-e)" },
-    { "ge", "<Plug>(smartword-ge)" },
+  specs = {
+    {
+      "astrocore",
+      ---@type AstroCoreOpts
+      opts = {
+        mappings = {
+          n = mapping,
+          v = mapping,
+          o = mapping,
+        },
+      },
+    },
   },
 }
