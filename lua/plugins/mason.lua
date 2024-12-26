@@ -31,7 +31,6 @@ return {
         "cpplint",
         "cpptools",
         "csharpier",
-        "diagnostic-languageserver",
         "fixjson",
         "jsonlint",
         "ltex-ls",
