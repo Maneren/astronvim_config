@@ -121,7 +121,20 @@ return {
         },
       },
       ltex = {
-        on_attach = function(_, _) require("ltex_extra").setup() end,
+        settings = {
+          ltex = {
+            completionEnabled = true,
+            language = "en",
+            checkFrequency = "save",
+            diagnosticSeverity = "information",
+            sentenceCacheSize = 5000,
+            additionalRules = {
+              enablePickyRules = true,
+              motherTongue = "en",
+              languageModel = "~/.local/share/ngrams/",
+            },
+          },
+        },
       },
     },
     autocmds = {

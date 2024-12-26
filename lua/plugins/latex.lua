@@ -4,6 +4,14 @@
 ---@type LazySpec
 return {
   "barreiroleo/ltex-extra.nvim",
+  branch = "dev",
   ft = { "markdown", "tex" },
-  dependencies = { "neovim/nvim-lspconfig" },
+  opts = {
+    load_langs = {
+      "en",
+      "en-US",
+    },
+    log_level = "warn",
+    path = vim.fn.expand("~") .. "/.config/ltex",
+  },
 }
