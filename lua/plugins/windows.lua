@@ -9,7 +9,7 @@ return {
   opts = {
     autowidth = {
       enable = true,
-      winwidth = 5,
+      winwidth = 1.5,
       filetype = {
         help = 2,
       },
@@ -20,7 +20,7 @@ return {
     },
     animation = {
       enable = true,
-      duration = 200,
+      duration = 100,
       fps = 60,
       easing = "in_out_sine",
     },
