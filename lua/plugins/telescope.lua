@@ -6,9 +6,8 @@ return {
     { "HUAHUAI23/telescope-dapzzzz" },
     { "nvim-telescope/telescope-dap.nvim" },
   },
-  config = function(opts)
-    local telescope = require("telescope")
-    telescope.setup(opts)
-    telescope.load_extension("i23")
+  config = function(plugin, opts)
+    require("astronvim.plugins.configs.telescope")(plugin, opts)
+    require("telescope").load_extension("i23")
   end,
 }
