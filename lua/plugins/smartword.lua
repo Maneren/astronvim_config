@@ -20,7 +20,6 @@ return {
         mappings = {
           n = mapping,
           v = mapping,
-          o = mapping,
         },
       },
     },
