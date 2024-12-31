@@ -4,16 +4,10 @@
 ---@type LazySpec
 return {
   {
+    "williamboman/mason.nvim",
     -- TODO: switch back once https://github.com/williamboman/mason.nvim/pull/1640 is merged
-    "KingMichaelPark/mason.nvim",
-    name = "mason",
+    url = "https://github.com/KingMichaelPark/mason.nvim",
     opts = { pip = { use_uv = true } },
-    specs = {
-      {
-        "williamboman/mason.nvim",
-        enabled = false,
-      },
-    },
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
