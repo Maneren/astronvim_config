@@ -78,27 +78,16 @@ return {
       ["<C-e>"] = { "hide", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
       ["<Tab>"] = {
+        "select_next",
+        "snippet_forward",
         function(cmp)
-          if cmp.is_visible() then
-            return cmp.select_next()
-          elseif cmp.snippet_active { direction = 1 } then
-            return cmp.snippet_forward()
-          elseif has_words_before() then
+          if has_words_before() then
             return cmp.show()
           end
         end,
         "fallback",
       },
-      ["<S-Tab>"] = {
-        function(cmp)
-          if cmp.is_visible() then
-            return cmp.select_prev()
-          elseif cmp.snippet_active { direction = -1 } then
-            return cmp.snippet_backward()
-          end
-        end,
-        "fallback",
-      },
+      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
     },
     completion = {
       menu = {
@@ -117,7 +106,7 @@ return {
         },
       },
       list = {
-        selection = "manual",
+        selection = function(ctx) return ctx.mode == "cmdline" and "auto_insert" or "manual" end,
       },
       accept = {
         auto_brackets = { enabled = true },
@@ -180,7 +169,7 @@ return {
         lsp = {
           score_offset = 100,
         },
-        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" } },
+        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" }, score_offset = 100 },
         buffer = {
           score_offset = -10,
         },
@@ -204,32 +193,7 @@ return {
     {
       "AstroNvim/astrolsp",
       optional = true,
-      opts = function(_, opts)
-        opts.capabilities =
-          require("astrocore").extend_tbl(opts.capabilities, require("blink.cmp").get_lsp_capabilities())
-      end,
-    },
-    {
-      "folke/lazydev.nvim",
-      optional = true,
-      specs = {
-        {
-          "Saghen/blink.cmp",
-          opts = function(_, opts)
-            if pcall(require, "lazydev.integrations.blink") then
-              return require("astrocore").extend_tbl(opts, {
-                sources = {
-                  -- add lazydev to your completion providers
-                  default = { "lazydev" },
-                  providers = {
-                    lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
-                  },
-                },
-              })
-            end
-          end,
-        },
-      },
+      opts = function(_, opts) opts.capabilities = require("blink.cmp").get_lsp_capabilities(opts.capabilities) end,
     },
     { "catppuccin", opts = { integrations = { blink_cmp = true } } },
     -- disable built in completion plugins
