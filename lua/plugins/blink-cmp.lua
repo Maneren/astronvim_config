@@ -109,7 +109,12 @@ return {
         selection = function(ctx) return ctx.mode == "cmdline" and "auto_insert" or "manual" end,
       },
       accept = {
-        auto_brackets = { enabled = true },
+        auto_brackets = {
+          enabled = true,
+          override_brackets_for_filetypes = {
+            robot = { "   " },
+          },
+        },
       },
       documentation = {
         auto_show = true,
