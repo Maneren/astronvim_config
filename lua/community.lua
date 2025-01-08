@@ -2,6 +2,7 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.completion.blink-cmp" },
   { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
   { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
   { import = "astrocommunity.debugging.telescope-dap-nvim" },
@@ -53,6 +54,7 @@ return {
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   { import = "astrocommunity.search.grug-far-nvim" },
+  -- { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.utility.lua-json5" },
   { import = "astrocommunity.utility.noice-nvim" },
