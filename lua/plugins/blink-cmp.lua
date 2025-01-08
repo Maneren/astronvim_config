@@ -106,7 +106,7 @@ return {
         },
       },
       list = {
-        selection = function(ctx) return ctx.mode == "cmdline" and "auto_insert" or "manual" end,
+        selection = { preselect = false, auto_insert = true },
       },
       accept = {
         auto_brackets = {
@@ -138,38 +138,35 @@ return {
         end
         return 0
       end,
-      default = {
-        "lsp",
-        "path",
-        "snippets",
-        "buffer",
-        "latex",
-      },
-      per_filetype = {
-        sql = {
-          "lsp",
-          "path",
-          "snippets",
-          "buffer",
-          "dadbod",
-        },
-        lua = {
+      default = function(ctx)
+        local success, node = pcall(vim.treesitter.get_node)
+        if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+          return { "buffer" }
+        end
+
+        local base = {
           "lsp",
           "path",
           "snippets",
           "buffer",
           "latex",
-          "lazydev",
-        },
-        json = {
-          "lsp",
-          "path",
-          "snippets",
-          "buffer",
-          "latex",
-          "npm",
-        },
-      },
+        }
+
+        local additional = {
+          lua = { "lazydev" },
+          sql = { "dadbod" },
+        }
+
+        local ft = vim.bo.filetype
+
+        if additional[ft] then
+          for _, provider in ipairs(additional[ft]) do
+            table.insert(base, provider)
+          end
+        end
+
+        return base
+      end,
       providers = {
         lsp = {
           score_offset = 100,
@@ -198,7 +195,18 @@ return {
     {
       "AstroNvim/astrolsp",
       optional = true,
-      opts = function(_, opts) opts.capabilities = require("blink.cmp").get_lsp_capabilities(opts.capabilities) end,
+      opts = function(_, opts)
+        opts.capabilities = require("blink.cmp").get_lsp_capabilities(opts.capabilities)
+
+        -- disable AstroLSP signature help if `blink.cmp` is providing it
+        local blink_opts = require("astrocore").plugin_opts("blink.cmp")
+        if vim.tbl_get(blink_opts, "signature", "enabled") == true then
+          if not opts.features then
+            opts.features = {}
+          end
+          opts.features.signature_help = false
+        end
+      end,
     },
     { "catppuccin", opts = { integrations = { blink_cmp = true } } },
     -- disable built in completion plugins
