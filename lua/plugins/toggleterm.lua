@@ -9,6 +9,8 @@ return {
     start_in_insert = true,
     on_open = function() vim.cmd("startinsert!") end,
     direction = "vertical",
+    size = 80,
+    auto_scroll = false,
   },
   specs = {
     "astrocore",
