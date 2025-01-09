@@ -48,6 +48,14 @@ return {
         H = { "^", desc = "First non-blank" },
         L = { "$", desc = "Last non-blank" },
       },
+      x = {
+        H = { "^", desc = "First non-blank" },
+        L = { "$", desc = "Last non-blank" },
+      },
+      o = {
+        H = { "^", desc = "First non-blank" },
+        L = { "$", desc = "Last non-blank" },
+      },
     },
     rooter = {
       detector = {
