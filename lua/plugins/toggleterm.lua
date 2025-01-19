@@ -7,10 +7,9 @@ return {
   "akinsho/toggleterm.nvim",
   opts = {
     start_in_insert = true,
-    on_open = function() vim.cmd("startinsert!") end,
     direction = "vertical",
     size = 80,
-    auto_scroll = false,
+    auto_scroll = true,
   },
   specs = {
     "astrocore",
