@@ -1,9 +1,9 @@
 --- Swaps binary operands
---- https://github.com/Wansmer/binary-swap.nvim
+--- https://github.com/Maneren/binary-swap.nvim
 
 ---@type LazySpec
 return {
-  "Wansmer/binary-swap.nvim",
+  "Maneren/binary-swap.nvim",
   dependencies = {
     { "nvim-treesitter/nvim-treesitter" },
   },
