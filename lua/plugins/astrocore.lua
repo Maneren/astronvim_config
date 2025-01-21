@@ -33,6 +33,9 @@ return {
         neovide_floating_z_height = 10,
         neovide_light_angle_degrees = 45,
         neovide_light_radius = 5,
+        neovide_padding_top = 4,
+        neovide_padding_right = 4,
+        neovide_padding_left = 6,
 
         vimtex_compiler_method = "tectonic",
       },
