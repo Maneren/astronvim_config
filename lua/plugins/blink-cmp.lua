@@ -1,6 +1,6 @@
 --- Completion UI
 --- https://github.com/Saghen/blink-cmp
---- adapted from astrocommunity
+--- extends astrocommunity
 
 ---@type LazySpec
 return {
