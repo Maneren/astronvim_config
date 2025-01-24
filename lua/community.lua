@@ -8,6 +8,7 @@ return {
   { import = "astrocommunity.debugging.telescope-dap-nvim" },
   { import = "astrocommunity.diagnostics.tiny-inline-diagnostic-nvim" },
   { import = "astrocommunity.docker.lazydocker" },
+  { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.editing-support.dial-nvim" },
   { import = "astrocommunity.editing-support.neogen" },
   { import = "astrocommunity.editing-support.nvim-context-vt" },
