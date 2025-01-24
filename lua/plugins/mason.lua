@@ -39,24 +39,11 @@ return {
         "sourcery",
         "sqlfmt",
         "stylelint-lsp",
+        "tectonic",
         "texlab",
         "twiggy-language-server",
         "yamlfmt",
         "yamllint",
-      },
-    },
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    opts = {
-      handlers = {
-        -- enable prettier for more languages
-        prettierd = function(source_name, methods)
-          local null_ls = require("null-ls")
-          for _, method in ipairs(methods) do
-            null_ls.register(null_ls.builtins[method][source_name].with { filetypes = { "php", "twig", "markdown" } })
-          end
-        end,
       },
     },
   },
