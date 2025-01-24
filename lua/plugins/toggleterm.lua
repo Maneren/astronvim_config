@@ -8,7 +8,6 @@ return {
   opts = {
     start_in_insert = true,
     direction = "vertical",
-    size = 80,
     auto_scroll = true,
   },
   specs = {

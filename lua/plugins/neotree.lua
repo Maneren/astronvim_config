@@ -11,6 +11,7 @@ return {
     "MunifTanjim/nui.nvim",
     "mrbjarksen/neo-tree-diagnostics.nvim",
   },
+  cmd = "Neotree",
   opts = {
     filesystem = {
       async_directory_scan = "auto",
@@ -31,14 +32,6 @@ return {
       "git_status",
       "document_symbols",
       "diagnostics",
-    },
-    source_selector = {
-      sources = {
-        { source = "filesystem" },
-        { source = "git_status" },
-        { source = "diagnostics" },
-        { source = "document_symbols" },
-      },
     },
     window = {
       width = 40,
