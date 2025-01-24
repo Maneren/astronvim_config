@@ -197,8 +197,4 @@ return {
     end,
   },
 
-  config = function(_, opts)
-    require("dap-utils").setup(opts)
-    require("telescope").load_extension("dap")
-  end,
 }
