@@ -20,8 +20,13 @@ return {
       ft = { "sql", "mysql", "plsql" },
     },
   },
-  ---@type Blink.Config
+  ---@type blink.cmp.Config
   opts = {
+    enabled = function()
+      return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
+        and vim.bo.buftype ~= "prompt"
+        and vim.b.completion ~= false
+    end,
     completion = {
       menu = { auto_show = true },
       list = { selection = { preselect = false, auto_insert = true } },
@@ -40,7 +45,7 @@ return {
         end
         return 0
       end,
-      default = function(ctx)
+      default = function(_)
         local success, node = pcall(vim.treesitter.get_node)
         if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
           return { "buffer" }
