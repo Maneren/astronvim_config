@@ -29,7 +29,6 @@ return {
   dependencies = {
     { "zbirenbaum/copilot.lua" },
     { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope.nvim" },
   },
   config = function()
     local prompts = vim.tbl_deep_extend("force", require("CopilotChat.config").prompts, {
@@ -122,7 +121,7 @@ return {
         -- Helper function to create mappings
         local function create_mapping(action_type, selection_type)
           return function()
-            require("CopilotChat.integrations.telescope").pick(require("CopilotChat.actions")[action_type] {
+            require("CopilotChat.integrations.snacks").pick(require("CopilotChat.actions")[action_type] {
               selection = require("CopilotChat.select")[selection_type],
             })
           end
