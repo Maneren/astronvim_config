@@ -6,6 +6,9 @@
 return {
   "folke/noice.nvim",
   opts = {
+    notify = {
+      enabled = false,
+    },
     messages = {
       enabled = false,
     },
@@ -38,8 +41,4 @@ return {
       },
     },
   },
-  config = function(_, opts)
-    require("noice").setup(opts)
-    require("telescope").load_extension("noice")
-  end,
 }
