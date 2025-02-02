@@ -5,7 +5,6 @@
 ---@type LazySpec
 return {
   "smoka7/multicursors.nvim",
-  event = "BufEnter",
   cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
   dependencies = {
     "nvimtools/hydra.nvim",
@@ -18,20 +17,28 @@ return {
       position = "bottom-right",
     },
     generate_hints = {
-      normal = false,
-      insert = false,
-      extend = false,
-      config = {
-        column_count = 1,
-      },
+      normal = true,
+      insert = true,
+      extend = true,
     },
   },
-  keys = {
-    {
-      mode = { "v", "n" },
-      "<Leader>m",
-      "<Cmd>MCstart<CR>",
-      desc = "Create a selection for selected text or word under the cursor",
+  specs = {
+    "astrocore",
+    opts = {
+      mappings = {
+        n = {
+          ["<Leader>m"] = {
+            "<Cmd>MCstart<CR>",
+            desc = "Multicursor mode",
+          },
+        },
+        v = {
+          ["<Leader>m"] = {
+            "<Cmd>MCvisual<CR>",
+            desc = "Multicursor mode",
+          },
+        },
+      },
     },
   },
 }
