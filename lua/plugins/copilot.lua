@@ -17,14 +17,14 @@ return {
     "CopilotChatLoad",
     "CopilotChatDebugInfo",
     "CopilotChatModels",
+    "CopilotChatAgents",
     "CopilotChatExplain",
     "CopilotChatReview",
     "CopilotChatFix",
     "CopilotChatOptimize",
     "CopilotChatDocs",
-    "CopilotChatFixDiagnostic",
+    "CopilotChatFixTests",
     "CopilotChatCommit",
-    "CopilotChatCommitStaged",
   },
   dependencies = {
     { "zbirenbaum/copilot.lua" },
@@ -32,23 +32,19 @@ return {
     { "nvim-telescope/telescope.nvim" },
   },
   config = function()
-    local utils = require("astrocore")
-    local prompts = utils.extend_tbl(require("CopilotChat.config").prompts, {
+    local prompts = vim.tbl_deep_extend("force", require("CopilotChat.config").prompts, {
       -- Code related prompts
       Review = {
-        prompt = "/COPILOT_REVIEW\n\nPlease review the following code and provide suggestions for improvement.",
+        prompt = "/COPILOT_REVIEW\n\nPlease review the following code and provide suggestions for improvement. Explain your changes first, then provide the fixed code.",
       },
       Tests = {
         prompt = "/COPILOT_GENERATE\n\nPlease explain how the selected code works, then generate unit tests for it.",
       },
       FixError = {
-        prompt = "/COPILOT_EXPLAIN\n\nPlease explain the error in the following code and provide a solution.",
-      },
-      BetterNamings = {
-        prompt = "/COPILOT_GENERATE\n\nPlease provide better names for the following variables and functions.",
+        prompt = "/COPILOT_EXPLAIN\n\nPlease find and explain the error in the following code and provide a fixed solution.",
       },
       Docs = {
-        prompt = "/COPILOT_GENERATE\n\nPlease write a documentation for the following code in a format fitting to the language. It should contain a concise one line summary, detailed description, arguments, return values and possible error conditions.",
+        prompt = "/COPILOT_GENERATE\n\nPlease write a documentation for the following code in a format fitting for the language. It should contain a concise one line summary, detailed description, arguments, return values and possible error conditions.",
       },
       Comments = { prompt = "/COPILOT_GENERATE\n\nPlease add short comments to the following code where needed." },
       -- Text related prompts
