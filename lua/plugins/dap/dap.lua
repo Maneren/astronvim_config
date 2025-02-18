@@ -17,8 +17,7 @@ return {
     opts = {
       handlers = {
         python = function()
-          local dap = require("dap")
-          dap.adapters.python = {
+          require("dap").adapters.python = {
             type = "executable",
             command = "/usr/bin/python3",
             args = {
@@ -28,8 +27,7 @@ return {
           }
         end,
         codelldb = function()
-          local dap = require("dap")
-          dap.adapters.codelldb = {
+          require("dap").adapters.codelldb = {
             type = "server",
             port = "${port}",
             executable = {
@@ -39,8 +37,7 @@ return {
           }
         end,
         coreclr = function()
-          local dap = require("dap")
-          dap.adapters.coreclr = {
+          require("dap").adapters.coreclr = {
             type = "executable",
             command = "netcoredbg",
             args = { "--interpreter=vscode" },
