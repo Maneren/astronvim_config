@@ -1,7 +1,7 @@
 --- Rust crates manager
 --- https://github.com/Saecki/crates.nvim
 
-local prefix = "<Leader>R"
+local prefix = "<LocalLeader>R"
 ---@type LazySpec
 return {
   {
