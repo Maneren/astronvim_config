@@ -56,7 +56,7 @@ return {
       default = function(_)
         local success, node = pcall(vim.treesitter.get_node)
         if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
-          return { "buffer" }
+          return { "path", "buffer", "latex", "git", "ripgrep" }
         end
 
         local base = {
@@ -77,9 +77,7 @@ return {
         local ft = vim.bo.filetype
 
         if additional[ft] then
-          for _, provider in ipairs(additional[ft]) do
-            table.insert(base, provider)
-          end
+          vim.list_extend(base, additional[ft])
         end
 
         return base
