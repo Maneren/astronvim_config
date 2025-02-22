@@ -22,5 +22,9 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+if vim.g.neovide then
+  vim.env.TERM = "xterm-256color"
+end
+
 require("lazy_setup")
 require("polish")
