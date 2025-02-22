@@ -19,6 +19,11 @@ return {
       "kristijanhusak/vim-dadbod-completion",
       ft = { "sql", "mysql", "plsql" },
     },
+    {
+      "Kaiser-Yang/blink-cmp-git",
+      dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    "mikavilpas/blink-ripgrep.nvim",
   },
   ---@type blink.cmp.Config
   opts = {
@@ -36,6 +41,9 @@ return {
             robot = { "   " },
           },
         },
+      },
+      keyword = {
+        range = "full",
       },
     },
     sources = {
@@ -57,6 +65,8 @@ return {
           "snippets",
           "buffer",
           "latex",
+          "git",
+          "ripgrep",
         }
 
         local additional = {
@@ -95,6 +105,15 @@ return {
           opts = { ignore = { "beta", "rc" }, only_latest_version = true },
         },
         dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+        git = {
+          module = "blink-cmp-git",
+          name = "Git",
+        },
+        ripgrep = {
+          module = "blink-ripgrep",
+          name = "Ripgrep",
+          score_offset = -20,
+        },
       },
     },
   },
@@ -103,6 +122,5 @@ return {
     -- disable built in completion plugins
     { "hrsh7th/nvim-cmp", enabled = false },
     { "rcarriga/cmp-dap", enabled = false },
-    { "petertriho/cmp-git", enabled = false },
   },
 }
