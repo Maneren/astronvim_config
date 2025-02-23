@@ -115,6 +115,7 @@ return {
           WARN = get_icon("DiagnosticWarn"),
         },
       },
+      quickfile = {},
       scope = {
         filter = function(bufnr) return buf_utils.is_valid(bufnr) and not buf_utils.is_large(bufnr) end,
       },
