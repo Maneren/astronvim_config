@@ -59,24 +59,6 @@ return {
     },
   },
   {
-    "onsails/lspkind.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.preset = "codicons"
-      opts.symbol_map = {
-        Array = "",
-        Boolean = "",
-        Key = "",
-        Namespace = "",
-        Null = "",
-        Number = "",
-        Object = "",
-        Package = "",
-        String = "",
-      }
-    end,
-  },
-  {
     "echasnovski/mini.icons",
     optional = true,
     opts = {

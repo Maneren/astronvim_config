@@ -38,7 +38,7 @@ return {
       preview = {
         ignore_buftypes = { "nofile" },
         debounce = 50,
-        icon_provider = "devicons",
+        icon_provider = "mini",
       },
       markdown = {
         headings = presets.headings.glow,

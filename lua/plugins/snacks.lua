@@ -18,7 +18,6 @@ return {
       "RainbowDelimiterViolet",
       "RainbowDelimiterCyan",
     }
-    local buf_utils = require("astrocore.buffer")
     return require("astrocore").extend_tbl(opts, {
       dashboard = {
         preset = {
@@ -31,30 +30,14 @@ return {
             { key = "s", action = "<Leader>SF", icon = get_icon("Refresh", 0, true), desc = "Sessions  " },
             { key = "q", action = "<Leader>Q", icon = get_icon("Exit", 0, true), desc = "Quit  " },
           },
-          header = [[
- █████  ███████ ████████ ██████   ██████
- ██   ██ ██         ██    ██   ██ ██    ██
- ███████ ███████    ██    ██████  ██    ██
- ██   ██      ██    ██    ██   ██ ██    ██
-██   ██ ███████    ██    ██   ██  ██████
- 
-    ███    ██ ██    ██ ██ ███    ███
-    ████   ██ ██    ██ ██ ████  ████
-    ██ ██  ██ ██    ██ ██ ██ ████ ██
-    ██  ██ ██  ██  ██  ██ ██  ██  ██
-    ██   ████   ████   ██ ██      ██]],
-        },
-        sections = {
-          { section = "header", padding = 5 },
-          { section = "keys", gap = 1, padding = 3 },
-          { section = "startup" },
         },
       },
       indent = {
         indent = {
-          char = "▎",
+          char = "▏",
         },
         animate = {
+          enabled = true,
           style = "out",
           easing = "inOutQuad",
           duration = {
@@ -63,17 +46,10 @@ return {
           },
         },
         scope = {
-          enabled = true,
-          char = "▎",
+          char = "▏",
           underline = true,
           hl = rainbow_highlights,
         },
-        filter = function(bufnr)
-          return buf_utils.is_valid(bufnr)
-            and not buf_utils.is_large(bufnr)
-            and vim.g.snacks_indent ~= false
-            and vim.b[bufnr].snacks_indent ~= false
-        end,
       },
       input = {},
       picker = {
@@ -103,38 +79,22 @@ return {
             }
           end,
         },
-        ui_select = true,
       },
       notifier = {
         timeout = 3000,
-        icons = {
-          DEBUG = get_icon("Debugger"),
-          ERROR = get_icon("DiagnosticError"),
-          INFO = get_icon("DiagnosticInfo"),
-          TRACE = get_icon("DiagnosticHint"),
-          WARN = get_icon("DiagnosticWarn"),
-        },
       },
       quickfile = {},
-      scope = {
-        filter = function(bufnr) return buf_utils.is_valid(bufnr) and not buf_utils.is_large(bufnr) end,
-      },
       styles = {
         notification = {
           wo = { wrap = true },
         },
       },
       words = { enabled = true },
-      zen = {},
     })
   end,
   specs = {
     { "catppuccin", opts = { integrations = { snacks = true } } },
-    { "rcarriga/nvim-notify", enabled = false },
     { "RRethy/vim-illuminate", enabled = false },
-    { "lukas-reineke/indent-blankline.nvim", enabled = false },
-    { "stevearc/dressing.nvim", enabled = false },
-    { "goolord/alpha-nvim", enabled = false },
     {
       "astrocore",
       ---@param _ LazyPlugin
@@ -142,25 +102,6 @@ return {
       opts = function(_, opts)
         local maps = opts.mappings or {}
         maps.n = maps.n or {}
-
-        maps.n["<Leader>h"] = {
-          function()
-            if vim.bo.filetype == "snacks_dashboard" then
-              require("astrocore.buffer").close()
-            else
-              require("snacks").dashboard()
-            end
-          end,
-          desc = "Home Screen",
-        }
-
-        maps.n["<Leader>u|"] = {
-          function()
-            vim.g.snacks_indent = vim.g.snacks_indent == false
-            vim.cmd([[redraw!]])
-          end,
-          desc = "Toggle indent guides",
-        }
 
         maps.n["<Leader><Leader>"] = { function() require("snacks").picker.smart() end, desc = "Smart Open" }
 
@@ -183,11 +124,6 @@ return {
           function() require("snacks").picker.lsp_workspace_symbols() end,
           nowait = true,
           desc = "Search workspace symbols",
-        }
-
-        maps.n["<Leader>uD"] = {
-          function() require("snacks.notifier").hide() end,
-          desc = "Dismiss notifications",
         }
 
         maps.n["]r"] = { function() require("snacks").words.jump(vim.v.count1) end, desc = "Next Reference" }

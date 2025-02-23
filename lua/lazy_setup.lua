@@ -2,7 +2,7 @@
 local spec = {
   {
     "AstroNvim/AstroNvim",
-    version = "^4",
+    branch = "v5",
     import = "astronvim.plugins",
     opts = {
       mapleader = " ",

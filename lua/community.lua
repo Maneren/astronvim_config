@@ -14,7 +14,6 @@ return {
   { import = "astrocommunity.editing-support.nvim-context-vt" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
-  { import = "astrocommunity.fuzzy-finder.snacks-picker" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.git.octo-nvim" },
   { import = "astrocommunity.keybinding.hydra-nvim" },
