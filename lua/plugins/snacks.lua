@@ -20,6 +20,36 @@ return {
     }
     local buf_utils = require("astrocore.buffer")
     return require("astrocore").extend_tbl(opts, {
+      dashboard = {
+        preset = {
+          keys = {
+            { key = "n", action = "<Leader>n", icon = get_icon("FileNew", 0, true), desc = "New File  " },
+            { key = "f", action = "<Leader>ff", icon = get_icon("Search", 0, true), desc = "Find File  " },
+            { key = "o", action = "<Leader>fo", icon = get_icon("DefaultFile", 0, true), desc = "Recents  " },
+            { key = "w", action = "<Leader>fw", icon = get_icon("WordFile", 0, true), desc = "Find Word  " },
+            { key = "'", action = "<Leader>f'", icon = get_icon("Bookmarks", 0, true), desc = "Bookmarks  " },
+            { key = "s", action = "<Leader>SF", icon = get_icon("Refresh", 0, true), desc = "Sessions  " },
+            { key = "q", action = "<Leader>Q", icon = get_icon("Exit", 0, true), desc = "Quit  " },
+          },
+          header = [[
+ █████  ███████ ████████ ██████   ██████
+ ██   ██ ██         ██    ██   ██ ██    ██
+ ███████ ███████    ██    ██████  ██    ██
+ ██   ██      ██    ██    ██   ██ ██    ██
+██   ██ ███████    ██    ██   ██  ██████
+ 
+    ███    ██ ██    ██ ██ ███    ███
+    ████   ██ ██    ██ ██ ████  ████
+    ██ ██  ██ ██    ██ ██ ██ ████ ██
+    ██  ██ ██  ██  ██  ██ ██  ██  ██
+    ██   ████   ████   ██ ██      ██]],
+        },
+        sections = {
+          { section = "header", padding = 5 },
+          { section = "keys", gap = 1, padding = 3 },
+          { section = "startup" },
+        },
+      },
       indent = {
         indent = {
           char = "▎",
@@ -97,6 +127,7 @@ return {
     { "rcarriga/nvim-notify", enabled = false },
     { "RRethy/vim-illuminate", enabled = false },
     { "lukas-reineke/indent-blankline.nvim", enabled = false },
+    { "goolord/alpha-nvim", enabled = false },
     {
       "astrocore",
       ---@param _ LazyPlugin
@@ -104,6 +135,17 @@ return {
       opts = function(_, opts)
         local maps = opts.mappings or {}
         maps.n = maps.n or {}
+
+        maps.n["<Leader>h"] = {
+          function()
+            if vim.bo.filetype == "snacks_dashboard" then
+              require("astrocore.buffer").close()
+            else
+              require("snacks").dashboard()
+            end
+          end,
+          desc = "Home Screen",
+        }
 
         maps.n["<Leader>u|"] = {
           function()
@@ -146,6 +188,14 @@ return {
 
         opts.mappings = maps
       end,
+    },
+    {
+      "astroui",
+      opts = {
+        icons = {
+          Exit = "󰈆",
+        },
+      },
     },
   },
 }
