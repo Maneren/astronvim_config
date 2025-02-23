@@ -115,6 +115,9 @@ return {
           WARN = get_icon("DiagnosticWarn"),
         },
       },
+      scope = {
+        filter = function(bufnr) return buf_utils.is_valid(bufnr) and not buf_utils.is_large(bufnr) end,
+      },
       styles = {
         notification = {
           wo = { wrap = true },
