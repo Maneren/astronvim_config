@@ -75,6 +75,7 @@ return {
             and vim.b[bufnr].snacks_indent ~= false
         end,
       },
+      input = {},
       picker = {
         win = {
           input = {
@@ -102,6 +103,7 @@ return {
             }
           end,
         },
+        ui_select = true,
       },
       notifier = {
         timeout = 3000,
@@ -127,6 +129,7 @@ return {
     { "rcarriga/nvim-notify", enabled = false },
     { "RRethy/vim-illuminate", enabled = false },
     { "lukas-reineke/indent-blankline.nvim", enabled = false },
+    { "stevearc/dressing.nvim", enabled = false },
     { "goolord/alpha-nvim", enabled = false },
     {
       "astrocore",
