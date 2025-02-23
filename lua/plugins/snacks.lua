@@ -6,9 +6,45 @@
 return {
   "folke/snacks.nvim",
   priority = 1000,
+  dependencies = { "HiPhish/rainbow-delimiters.nvim" },
   opts = function(_, opts)
     local get_icon = require("astroui").get_icon
+    local rainbow_highlights = {
+      "RainbowDelimiterRed",
+      "RainbowDelimiterYellow",
+      "RainbowDelimiterBlue",
+      "RainbowDelimiterOrange",
+      "RainbowDelimiterGreen",
+      "RainbowDelimiterViolet",
+      "RainbowDelimiterCyan",
+    }
+    local buf_utils = require("astrocore.buffer")
     return require("astrocore").extend_tbl(opts, {
+      indent = {
+        indent = {
+          char = "▎",
+        },
+        animate = {
+          style = "out",
+          easing = "inOutQuad",
+          duration = {
+            step = 10,
+            total = 100,
+          },
+        },
+        scope = {
+          enabled = true,
+          char = "▎",
+          underline = true,
+          hl = rainbow_highlights,
+        },
+        filter = function(bufnr)
+          return buf_utils.is_valid(bufnr)
+            and not buf_utils.is_large(bufnr)
+            and vim.g.snacks_indent ~= false
+            and vim.b[bufnr].snacks_indent ~= false
+        end,
+      },
       picker = {
         win = {
           input = {
@@ -60,6 +96,7 @@ return {
     { "catppuccin", opts = { integrations = { snacks = true } } },
     { "rcarriga/nvim-notify", enabled = false },
     { "RRethy/vim-illuminate", enabled = false },
+    { "lukas-reineke/indent-blankline.nvim", enabled = false },
     {
       "astrocore",
       ---@param _ LazyPlugin
@@ -67,6 +104,14 @@ return {
       opts = function(_, opts)
         local maps = opts.mappings or {}
         maps.n = maps.n or {}
+
+        maps.n["<Leader>u|"] = {
+          function()
+            vim.g.snacks_indent = vim.g.snacks_indent == false
+            vim.cmd([[redraw!]])
+          end,
+          desc = "Toggle indent guides",
+        }
 
         maps.n["<Leader><Leader>"] = { function() require("snacks").picker.smart() end, desc = "Smart Open" }
 
