@@ -31,6 +31,7 @@ return {
         neovide_far_scroll_lines = 200,
         neovide_floating_shadow = true,
         neovide_floating_z_height = 10,
+        neovide_floating_corner_radius = 0.6,
         neovide_light_angle_degrees = 45,
         neovide_light_radius = 5,
         neovide_padding_top = 4,
