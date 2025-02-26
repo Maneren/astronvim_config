@@ -9,15 +9,6 @@ return {
   dependencies = { "HiPhish/rainbow-delimiters.nvim" },
   opts = function(_, opts)
     local get_icon = require("astroui").get_icon
-    local rainbow_highlights = {
-      "RainbowDelimiterRed",
-      "RainbowDelimiterYellow",
-      "RainbowDelimiterBlue",
-      "RainbowDelimiterOrange",
-      "RainbowDelimiterGreen",
-      "RainbowDelimiterViolet",
-      "RainbowDelimiterCyan",
-    }
     return require("astrocore").extend_tbl(opts, {
       dashboard = {
         preset = {
@@ -48,7 +39,15 @@ return {
         scope = {
           char = "▏",
           underline = true,
-          hl = rainbow_highlights,
+          hl = vim.tbl_get(vim.g, "rainbow_delimiters", "highlight") or {
+            "RainbowDelimiterRed",
+            "RainbowDelimiterYellow",
+            "RainbowDelimiterBlue",
+            "RainbowDelimiterOrange",
+            "RainbowDelimiterGreen",
+            "RainbowDelimiterViolet",
+            "RainbowDelimiterCyan",
+          },
         },
       },
       input = {},
