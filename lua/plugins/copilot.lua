@@ -34,13 +34,13 @@ return {
     local prompts = vim.tbl_deep_extend("force", require("CopilotChat.config").prompts, {
       -- Code related prompts
       Review = {
-        prompt = "/COPILOT_REVIEW\n\nPlease review the following code and provide suggestions for improvement. Explain your changes first, then provide the fixed code.",
+        prompt = "/COPILOT_REVIEW\n\nPlease review the following code and provide suggestions for improvement. Explain the changes first, then provide the fixed code.",
       },
       Tests = {
         prompt = "/COPILOT_GENERATE\n\nPlease explain how the selected code works, then generate unit tests for it.",
       },
       FixError = {
-        prompt = "/COPILOT_EXPLAIN\n\nPlease find and explain the error in the following code and provide a fixed solution.",
+        prompt = "/COPILOT_EXPLAIN\n\nPlease find and explain the error in the following code and provide an explanation and a fixed solution.",
       },
       Docs = {
         prompt = "/COPILOT_GENERATE\n\nPlease write a documentation for the following code in a format fitting for the language. It should contain a concise one line summary, detailed description, arguments, return values and possible error conditions.",
@@ -49,10 +49,14 @@ return {
       -- Text related prompts
       Summarize = { prompt = "/COPILOT_GENERATE\n\nPlease summarize the following text." },
       Spelling = {
-        prompt = "/COPILOT_REVIEW\n\nPlease correct any grammar and spelling errors in the following text.",
+        prompt = "/COPILOT_REVIEW\n\nPlease correct any grammar and spelling errors in the following text while preserving the formatting.",
       },
-      Wording = { prompt = "/COPILOT_GENERATE\n\nPlease improve the grammar and wording of the following text." },
-      Concise = { prompt = "/COPILOT_GENERATE\n\nPlease rewrite the following text to make it more concise." },
+      Wording = {
+        prompt = "/COPILOT_GENERATE\n\nPlease improve the grammar and wording of the following text while preserving the formatting.",
+      },
+      Concise = {
+        prompt = "/COPILOT_GENERATE\n\nPlease rewrite the following text to make it more concise while preserving the overall formatting.",
+      },
     })
 
     ---@type CopilotChat.config
