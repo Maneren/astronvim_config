@@ -37,6 +37,8 @@ return {
         neovide_padding_top = 4,
         neovide_padding_right = 4,
         neovide_padding_left = 6,
+        neovide_opacity = 0.95,
+        neovide_normal_opacity = 0.95,
 
         vimtex_compiler_method = "tectonic",
       },
