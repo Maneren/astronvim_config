@@ -12,9 +12,6 @@ return {
   },
   cmd = "Neotree",
   opts = function(_, opts)
-    local function on_move(data) require("snacks").rename.on_rename_file(data.source, data.destination) end
-    local events = require("neo-tree.events")
-
     return vim.tbl_deep_extend("force", opts, {
       filesystem = {
         async_directory_scan = "auto",
@@ -38,10 +35,6 @@ return {
       },
       window = {
         width = 40,
-      },
-      event_handlers = {
-        { event = events.FILE_MOVED, handler = on_move },
-        { event = events.FILE_RENAMED, handler = on_move },
       },
     })
   end,
