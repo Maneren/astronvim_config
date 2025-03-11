@@ -1,12 +1,6 @@
 ---@type LazySpec
 return {
   {
-    "julianolf/nvim-dap-lldb",
-    event = "VeryLazy",
-    dependencies = { "mfussenegger/nvim-dap" },
-    opts = { codelldb_path = "codelldb" },
-  },
-  {
     "mxsdev/nvim-dap-vscode-js",
     event = "VeryLazy",
     dependencies = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
