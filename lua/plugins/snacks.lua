@@ -6,7 +6,6 @@
 return {
   "folke/snacks.nvim",
   priority = 1000,
-  dependencies = { "HiPhish/rainbow-delimiters.nvim" },
   opts = function(_, opts)
     local get_icon = require("astroui").get_icon
     return require("astrocore").extend_tbl(opts, {

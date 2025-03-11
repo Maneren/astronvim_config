@@ -1,7 +1,6 @@
 ---@type LazySpec
 return {
   "niuiic/dap-utils.nvim",
-  event = "VeryLazy",
   dependencies = {
     "mfussenegger/nvim-dap",
     "niuiic/core.nvim",

@@ -6,7 +6,7 @@
 ---@type LazySpec
 return {
   "gbprod/yanky.nvim",
-  event = "BufEnter",
+  event = "User AstroFile",
   dependencies = {
     { "kkharji/sqlite.lua" },
   },

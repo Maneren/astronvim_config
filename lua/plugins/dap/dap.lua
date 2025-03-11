@@ -1,12 +1,6 @@
 ---@type LazySpec
 return {
   {
-    "mxsdev/nvim-dap-vscode-js",
-    event = "VeryLazy",
-    dependencies = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
-    opts = { adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" } },
-  },
-  {
     "jay-babu/mason-nvim-dap.nvim",
     opts = {
       handlers = {
@@ -37,6 +31,16 @@ return {
             args = { "--interpreter=vscode" },
           }
         end,
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      {
+        "mxsdev/nvim-dap-vscode-js",
+        dependencies = { "microsoft/vscode-js-debug" },
+        opts = { adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" } },
       },
     },
   },
