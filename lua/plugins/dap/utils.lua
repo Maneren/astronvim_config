@@ -1,3 +1,38 @@
+local function parse_args()
+  local input = vim.fn.input("Arguments: ")
+
+  -- Credit: https://github.com/mfussenegger/nvim-dap/discussions/1160
+
+  local tokens = {}
+  local current = ""
+  local in_str = false
+  local str_seek
+  for c in string.gmatch(input, ".") do -- iterate through all chars
+    if c == " " and not in_str then
+      if string.len(current) > 0 then
+        table.insert(tokens, current)
+        current = ""
+      end
+    elseif c == '"' and not in_str then
+      in_str = true
+      str_seek = '"'
+    elseif c == "'" and not in_str then
+      in_str = true
+      str_seek = "'"
+    elseif c == str_seek and in_str then
+      in_str = false
+      table.insert(tokens, current)
+      current = ""
+    else
+      current = current .. c
+    end
+  end
+  if string.len(current) > 0 then
+    table.insert(tokens, current)
+  end
+  return tokens
+end
+
 ---@type LazySpec
 return {
   "niuiic/dap-utils.nvim",
@@ -21,36 +56,69 @@ return {
   },
   opts = {
     rust = function(run)
-      local config = {
-        name = "Launch",
-        type = "codelldb",
-        request = "launch",
-        program = nil,
-        cwd = "${workspaceFolder}",
-        stopOnEntry = false,
-        args = {},
-        initCommands = function()
-          local rustc_sysroot = vim.fn.trim(vim.fn.system("rustc --print sysroot"))
+      local init = function()
+        local rustc_sysroot = vim.fn.trim(vim.fn.system("rustc --print sysroot"))
 
-          local script_import = 'command script import "' .. rustc_sysroot .. '/lib/rustlib/etc/lldb_lookup.py"'
-          local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
+        local script_import = 'command script import "' .. rustc_sysroot .. '/lib/rustlib/etc/lldb_lookup.py"'
+        local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
 
-          local commands = {}
-          local file = io.open(commands_file, "r")
-          if file then
-            for line in file:lines() do
-              table.insert(commands, line)
-            end
-            file:close()
+        local commands = {}
+        local file = io.open(commands_file, "r")
+        if file then
+          for line in file:lines() do
+            table.insert(commands, line)
           end
-          table.insert(commands, 1, script_import)
+          file:close()
+        end
+        table.insert(commands, 1, script_import)
 
-          return commands
-        end,
+        return commands
+      end
+
+      local configs = {
+        {
+          name = "Launch",
+          type = "codelldb",
+          request = "launch",
+          program = nil,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+          initCommands = init(),
+        },
+        {
+          name = "Launch with args",
+          type = "codelldb",
+          request = "launch",
+          program = nil,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+          args = parse_args,
+          initCommands = init(),
+        },
       }
+
+      local cmd = { "cargo", "build", "--bins", "--quiet", "--message-format", "json" }
+      local out = vim.fn.systemlist(cmd)
+
+      if vim.v.shell_error ~= 0 then
+        local errors = vim.tbl_map(function(input)
+          local _, json = pcall(vim.fn.json_decode, input)
+
+          if type(json) == "table" and json.reason == "compiler-message" then
+            return json.message.rendered
+          end
+
+          return nil
+        end, out)
+        vim.notify(table.concat(errors, "\n"), vim.log.levels.ERROR)
+        return nil
+      end
+
+      local function set_program_path(path)
+        vim.tbl_map(function(config) config.program = path end, configs)
+      end
+
       local core = require("core")
-      vim.cmd("!cargo build")
-      local root_path = core.file.root_path()
       local target_dir = os.getenv("CARGO_TARGET_DIR") .. "/debug/"
       if core.file.file_or_dir_exists(target_dir) then
         local executable = {}
@@ -63,24 +131,25 @@ return {
           end
         end
         if #executable == 1 then
-          config.program = target_dir .. executable[1]
-          run(config)
+          set_program_path(target_dir .. executable[1])
+          run(configs)
         else
           vim.ui.select(executable, { prompt = "Select executable" }, function(choice)
             if not choice then
               return
             end
-            config.program = target_dir .. choice
-            run(config)
+
+            set_program_path(target_dir .. choice)
+            run(configs)
           end)
         end
       else
         vim.ui.input({
           prompt = "Path to executable: ",
-          default = root_path .. "/target/debug/",
+          default = core.file.root_path() .. "/target/debug/",
         }, function(input)
-          config.program = input
-          run(config)
+          set_program_path(input)
+          run(configs)
         end)
       end
     end,
@@ -151,7 +220,7 @@ return {
           type = "codelldb",
           request = "launch",
           program = require("dap.utils").pick_file,
-          args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
+          args = parse_args,
           cwd = "${workspaceFolder}",
         },
       }
@@ -171,7 +240,7 @@ return {
           type = "lldb",
           request = "launch",
           program = require("dap.utils").pick_file,
-          args = function() return vim.fn.split(vim.fn.input("Arguments: "), " ") end,
+          args = parse_args,
           cwd = "${workspaceFolder}",
         },
       }
@@ -195,5 +264,4 @@ return {
       }
     end,
   },
-
 }
