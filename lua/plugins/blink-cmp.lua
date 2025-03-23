@@ -46,6 +46,14 @@ return {
         range = "full",
       },
     },
+    fuzzy = {
+      sorts = {
+        -- always place exact matches first
+        "exact",
+        "score",
+        "sort_text",
+      },
+    },
     sources = {
       min_keyword_length = function(ctx)
         if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
@@ -106,6 +114,7 @@ return {
         git = {
           module = "blink-cmp-git",
           name = "Git",
+          score_offset = -50,
         },
         ripgrep = {
           module = "blink-ripgrep",
