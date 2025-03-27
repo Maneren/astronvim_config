@@ -7,7 +7,12 @@ local function inside_comment_block()
   if vim.api.nvim_get_mode().mode ~= "i" then
     return false
   end
-  local node_under_cursor = vim.treesitter.get_node()
+  local ok, node_under_cursor = pcall(vim.treesitter.get_node)
+
+  if not ok then
+    return false
+  end
+
   local parser = vim.treesitter.get_parser(nil, nil, { error = false })
   local query = vim.treesitter.query.get(vim.bo.filetype, "highlights")
   if not parser or not node_under_cursor or not query then
@@ -115,7 +120,7 @@ return {
 
         local ft = vim.bo.filetype
 
-        if additional[ft] then
+        if ft and additional[ft] then
           vim.list_extend(base, additional[ft])
         end
 
