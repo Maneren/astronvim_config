@@ -65,11 +65,6 @@ return {
   },
   ---@type blink.cmp.Config
   opts = {
-    enabled = function()
-      return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
-        and vim.bo.buftype ~= "prompt"
-        and vim.b.completion ~= false
-    end,
     completion = {
       menu = { auto_show = true },
       list = { selection = { preselect = false, auto_insert = true } },
