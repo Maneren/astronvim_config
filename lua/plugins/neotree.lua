@@ -8,7 +8,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
-    "mrbjarksen/neo-tree-diagnostics.nvim",
   },
   cmd = "Neotree",
   opts = function(_, opts)
@@ -30,8 +29,6 @@ return {
       sources = {
         "filesystem",
         "git_status",
-        "document_symbols",
-        "diagnostics",
       },
       window = {
         width = 40,
