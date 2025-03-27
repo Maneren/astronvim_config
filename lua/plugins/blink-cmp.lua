@@ -43,7 +43,6 @@ end
 ---@type LazySpec
 return {
   "Saghen/blink.cmp",
-  version = "0.*",
   dependencies = {
     "rafamadriz/friendly-snippets",
     {
