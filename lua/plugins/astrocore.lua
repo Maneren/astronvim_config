@@ -43,6 +43,22 @@ return {
         vimtex_compiler_method = "tectonic",
       },
     },
+    commands = {
+      Messages = {
+        function()
+          local scratch_buffer = vim.api.nvim_create_buf(false, true)
+          vim.bo[scratch_buffer].filetype = "vim"
+          local messages = vim.split(vim.fn.execute("messages", "silent"), "\n")
+          vim.api.nvim_buf_set_text(scratch_buffer, 0, 0, 0, 0, messages)
+          vim.cmd("vertical sbuffer " .. scratch_buffer)
+          vim.opt_local.wrap = true
+          vim.bo.buflisted = false
+          vim.bo.bufhidden = "wipe"
+          vim.keymap.set("n", "q", "<Cmd>close<CR>", { buffer = scratch_buffer })
+        end,
+        desc = "Show messages in a buffer",
+      },
+    },
     mappings = {
       t = {
         -- escape in terminal mode
