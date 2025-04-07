@@ -7,17 +7,25 @@ local function inside_comment_block()
   if vim.api.nvim_get_mode().mode ~= "i" then
     return false
   end
+
   local ok, node_under_cursor = pcall(vim.treesitter.get_node)
 
-  if not ok then
+  if not ok or not node_under_cursor then
     return false
   end
 
   local parser = vim.treesitter.get_parser(nil, nil, { error = false })
-  local query = vim.treesitter.query.get(vim.bo.filetype, "highlights")
-  if not parser or not node_under_cursor or not query then
+
+  if not parser then
     return false
   end
+
+  local query = vim.treesitter.query.get(parser:lang(), "highlights")
+
+  if not query then
+    return false
+  end
+
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   row = row - 1
   for id, node, _ in query:iter_captures(node_under_cursor, 0, row, row + 1) do
