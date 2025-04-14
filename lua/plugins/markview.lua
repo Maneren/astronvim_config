@@ -6,9 +6,7 @@
 return {
   "OXY2DEV/markview.nvim",
   lazy = false,
-  -- FIXME: latest version doesn't support dynamic sources in blink.cmp
-  -- version = "*",
-  commit = "351366e",
+  version = "*",
   opts = function()
     local symbols = require("markview.symbols")
     symbols.entries = vim.tbl_extend("force", symbols.entries, {
