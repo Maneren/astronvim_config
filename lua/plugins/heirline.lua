@@ -112,6 +112,7 @@ return {
                   [3] = "󱙺 ", -- Disabled for Buffer filetype
                   [4] = "󱙺 ", -- Disabled for Buffer with enabled function
                   [5] = "󱚠 ", -- Disabled for Buffer encoding
+                  [6] = "󱙺 ", -- Disabled for Buffer type
                 },
                 server_status = {
                   [0] = "󰣺 ", -- Connected
