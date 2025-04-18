@@ -124,6 +124,7 @@ return {
         local additional = {
           lua = { "lazydev" },
           sql = { "dadbod" },
+          markdown = { "markview" },
         }
 
         local ft = vim.bo.filetype
