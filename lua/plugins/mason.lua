@@ -26,6 +26,7 @@ return {
         "cpptools",
         "csharpier",
         "fixjson",
+        "harper-ls",
         "jsonlint",
         "ltex-ls",
         "markdown-oxide",

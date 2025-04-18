@@ -136,6 +136,19 @@ return {
           },
         },
       },
+      harper_ls = {
+        settings = {
+          ["harper-ls"] = {
+            linters = {
+              SentenceCapitalization = false,
+              SpellCheck = false,
+              BoringWords = true,
+              UseGenitive = true,
+              LinkingVerbs = true,
+            },
+          },
+        },
+      },
     },
     autocmds = {
       lsp_document_highlight = {
