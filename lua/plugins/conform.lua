@@ -32,6 +32,7 @@ return {
       go = { "gofmt" },
       just = { "just" },
       lua = { "stylua" },
+      python = { "ruff" },
       rust = { "rustfmt" },
       sh = { "beautysh" },
       sql = { "sqlfmt" },
