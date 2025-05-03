@@ -20,6 +20,11 @@ return {
           always_show = {
             ".gitignored",
           },
+          never_show = {
+            ".DS_Store",
+            "thumbs.db",
+            "__pycache__",
+          },
         },
         follow_current_file = {
           enabled = true,
