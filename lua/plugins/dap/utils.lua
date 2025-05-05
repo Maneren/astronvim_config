@@ -223,6 +223,13 @@ return {
           args = parse_args,
           cwd = "${workspaceFolder}",
         },
+        {
+          name = "Attach",
+          type = "codelldb",
+          request = "attach",
+          pid = require("dap.utils").pick_process,
+          cwd = "${workspaceFolder}",
+        },
       }
     end,
 
