@@ -4,9 +4,7 @@
 ---@type LazySpec
 return {
   {
-    "williamboman/mason.nvim",
-    -- TODO: switch back once https://github.com/williamboman/mason.nvim/pull/1640 is merged
-    url = "https://github.com/KingMichaelPark/mason.nvim",
+    "mason-org/mason.nvim",
     opts = { pip = { use_uv = true } },
   },
   {
