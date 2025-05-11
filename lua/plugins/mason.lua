@@ -41,6 +41,7 @@ return {
         "sqlfmt",
         "stylelint-lsp",
         "tectonic",
+        "tex-fmt",
         "texlab",
         "twiggy-language-server",
         "yamlfmt",
