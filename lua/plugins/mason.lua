@@ -16,8 +16,6 @@ return {
         "asmfmt",
         "asm-lsp",
         "beautysh",
-        "black",
-        "blackd-client",
         "cbfmt",
         "codelldb",
         "cpplint",
