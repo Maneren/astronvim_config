@@ -60,13 +60,13 @@ return {
       },
       {
         "nvim-neotest/neotest",
-        ---@type NeotestConfig
-        opts = function()
-          return {
+        ---@param opts NeotestConfig
+        opts = function(_, opts)
+          return vim.tbl_deep_extend("force", opts, {
             consumers = {
               overseer = require("neotest.consumers.overseer"),
             },
-          }
+          })
         end,
       },
       {
