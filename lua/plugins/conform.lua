@@ -33,6 +33,7 @@ return {
       go = { "gofmt" },
       just = { "just" },
       lua = { "stylua" },
+      markdown = { "cbfmt", "prettierd" },
       python = { "ruff" },
       rust = { "rustfmt" },
       sh = { "beautysh" },
@@ -45,7 +46,7 @@ return {
     }
 
     -- prettier filetypes
-    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettierd", "prettier", stop_after_first = true } end, {
+    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettierd" } end, {
       "javascript",
       "javascriptreact",
       "typescript",
@@ -58,8 +59,6 @@ return {
       "yaml",
       "yaml.ansible",
       "yaml.cfn",
-      "markdown",
-      "markdown.mdx",
       "graphql",
       "handlebars",
       "php",
