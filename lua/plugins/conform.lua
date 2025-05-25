@@ -29,6 +29,7 @@ return {
 
     opts.formatters_by_ft = {
       ["*"] = function(bufnr) return is_file_buffer(bufnr) and { "injected" } or {} end,
+      fish = { "fish_indent" },
       go = { "gofmt" },
       just = { "just" },
       lua = { "stylua" },
