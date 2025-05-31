@@ -123,13 +123,5 @@ return {
         ensure_installed = { "html", "markdown", "markdown_inline", "latex" },
       },
     },
-    {
-      "catppuccin",
-      opts = {
-        integrations = {
-          markview = true,
-        },
-      },
-    },
   },
 }
