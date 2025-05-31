@@ -12,6 +12,7 @@ return {
   { import = "astrocommunity.editing-support.neogen" },
   { import = "astrocommunity.editing-support.nvim-context-vt" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  { import = "astrocommunity.editing-support.suda-vim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.git.octo-nvim" },
