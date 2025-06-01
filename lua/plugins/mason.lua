@@ -32,7 +32,6 @@ return {
         "robotframework-lsp",
         "shellcheck",
         "shellharden",
-        "sonarlint-language-server",
         "sourcery",
         "sqlfmt",
         "stylelint-lsp",

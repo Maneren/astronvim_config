@@ -19,6 +19,7 @@ return {
   { import = "astrocommunity.keybinding.hydra-nvim" },
   { import = "astrocommunity.lsp.actions-preview-nvim" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
+  { import = "astrocommunity.lsp.sonarlint-nvim" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
   { import = "astrocommunity.media.vim-wakatime" },
