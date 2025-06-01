@@ -37,7 +37,7 @@ return {
       python = { "ruff" },
       rust = { "rustfmt" },
       sh = { "beautysh" },
-      sql = { "sqlfmt" },
+      sql = { "sqlfluff" },
       tex = { "tex-fmt" },
       toml = { "taplo" },
       ["_"] = function(bufnr)
