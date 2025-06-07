@@ -23,17 +23,29 @@ return {
       opts = {
         mappings = {
           i = {
-            ["<S-Enter>"] = {
+            ["<A-f>"] = {
               function() require("neocodeium").accept() end,
               desc = "Codeium accept",
             },
-            ["<M-S-Enter>"] = {
+            ["<A-w>"] = {
               function() require("neocodeium").accept_word() end,
               desc = "Codeium accept word",
             },
-            ["<C-S-Enter>"] = {
+            ["<A-a>"] = {
               function() require("neocodeium").accept_line() end,
               desc = "Codeium accept line",
+            },
+            ["<A-e>"] = {
+              function() require("neocodeium").cycle_or_complete(1) end,
+              desc = "Codeium next",
+            },
+            ["<A-r>"] = {
+              function() require("neocodeium").cycle_or_complete(-1) end,
+              desc = "Codeium prev",
+            },
+            ["<A-c>"] = {
+              function() require("neocodeium").cancel() end,
+              desc = "Codeium cancel",
             },
           },
         },
