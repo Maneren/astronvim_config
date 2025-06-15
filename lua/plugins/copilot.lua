@@ -65,7 +65,7 @@ return {
         width = 0.4,
       },
 
-      model = "gpt-4o",
+      model = "claude-sonnet-4",
       prompts = prompts,
 
       highlight_headers = false,
