@@ -8,7 +8,8 @@ return {
   priority = 1000,
   opts = function(_, opts)
     local get_icon = require("astroui").get_icon
-    return require("astrocore").extend_tbl(opts, {
+    ---@type snacks.Config
+    local custom_opts = {
       dashboard = {
         preset = {
           keys = {
@@ -77,6 +78,14 @@ return {
             }
           end,
         },
+        sources = {
+          files = {
+            hidden = true,
+            exclude = {
+              "external",
+            },
+          },
+        },
       },
       notifier = {
         timeout = 3000,
@@ -88,7 +97,8 @@ return {
         },
       },
       words = { enabled = true },
-    })
+    }
+    return require("astrocore").extend_tbl(opts, custom_opts)
   end,
   specs = {
     { "catppuccin", opts = { integrations = { snacks = true } } },
