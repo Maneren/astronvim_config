@@ -9,8 +9,5 @@ return {
   ---@type CatppuccinOptions
   opts = {
     term_colors = true,
-    integrations = {
-      dadbod_ui = true,
-    },
   },
 }
