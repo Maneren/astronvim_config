@@ -31,6 +31,7 @@ return {
       ["*"] = function(bufnr) return is_file_buffer(bufnr) and { "injected" } or {} end,
       fish = { "fish_indent" },
       go = { "gofmt" },
+      haskell = { "ormolu" },
       just = { "just" },
       lua = { "stylua" },
       markdown = { "cbfmt", "prettierd" },
