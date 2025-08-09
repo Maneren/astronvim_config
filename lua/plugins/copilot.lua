@@ -5,7 +5,6 @@
 ---@type LazySpec
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
-  version = "^3",
   cmd = {
     "CopilotChat",
     "CopilotChatOpen",
@@ -15,22 +14,20 @@ return {
     "CopilotChatReset",
     "CopilotChatSave",
     "CopilotChatLoad",
-    "CopilotChatDebugInfo",
     "CopilotChatModels",
-    "CopilotChatAgents",
     "CopilotChatExplain",
     "CopilotChatReview",
     "CopilotChatFix",
     "CopilotChatOptimize",
     "CopilotChatDocs",
-    "CopilotChatFixTests",
+    "CopilotChatTests",
     "CopilotChatCommit",
   },
   dependencies = {
     { "zbirenbaum/copilot.lua" },
     { "nvim-lua/plenary.nvim" },
   },
-  config = function()
+  opts = function(_, opts)
     local prompts = vim.tbl_deep_extend("force", require("CopilotChat.config").prompts, {
       -- Code related prompts
       Review = {
@@ -59,8 +56,10 @@ return {
       },
     })
 
+    local select = require("CopilotChat.select")
+
     ---@type CopilotChat.config
-    local opts = {
+    local custom_opts = {
       window = {
         width = 0.4,
       },
@@ -73,7 +72,7 @@ return {
       auto_insert_mode = true,
     }
 
-    require("CopilotChat").setup(opts)
+    return vim.tbl_deep_extend("force", opts, custom_opts)
   end,
   specs = {
     {
@@ -122,33 +121,20 @@ return {
           desc = "Load Chat",
         }
 
-        -- Helper function to create mappings
-        local function create_mapping(action_type, selection_type)
+        local function select_action(selection_type)
           return function()
-            require("CopilotChat.integrations.snacks").pick(require("CopilotChat.actions")[action_type] {
-              selection = require("CopilotChat.select")[selection_type],
-            })
+            require("CopilotChat").select_prompt { selection = require("CopilotChat.select")[selection_type] }
           end
         end
 
         maps.n[prefix .. "p"] = {
-          create_mapping("prompt_actions", "buffer"),
+          select_action("buffer"),
           desc = "Prompt actions",
         }
 
         maps.v[prefix .. "p"] = {
-          create_mapping("prompt_actions", "visual"),
+          select_action("visual"),
           desc = "Prompt actions",
-        }
-
-        maps.n[prefix .. "d"] = {
-          create_mapping("help_actions", "buffer"),
-          desc = "LSP Diagnostics actions",
-        }
-
-        maps.v[prefix .. "d"] = {
-          create_mapping("help_actions", "visual"),
-          desc = "LSP Diagnostics actions",
         }
 
         -- Quick Chat function
