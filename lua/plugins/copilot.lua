@@ -5,6 +5,7 @@
 ---@type LazySpec
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
+  version = "^4",
   cmd = {
     "CopilotChat",
     "CopilotChatOpen",
