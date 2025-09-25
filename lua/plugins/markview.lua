@@ -5,7 +5,6 @@
 ---@type LazySpec
 return {
   "OXY2DEV/markview.nvim",
-  lazy = false,
   version = "*",
   opts = function()
     local symbols = require("markview.symbols")
@@ -119,6 +118,7 @@ return {
   specs = {
     {
       "nvim-treesitter/nvim-treesitter",
+      dependencies = { "OXY2DEV/markview.nvim" },
       opts = {
         ensure_installed = { "html", "markdown", "markdown_inline", "latex" },
       },
