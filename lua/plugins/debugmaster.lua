@@ -1,6 +1,10 @@
 --- Debugmaster - modal dap-ui alternative
 --- https://github.com/miroshQa/debugmaster.nvim
 
+local mapping = {
+  ["<leader>dd"] = { function() require("debugmaster").mode.toggle() end, desc = "Toggle debug master" },
+}
+
 ---@type LazySpec
 return {
   { "rcarriga/nvim-dap-ui", enabled = false },
@@ -11,18 +15,13 @@ return {
       "niuiic/dap-utils.nvim",
       -- "jbyuki/one-small-step-for-vimkind",
     },
-    brach = "v2",
     specs = {
       "astrocore",
       ---@type AstroCoreOpts
       opts = {
         mappings = {
-          n = {
-            ["<leader>d"] = { function() require("debugmaster").mode.toggle() end, desc = "Debug master" },
-          },
-          v = {
-            ["<leader>d"] = { function() require("debugmaster").mode.toggle() end, desc = "Debug master" },
-          },
+          n = mapping,
+          v = mapping,
         },
       },
     },
