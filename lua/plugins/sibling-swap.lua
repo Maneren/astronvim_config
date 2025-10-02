@@ -47,21 +47,21 @@ return {
         opts = {
           mappings = {
             n = {
-              [">s"] = {
-                function() require("sibling-swap").swap_with_left() end,
-                desc = "Swap next sibling",
-              },
               ["<s"] = {
-                function() require("sibling-swap").swap_with_right() end,
+                function() require("sibling-swap").swap_with_left() end,
                 desc = "Swap previous sibling",
               },
-              [">S"] = {
-                function() require("sibling-swap").swap_with_left_with_opp() end,
-                desc = "Swap next sibling (opposite)",
+              [">s"] = {
+                function() require("sibling-swap").swap_with_right() end,
+                desc = "Swap next sibling",
               },
               ["<S"] = {
-                function() require("sibling-swap").swap_with_right_with_opp() end,
+                function() require("sibling-swap").swap_with_left_with_opp() end,
                 desc = "Swap previous sibling (opposite)",
+              },
+              [">S"] = {
+                function() require("sibling-swap").swap_with_right_with_opp() end,
+                desc = "Swap next sibling (opposite)",
               },
             },
           },
