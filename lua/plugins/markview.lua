@@ -6,9 +6,10 @@
 return {
   "OXY2DEV/markview.nvim",
   version = "*",
+  ft = { "markdown", "md" },
   opts = function()
     local symbols = require("markview.symbols")
-    symbols.entries = vim.tbl_extend("force", symbols.entries, {
+    symbols.entries = vim.tbl_extend("error", symbols.entries, {
       ldots = "…",
       quad = "  ",
       [" "] = " ",
@@ -161,7 +162,9 @@ return {
       "nvim-treesitter/nvim-treesitter",
       dependencies = { "OXY2DEV/markview.nvim" },
       opts = {
-        ensure_installed = { "html", "markdown", "markdown_inline", "latex" },
+        treesitter = {
+          ensure_installed = { "html", "markdown", "markdown_inline", "latex" },
+        },
       },
     },
   },
