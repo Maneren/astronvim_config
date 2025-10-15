@@ -16,6 +16,7 @@ return {
         async_directory_scan = "auto",
         scan_mode = "deep",
         group_empty_dirs = true,
+        use_libuv_file_watcher = true,
         filtered_items = {
           always_show = {
             ".gitignored",
