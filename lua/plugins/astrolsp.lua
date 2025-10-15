@@ -3,6 +3,7 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    native_lsp_config = true,
     features = {
       autoformat = true,
       codelens = true,
