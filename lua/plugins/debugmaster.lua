@@ -7,15 +7,15 @@ local mapping = {
 
 ---@type LazySpec
 return {
-  { "rcarriga/nvim-dap-ui", enabled = false },
-  {
-    "miroshQa/debugmaster.nvim",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "niuiic/dap-utils.nvim",
-      -- "jbyuki/one-small-step-for-vimkind",
-    },
-    specs = {
+  "miroshQa/debugmaster.nvim",
+  dependencies = {
+    "mfussenegger/nvim-dap",
+    "niuiic/dap-utils.nvim",
+    -- "jbyuki/one-small-step-for-vimkind", TODO: set this up
+  },
+  specs = {
+    { "rcarriga/nvim-dap-ui", enabled = false },
+    {
       "astrocore",
       ---@type AstroCoreOpts
       opts = {
