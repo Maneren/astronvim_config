@@ -38,6 +38,9 @@ return {
       },
       window = {
         width = 40,
+        mappings = {
+          d = false,
+        },
       },
     })
   end,
