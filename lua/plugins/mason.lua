@@ -5,6 +5,7 @@
 return {
   {
     "mason-org/mason.nvim",
+    url = "https://github.com/KingMichaelPark/mason.nvim",
     opts = { pip = { use_uv = true } },
   },
   {
