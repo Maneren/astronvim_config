@@ -23,10 +23,6 @@ return {
     opts = {
       mappings = {
         n = {
-          ["<Leader>tt"] = {
-            "<Cmd>ToggleTerm direction=tab<CR>",
-            desc = "ToggleTerm tab",
-          },
           ["<Leader>tb"] = {
             function() require("astrocore").toggle_term_cmd { cmd = "btop", direction = "float" } end,
             desc = "ToggleTerm btop",
