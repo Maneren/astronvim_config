@@ -34,9 +34,6 @@ return {
         neovide_floating_corner_radius = 0.6,
         neovide_light_angle_degrees = 45,
         neovide_light_radius = 5,
-        neovide_padding_top = 4,
-        neovide_padding_right = 4,
-        neovide_padding_left = 6,
         neovide_opacity = 0.97,
         neovide_normal_opacity = 0.97,
 

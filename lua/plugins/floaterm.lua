@@ -8,7 +8,7 @@ return {
   dependencies = { "nvzone/volt" },
   opts = {
     border = false,
-    size = { h = 95, w = 95 },
+    size = { h = 92, w = 90 },
 
     mappings = {
       sidebar = nil,
