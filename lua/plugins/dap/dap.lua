@@ -7,7 +7,7 @@ return {
         python = function()
           require("dap").adapters.python = {
             type = "executable",
-            command = "/usr/bin/python3",
+            command = vim.fn.exepath("python"),
             args = {
               "-m",
               "debugpy.adapter",
@@ -19,7 +19,7 @@ return {
             type = "server",
             port = "${port}",
             executable = {
-              command = "codelldb",
+              command = vim.fn.exepath("codelldb"),
               args = { "--port", "${port}" },
             },
           }
@@ -27,7 +27,7 @@ return {
         coreclr = function()
           require("dap").adapters.coreclr = {
             type = "executable",
-            command = "netcoredbg",
+            command = vim.fn.exepath("netcoredbg"),
             args = { "--interpreter=vscode" },
           }
         end,
@@ -41,50 +41,6 @@ return {
         "mxsdev/nvim-dap-vscode-js",
         dependencies = { "microsoft/vscode-js-debug" },
         opts = { adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" } },
-      },
-    },
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = { "ChristianChiarulli/neovim-codicons" },
-    opts = {
-      layouts = {
-        {
-          elements = {
-            {
-              id = "scopes",
-              size = 0.30,
-            },
-            {
-              id = "stacks",
-              size = 0.30,
-            },
-            {
-              id = "watches",
-              size = 0.20,
-            },
-            {
-              id = "breakpoints",
-              size = 0.20,
-            },
-          },
-          position = "left",
-          size = 40,
-        },
-        {
-          elements = {
-            {
-              id = "repl",
-              size = 0.4,
-            },
-            {
-              id = "console",
-              size = 0.6,
-            },
-          },
-          position = "bottom",
-          size = 10,
-        },
       },
     },
   },
