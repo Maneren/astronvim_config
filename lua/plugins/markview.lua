@@ -5,8 +5,10 @@
 ---@type LazySpec
 return {
   "OXY2DEV/markview.nvim",
-  version = "*",
-  ft = { "markdown", "md" },
+  lazy = false,
+  dependencies = {
+    "catppuccin",
+  },
   opts = function()
     local symbols = require("markview.symbols")
     symbols.entries = vim.tbl_extend("error", symbols.entries, {
@@ -37,6 +39,7 @@ return {
         ignore_buftypes = { "nofile" },
         debounce = 50,
         icon_provider = "mini",
+        filetypes = { "markdown", "quarto", "rmd", "typst", "ipynb" },
       },
       markdown = {
         headings = presets.headings.glow,
