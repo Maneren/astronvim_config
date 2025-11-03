@@ -9,5 +9,9 @@ return {
   ---@type CatppuccinOptions
   opts = {
     term_colors = true,
+    transparent_background = not vim.g.neovide,
+    float = {
+      transparent = true,
+    },
   },
 }
