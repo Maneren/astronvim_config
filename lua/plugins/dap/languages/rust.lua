@@ -72,37 +72,60 @@ return function(run)
   end
 
   local core = require("core")
-  local target_dir = os.getenv("CARGO_TARGET_DIR") .. "/debug/"
-  if core.file.file_or_dir_exists(target_dir) then
-    local executable = {}
-    for path, path_type in vim.fs.dir(target_dir) do
-      if path_type == "file" then
-        local perm = vim.fn.getfperm(target_dir .. path)
+  local target_subdirs = {
+    "debug",
+    "release-debug",
+  }
+  local roots = {
+    core.file.root_path() .. "/target",
+    os.getenv("CARGO_TARGET_DIR"),
+  }
+
+  local target_dirs = {}
+  for _, root in pairs(roots) do
+    for _, target_subdir in pairs(target_subdirs) do
+      local target_dir = root .. "/" .. target_subdir .. "/"
+      if core.file.file_or_dir_exists(target_dir) then
+        table.insert(target_dirs, { path = target_dir, subdir = target_subdir })
+      end
+    end
+  end
+
+  local executables = {}
+  for _, target in pairs(target_dirs) do
+    for entry, entry_type in vim.fs.dir(target.path) do
+      if entry_type == "file" then
+        local perm = vim.fn.getfperm(target.path .. entry)
         if string.match(perm, "x", 3) then
-          table.insert(executable, path)
+          table.insert(executables, { path = target.path .. entry, display = target.subdir .. "/" .. entry })
         end
       end
     end
-    if #executable == 1 then
-      set_program_path(target_dir .. executable[1])
-      run(configs)
-    else
-      vim.ui.select(executable, { prompt = "Select executable" }, function(choice)
-        if not choice then
-          return
-        end
+  end
 
-        set_program_path(target_dir .. choice)
-        run(configs)
-      end)
-    end
-  else
+  if #executables == 0 then
     vim.ui.input({
       prompt = "Path to executable: ",
-      default = core.file.root_path() .. "/target/debug/",
+      default = core.file.root_path(),
     }, function(input)
       set_program_path(input)
       run(configs)
     end)
+  elseif #executables == 1 then
+    set_program_path(executables[1])
+    run(configs)
+  else
+    vim.ui.select(
+      executables,
+      { prompt = "Select executable", format_item = function(item) return item.display end },
+      function(choice)
+        if not choice then
+          return
+        end
+
+        set_program_path(choice.path)
+        run(configs)
+      end
+    )
   end
 end
