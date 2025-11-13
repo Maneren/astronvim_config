@@ -117,7 +117,6 @@ return {
           "snippets",
           "buffer",
           "latex",
-          "git",
           "ripgrep",
         }
 
@@ -125,6 +124,7 @@ return {
           lua = { "lazydev" },
           sql = { "dadbod" },
           markdown = { "markview" },
+          gitcommit = { "git" },
         }
 
         local ft = vim.bo.filetype
