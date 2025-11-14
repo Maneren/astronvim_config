@@ -8,6 +8,8 @@ local mapping = {
 ---@type LazySpec
 return {
   "miroshQa/debugmaster.nvim",
+  dev = true,
+  dir = "~/Programming/debugmaster.nvim",
   dependencies = {
     "mfussenegger/nvim-dap",
     "niuiic/dap-utils.nvim",
