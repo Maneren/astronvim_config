@@ -64,8 +64,20 @@ return {
           padding = { right = 1 },
           surround = {
             separator = "left",
-            color = function() return { main = status.hl.mode_bg(), right = "blank_bg" } end,
+            color = function()
+              -- if require("debugmaster.debug.mode").is_active() then
+              --   vim.notify_once("Debug mode")
+              --   return { main = "dCursor", right = "blank_bg" }
+              -- end
+
+              return { main = status.hl.mode_bg(), right = "blank_bg" }
+            end,
           },
+          -- update = {
+          --   "ModeChanged",
+          --   pattern = "*:*",
+          --   callback = function() vim.schedule(vim.cmd.redrawstatus) end,
+          -- },
         },
         -- supposedly grey separator
         status.component.builder {
