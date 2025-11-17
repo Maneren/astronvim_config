@@ -22,7 +22,6 @@ return {
       implies = "⟹ ",
       ge = "≥",
       le = "≤",
-      to = "→",
       emptyset = "∅",
       choose = "C",
       colon = ":",
