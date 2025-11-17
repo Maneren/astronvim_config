@@ -6,6 +6,7 @@ return {
   {
     "mason-org/mason.nvim",
     url = "https://github.com/KingMichaelPark/mason.nvim",
+    branch = "feat/add-uv-as-pypi-source",
     opts = { pip = { use_uv = true } },
   },
   {
