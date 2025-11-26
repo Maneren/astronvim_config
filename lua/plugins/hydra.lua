@@ -7,6 +7,7 @@
 ---@type LazySpec
 return {
   "nvimtools/hydra.nvim",
+  event = "VeryLazy",
   opts = {
     ["Side scroll"] = {
       mode = "n",

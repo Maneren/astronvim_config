@@ -4,7 +4,7 @@
 ---@type LazySpec
 return {
   "jaimecgomezz/here.term",
-  event = "BufEnter",
+  event = "VeryLazy",
   opts = {},
   specs = {
     {

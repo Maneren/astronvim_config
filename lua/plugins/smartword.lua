@@ -11,7 +11,7 @@ local mapping = {
 ---@type LazySpec
 return {
   "anuvyklack/vim-smartword",
-  event = "BufEnter",
+  event = "VeryLazy",
   specs = {
     {
       "astrocore",
