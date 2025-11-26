@@ -14,6 +14,7 @@ return {
   { import = "astrocommunity.editing-support.suda-vim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.git.octo-nvim" },
+  { import = "astrocommunity.git.vscode-diff-nvim" },
   { import = "astrocommunity.keybinding.hydra-nvim" },
   { import = "astrocommunity.lsp.actions-preview-nvim" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
