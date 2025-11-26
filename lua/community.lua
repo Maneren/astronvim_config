@@ -2,6 +2,7 @@
 return {
   "Maneren/astrocommunity",
   { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.code-runner.molten-nvim" },
   { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
   { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
   { import = "astrocommunity.diagnostics.tiny-inline-diagnostic-nvim" },
@@ -39,6 +40,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python-ruff" },
+  { import = "astrocommunity.pack.quarto" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.sql" },
   { import = "astrocommunity.pack.tailwindcss" },
@@ -49,6 +51,7 @@ return {
   { import = "astrocommunity.recipes.neovide" },
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.search.grug-far-nvim" },
+  { import = "astrocommunity.snippet.mini-snippets" },
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.utility.lua-json5" },
   { import = "astrocommunity.utility.noice-nvim" },
