@@ -23,14 +23,15 @@ return {
       timeout_ms = 2000,
     },
     handlers = {
-      rust_analyzer = false, -- rustacean.nvim
+      -- TODO: wait for rustacean.nvim to update
+      -- rust_analyzer = false, -- rustacean.nvim
       omnisharp = false, -- csharp.nvim
     },
     ---@diagnostic disable: missing-fields
     config = {
       clangd = { capabilities = { offsetEncoding = "utf-8" } },
       rust_analyzer = {
-        standalone = false,
+        standalone = true,
         settings = {
           ["rust-analyzer"] = {
             diagnostics = {
@@ -171,5 +172,9 @@ return {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
       },
     },
+  },
+  specs = {
+    -- TODO: wait for rustacean.nvim to update
+    { "mrcjkb/rustaceanvim", enabled = false },
   },
 }
