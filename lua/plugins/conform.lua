@@ -35,6 +35,7 @@ return {
       just = { "just" },
       lua = { "stylua" },
       markdown = { "cbfmt", "prettierd" },
+      python = { lsp_format = "prefer" },
       rust = { "rustfmt" },
       sh = { "beautysh" },
       sql = { "sqlfluff" },
