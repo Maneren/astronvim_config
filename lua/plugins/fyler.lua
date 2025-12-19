@@ -6,7 +6,7 @@ return {
   "A7Lavinraj/fyler.nvim",
   event = "VeryLazy",
   cmd = { "Fyler" },
-  dependencies = { "echasnovski/mini.icons" },
+  dependencies = { "nvim-mini/mini.icons" },
   version = "*",
   ---@param opts FylerOpts
   opts = function(_, opts)
