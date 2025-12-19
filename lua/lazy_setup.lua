@@ -10,6 +10,7 @@ local spec = {
       pin_plugins = nil,
     },
   },
+  { "AstroNvim/astrolsp", branch = "v4" },
   { import = "community" },
   { import = "plugins" },
   { import = "plugins.dap" },
