@@ -13,7 +13,4 @@ return {
       },
     },
   },
-  specs = {
-    { "catppuccin", opts = { integrations = { grug_far = true } } },
-  },
 }

@@ -80,7 +80,6 @@ return {
           },
         },
       },
-      { "catppuccin/nvim", opts = { integrations = { overseer = true } } },
     },
   },
 }

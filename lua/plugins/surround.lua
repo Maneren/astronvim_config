@@ -18,7 +18,4 @@ return {
       change = "gzr",
     },
   },
-  specs = {
-    { "catppuccin", opts = { integrations = { nvim_surround = true } } },
-  },
 }

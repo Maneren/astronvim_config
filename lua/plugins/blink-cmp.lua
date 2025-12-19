@@ -169,7 +169,4 @@ return {
       },
     },
   },
-  specs = {
-    { "catppuccin", opts = { integrations = { blink_cmp = true } } },
-  },
 }
