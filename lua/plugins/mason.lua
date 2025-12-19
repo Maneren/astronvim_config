@@ -36,7 +36,6 @@ return {
         "robotframework-lsp",
         "shellcheck",
         "shellharden",
-        "sourcery",
         "sqlfmt",
         "stylelint-lsp",
         "tectonic",

@@ -110,18 +110,6 @@ return {
           },
         },
       },
-      sourcery = {
-        settings = {
-          sourcery = {
-            metricsEnabled = false,
-            refactor = {
-              skip = {
-                "function-quality",
-              },
-            },
-          },
-        },
-      },
       ltex = {
         settings = {
           ltex = {
