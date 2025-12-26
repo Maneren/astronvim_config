@@ -13,7 +13,7 @@ return {
 
       settings = {
         sonarlint = {
-          pathToCompileCommands = "compile_commands.json",
+          pathToCompileCommands = "build/compile_commands.json",
         },
       },
     },
