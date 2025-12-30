@@ -101,7 +101,6 @@ return {
     return require("astrocore").extend_tbl(opts, custom_opts)
   end,
   specs = {
-    { "RRethy/vim-illuminate", enabled = false },
     {
       "astrocore",
       ---@param _ LazyPlugin
