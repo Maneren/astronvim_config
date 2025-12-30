@@ -6,7 +6,7 @@
 ---@type LazySpec
 return {
   "stevearc/conform.nvim",
-  dependencies = { "williamboman/mason.nvim" },
+  dependencies = { "mason-org/mason.nvim" },
   ---@param opts conform.setupOpts
   opts = function(_, opts)
     local buf_utils = require("astrocore.buffer")

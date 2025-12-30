@@ -1,5 +1,5 @@
 --- Installer for LSPs and formatters
---- https://github.com/williamboman/mason.nvim
+--- https://github.com/mason-org/mason.nvim
 
 ---@type LazySpec
 return {

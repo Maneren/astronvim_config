@@ -6,7 +6,7 @@ return {
   "iabdelkareem/csharp.nvim",
   ft = { "cs" },
   dependencies = {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     "mfussenegger/nvim-dap",
     "Tastyep/structlog.nvim",
   },
