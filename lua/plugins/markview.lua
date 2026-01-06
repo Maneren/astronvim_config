@@ -5,9 +5,10 @@
 ---@type LazySpec
 return {
   "OXY2DEV/markview.nvim",
-  lazy = false,
+  ft = { "markdown", "mdx", "md", "mdown", "mkd", "mkdn" },
   dependencies = {
-    "catppuccin",
+    { "catppuccin" },
+    { "Saghen/blink.cmp" },
   },
   opts = function()
     local symbols = require("markview.symbols")
@@ -162,7 +163,6 @@ return {
   specs = {
     {
       "nvim-treesitter/nvim-treesitter",
-      dependencies = { "OXY2DEV/markview.nvim" },
       opts = {
         treesitter = {
           ensure_installed = { "html", "markdown", "markdown_inline", "latex" },

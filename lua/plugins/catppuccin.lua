@@ -6,6 +6,7 @@
 return {
   "catppuccin/nvim",
   name = "catppuccin",
+  lazy = false,
   ---@type CatppuccinOptions
   opts = {
     term_colors = true,
