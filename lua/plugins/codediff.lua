@@ -1,5 +1,5 @@
 return {
-  "esmuellert/vscode-diff.nvim",
+  "esmuellert/codediff.nvim",
   opts = {
     highlights = {
       line_insert = "DiffAdd",
