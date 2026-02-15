@@ -63,7 +63,7 @@ return {
         -- escape in terminal mode
         ["<C-ESC>"] = { "<C-\\><C-n>" },
         -- paste in terminal
-        ["<C-v>"] = { "<C-\\><C-n>pi", desc = "Paste from clipboard" },
+        ["<C-S-V>"] = { "<C-\\><C-n>pi", desc = "Paste from clipboard" },
       },
       n = {
         H = { "^", desc = "First non-blank" },
