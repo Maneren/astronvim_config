@@ -5,7 +5,6 @@ return {
     "mfussenegger/nvim-dap",
     "niuiic/core.nvim",
     "rcarriga/nvim-dap-ui",
-    "nvim-telescope/telescope.nvim",
     {
       "astrocore",
       opts = {

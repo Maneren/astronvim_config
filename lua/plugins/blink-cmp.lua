@@ -69,10 +69,6 @@ return {
       "kristijanhusak/vim-dadbod-completion",
       ft = { "sql", "mysql", "plsql" },
     },
-    {
-      "Kaiser-Yang/blink-cmp-git",
-      dependencies = { "nvim-lua/plenary.nvim" },
-    },
     "mikavilpas/blink-ripgrep.nvim",
   },
   ---@type blink.cmp.Config
@@ -108,7 +104,7 @@ return {
       end,
       default = function(_)
         if inside_comment_block() then
-          return { "path", "buffer", "latex", "git", "ripgrep" }
+          return { "path", "buffer", "latex", "ripgrep" }
         end
 
         local base = {
@@ -124,7 +120,6 @@ return {
           lua = { "lazydev" },
           sql = { "dadbod" },
           markdown = { "markview" },
-          gitcommit = { "git" },
         }
 
         local ft = vim.bo.filetype
