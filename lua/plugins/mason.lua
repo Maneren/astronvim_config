@@ -13,8 +13,8 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     event = "VeryLazy",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "actionlint",
         "beautysh",
         "bibtex-tidy",
@@ -40,7 +40,21 @@ return {
         "texlab",
         "yamlfmt",
         "yamllint",
-      },
-    },
+      })
+
+      -- Remove binaries that are already installed to prevent duplicate install
+      -- with system packages
+      for i = #opts.ensure_installed, 1, -1 do
+        local name = opts.ensure_installed[i]
+        local spec = require("mason-registry").get_package(name).spec
+
+        if vim.iter(spec.bin):all(function(k, _) return vim.fn.executable(k) == 1 end) then
+          table.remove(opts.ensure_installed, i)
+          vim.lsp.enable(name)
+        end
+      end
+
+      return opts
+    end,
   },
 }
