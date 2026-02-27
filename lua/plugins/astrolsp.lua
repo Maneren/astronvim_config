@@ -22,8 +22,6 @@ return {
       timeout_ms = 2000,
     },
     handlers = {
-      -- TODO: wait for rustacean.nvim to update
-      -- rust_analyzer = false, -- rustacean.nvim
       omnisharp = false, -- csharp.nvim
     },
     autocmds = {
@@ -46,9 +44,5 @@ return {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
       },
     },
-  },
-  specs = {
-    -- TODO: wait for rustacean.nvim to update
-    { "mrcjkb/rustaceanvim", enabled = false },
   },
 }
