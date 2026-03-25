@@ -14,8 +14,6 @@ return {
     float = {
       transparent = true,
     },
-    integrations = {
-      native_lsp = { inlay_hints = { background = false } },
-    },
+    lsp_styles = { inlay_hints = { background = false } },
   },
 }

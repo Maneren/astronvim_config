@@ -4,7 +4,7 @@ return {
   dependencies = { "catppuccin" },
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "catppuccin",
+    colorscheme = "catppuccin-nvim",
     icons = {
       LSPLoading1 = "⠋",
       LSPLoading2 = "⠙",
