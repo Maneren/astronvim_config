@@ -65,7 +65,7 @@ return {
         width = 0.4,
       },
 
-      model = "claude-sonnet-4",
+      model = "grok-code-fast-1",
       prompts = prompts,
 
       highlight_headers = false,
