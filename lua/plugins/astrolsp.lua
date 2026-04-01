@@ -24,21 +24,6 @@ return {
     handlers = {
       omnisharp = false, -- csharp.nvim
     },
-    autocmds = {
-      lsp_document_highlight = {
-        cond = "textDocument/documentHighlight",
-        {
-          event = { "CursorHold", "CursorHoldI" },
-          desc = "Document Highlighting",
-          callback = function() vim.lsp.buf.document_highlight() end,
-        },
-        {
-          event = { "CursorMoved", "CursorMovedI", "BufLeave" },
-          desc = "Document Highlighting Clear",
-          callback = function() vim.lsp.buf.clear_references() end,
-        },
-      },
-    },
     mappings = {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
