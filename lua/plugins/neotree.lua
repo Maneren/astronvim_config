@@ -9,36 +9,33 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
   },
-  cmd = "Neotree",
-  opts = function(_, opts)
-    return vim.tbl_deep_extend("force", opts, {
-      filesystem = {
-        async_directory_scan = "auto",
-        scan_mode = "deep",
-        group_empty_dirs = true,
-        use_libuv_file_watcher = true,
-        filtered_items = {
-          always_show = {
-            ".gitignored",
-          },
-          never_show = {
-            ".DS_Store",
-            "thumbs.db",
-            "__pycache__",
-          },
+  opts = {
+    filesystem = {
+      async_directory_scan = "auto",
+      scan_mode = "deep",
+      group_empty_dirs = true,
+      use_libuv_file_watcher = true,
+      filtered_items = {
+        always_show = {
+          ".gitignore",
         },
-        follow_current_file = {
-          enabled = true,
+        never_show = {
+          ".DS_Store",
+          "thumbs.db",
+          "__pycache__",
         },
-        find_by_full_path_words = true,
       },
-      sources = {
-        "filesystem",
-        "git_status",
+      follow_current_file = {
+        enabled = true,
       },
-      window = {
-        width = 40,
-      },
-    })
-  end,
+      find_by_full_path_words = true,
+    },
+    sources = {
+      "filesystem",
+      "git_status",
+    },
+    window = {
+      width = 40,
+    },
+  },
 }
