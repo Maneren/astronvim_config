@@ -131,10 +131,13 @@ return {
   specs = {
     {
       "AstroNvim/astrocore",
-      opts = function(_, opts)
-        local maps = assert(opts.mappings)
-        maps.n["<Leader>E"] = { function() require("fyler").toggle { kind = "split_left_most" } end, desc = "Fyler" }
-      end,
+      opts = {
+        mappings = {
+          n = {
+            ["<Leader>E"] = { function() require("fyler").toggle { kind = "float" } end, desc = "Fyler" },
+          },
+        },
+      },
     },
   },
 }
