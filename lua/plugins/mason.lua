@@ -16,6 +16,7 @@ return {
       ensure_installed = {
         "actionlint",
         "beautysh",
+        "bibtex-tidy",
         "cbfmt",
         "codelldb",
         "cpplint",
@@ -32,7 +33,7 @@ return {
         "shellcheck",
         "shellharden",
         "sqlfmt",
-        "stylelint-lsp",
+        "stylelint-language-server",
         "tectonic",
         "tex-fmt",
         "texlab",
