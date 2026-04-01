@@ -2,7 +2,7 @@
 local spec = {
   {
     "AstroNvim/AstroNvim",
-    branch = "v6",
+    version = "*",
     import = "astronvim.plugins",
     opts = {
       mapleader = " ",
@@ -10,9 +10,6 @@ local spec = {
       pin_plugins = nil,
     },
   },
-  { "AstroNvim/astrocore", branch = "v3" },
-  { "AstroNvim/astrolsp", branch = "v4" },
-  { "AstroNvim/astroui", branch = "v4" },
   { import = "community" },
   { import = "plugins" },
   { import = "plugins.dap" },
