@@ -1,5 +1,6 @@
 --- Installer for LSPs and formatters
 --- https://github.com/mason-org/mason.nvim
+--- extends AstroNvim
 
 ---@type LazySpec
 return {

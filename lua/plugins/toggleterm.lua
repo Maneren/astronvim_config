@@ -1,6 +1,6 @@
---- Toggleable terminal
+--- Togglable terminal
 --- https://github.com/akinsho/toggleterm.nvim
---- extends astrocommunity
+--- extends AstroNvim
 
 ---@type LazySpec
 return {
