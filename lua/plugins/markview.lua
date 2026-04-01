@@ -8,7 +8,7 @@ return {
   ft = { "markdown", "mdx", "md", "mdown", "mkd", "mkdn" },
   dependencies = {
     { "catppuccin" },
-    { "Saghen/blink.cmp" },
+    { "saghen/blink.cmp" },
   },
   opts = function()
     local symbols = require("markview.symbols")

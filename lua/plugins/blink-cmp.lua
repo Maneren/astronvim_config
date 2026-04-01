@@ -1,8 +1,8 @@
 --- Completion UI
---- https://github.com/Saghen/blink-cmp
+--- https://github.com/saghen/blink-cmp
 --- extends astrocommunity
 
--- https://github.com/Saghen/blink.cmp/pull/1354
+-- https://github.com/saghen/blink.cmp/pull/1354
 local function inside_comment_block()
   if vim.api.nvim_get_mode().mode ~= "i" then
     return false
@@ -55,11 +55,11 @@ end
 
 ---@type LazySpec
 return {
-  "Saghen/blink.cmp",
+  "saghen/blink.cmp",
   dependencies = {
     "rafamadriz/friendly-snippets",
     {
-      "Saghen/blink.compat",
+      "saghen/blink.compat",
       opts = {},
       dependencies = {
         "kdheepak/cmp-latex-symbols",
