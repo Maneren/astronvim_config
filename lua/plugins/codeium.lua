@@ -4,6 +4,7 @@
 ---@type LazySpec
 return {
   "monkoose/neocodeium",
+  version = "*",
   event = "User AstroFile",
   opts = {
     show_label = false,

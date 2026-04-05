@@ -1,5 +1,6 @@
 return {
   "esmuellert/codediff.nvim",
+  version = "*",
   opts = {
     highlights = {
       line_insert = "DiffAdd",
