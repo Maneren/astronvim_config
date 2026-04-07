@@ -127,7 +127,7 @@ return {
               return symbols.status[client_status] .. symbols.server_status[server_status]
             end,
           },
-          surround = { separator = { " ", "" } },
+          surround = { separator = { "  ", "" } },
           update = {
             "User",
             pattern = { "NeoCodeiumServer*", "NeoCodeium*{En,Dis}abled" },
@@ -149,6 +149,10 @@ return {
             percentage = { padding = { right = 1 } },
             scrollbar = false,
             surround = { separator = "none", color = "file_info_bg" },
+          },
+          status.component.builder {
+            provider = "[+U%02B]",
+            hl = { fg = "nav_fg", bg = "file_info_bg" },
           },
         },
         status.component.builder {
