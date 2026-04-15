@@ -62,7 +62,7 @@ return {
         width = 0.4,
       },
 
-      model = "grok-code-fast-1",
+      model = "gemini-3.1-pro-preview",
       prompts = prompts,
 
       highlight_headers = false,
