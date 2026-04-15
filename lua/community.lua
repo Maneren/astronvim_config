@@ -1,7 +1,6 @@
 ---@type LazySpec
 return {
   "Maneren/astrocommunity",
-  { import = "astrocommunity.ai.copilotchat-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
   { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
