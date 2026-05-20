@@ -5,6 +5,8 @@
 ---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  version = nil,
+  commit = "4d748ef6953ba0c3a6623dc0a775a5f5989aba70",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
@@ -36,6 +38,10 @@ return {
     },
     window = {
       width = 40,
+      mappings = {
+        d = "trash",
+        D = "delete",
+      },
     },
   },
 }
