@@ -36,6 +36,10 @@ return {
     },
     window = {
       width = 40,
+      mappings = {
+        d = "trash",
+        D = "delete",
+      },
     },
   },
 }
