@@ -72,17 +72,4 @@ return {
 
     return vim.tbl_deep_extend("force", opts, custom_opts)
   end,
-  specs = {
-    {
-      "AstroNvim/astrocore",
-      ---@type AstroCoreOpts
-      opts = {
-        options = {
-          g = {
-            copilot_chat_prefix = "<Leader>i",
-          },
-        },
-      },
-    },
-  },
 }
