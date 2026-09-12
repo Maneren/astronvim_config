@@ -13,17 +13,8 @@ return {
   opts = function()
     local symbols = require("markview.symbols")
     symbols.entries = vim.tbl_extend("error", symbols.entries, {
-      ldots = "…",
-      quad = "  ",
       [" "] = " ",
-      enspace = " ",
-      thinspace = " ",
       [","] = " ",
-      iff = "⟺ ",
-      implies = "⟹ ",
-      ge = "≥",
-      le = "≤",
-      emptyset = "∅",
       choose = "C",
       colon = ":",
       coloneqq = "≔",
