@@ -41,6 +41,7 @@ return {
       sql = { "sqlfluff" },
       tex = { "tex-fmt" },
       toml = { "taplo" },
+      cmake = { "gersemi" },
       ["_"] = function(bufnr)
         return is_file_buffer(bufnr) and { "trim_whitespace", "trim_newlines", "squeeze_blanks" } or {}
       end,
