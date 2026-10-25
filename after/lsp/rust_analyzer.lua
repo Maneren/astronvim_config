@@ -23,7 +23,6 @@ return {
         },
       },
       cargo = {
-        loadOutDirsFromCheck = true,
         autoreload = true,
         runBuildScripts = true,
         features = "all",
