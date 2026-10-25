@@ -145,17 +145,7 @@ return {
             strategy = 0,
           },
         },
-        npm = {
-          name = "npm",
-          module = "blink.compat.source",
-          opts = { ignore = { "beta", "rc" }, only_latest_version = true },
-        },
         dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-        git = {
-          module = "blink-cmp-git",
-          name = "Git",
-          score_offset = -50,
-        },
         ripgrep = {
           module = "blink-ripgrep",
           name = "Ripgrep",
