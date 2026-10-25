@@ -1,10 +1,10 @@
---- Close buffer after 10 minutes of inactivity
+--- Close buffer after 15 minutes of inactivity
 --- https://github.com/chrisgrieser/nvim-early-retirement
 
 ---@type LazySpec
 return {
   "chrisgrieser/nvim-early-retirement",
-  event = "BufEnter",
+  event = "User AstroFile",
   opts = {
     retirementAgeMins = 15,
   },
