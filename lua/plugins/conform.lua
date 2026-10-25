@@ -11,19 +11,7 @@ return {
   opts = function(_, opts)
     local buf_utils = require("astrocore.buffer")
     opts.default_format_opts = { lsp_format = "fallback" }
-
-    opts.format_on_save = function(bufnr)
-      if vim.g.autoformat == nil then
-        vim.g.autoformat = true
-      end
-      local autoformat = vim.b[bufnr].autoformat
-      if autoformat == nil then
-        autoformat = vim.g.autoformat
-      end
-      if autoformat then
-        return { timeout_ms = 2000 }
-      end
-    end
+    opts.format_on_save = {}
 
     local function is_file_buffer(bufnr) return buf_utils.is_valid(bufnr) and buf_utils.has_filetype(bufnr) end
 
@@ -88,7 +76,7 @@ return {
     {
       "AstroNvim/astrocore",
       opts = {
-        options = { opt = { formatexpr = "v:lua.require'conform'.formatexpr()" } },
+        options = { opt = { formatexpr = "v:lua.require'conform'.formatexpr()" }, g = { autoformat = true } },
         commands = {
           Format = {
             function(args)
