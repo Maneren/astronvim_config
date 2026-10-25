@@ -80,7 +80,7 @@ return {
     rooter = {
       detector = {
         "lsp",
-        { "lua", "MakeFile", "package.json", "Cargo.toml", "CMakeLists.txt" },
+        { "lua", "Makefile", "package.json", "Cargo.toml", "CMakeLists.txt" },
         { ".git", "_darcs", ".hg", ".bzr", ".svn" },
       },
       autochdir = true,
