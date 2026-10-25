@@ -112,7 +112,7 @@ return function(run)
       run(configs)
     end)
   elseif #executables == 1 then
-    set_program_path(executables[1])
+    set_program_path(executables[1].path)
     run(configs)
   else
     vim.ui.select(
