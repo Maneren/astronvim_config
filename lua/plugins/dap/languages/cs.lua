@@ -8,7 +8,7 @@ return function(run)
     },
     {
       type = "coreclr",
-      name = "launch - netcoredbg",
+      name = "launch with args - netcoredbg",
       request = "launch",
       program = require("dap.utils").pick_file,
       args = require("plugins.dap.languages.common").parse_args,
