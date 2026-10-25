@@ -6,9 +6,45 @@
 return {
   {
     "mason-org/mason.nvim",
-    url = "https://github.com/KingMichaelPark/mason.nvim",
-    branch = "feat/add-uv-as-pypi-source",
-    opts = { pip = { use_uv = true } },
+    config = function(_, opts)
+      require("mason").setup(opts)
+
+      local Result = require("mason-core.result")
+      local path = require("mason-core.path")
+      local compiler = require("mason-core.installer.compiler")
+      local pypi = require("mason-core.installer.compiler.compilers.pypi")
+
+      local extend = { __index = pypi }
+
+      local uv = {
+        ---@async
+        ---@param ctx InstallContext
+        ---@param source ParsedPypiSource
+        install = function(ctx, source)
+          if vim.fn.executable("uv") ~= 1 then
+            return pypi.install(ctx, source)
+          end
+          return Result.try(function(try)
+            ctx:promote_cwd()
+            try(ctx.spawn.uv { "venv", "venv" })
+            try(ctx.spawn.uv {
+              "pip",
+              "install",
+              source.extra and ("%s[%s]==%s"):format(source.package, source.extra, source.version)
+                or ("%s==%s"):format(source.package, source.version),
+              source.extra_packages or vim.NIL,
+              env = {
+                VIRTUAL_ENV = path.concat { ctx.cwd:get(), "venv" },
+              },
+            })
+          end)
+        end,
+      }
+
+      setmetatable(uv, extend)
+
+      compiler.register_compiler("pypi", uv)
+    end,
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
