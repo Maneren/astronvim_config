@@ -96,12 +96,7 @@ return {
       },
     },
     sources = {
-      min_keyword_length = function(ctx)
-        if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
-          return 2
-        end
-        return 0
-      end,
+      min_keyword_length = 0,
       default = function(_)
         if inside_comment_block() then
           return { "path", "buffer", "latex", "ripgrep" }
@@ -150,6 +145,7 @@ return {
           module = "blink-ripgrep",
           name = "Ripgrep",
           score_offset = -20,
+          min_keyword_length = 3,
         },
       },
     },
