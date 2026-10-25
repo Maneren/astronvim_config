@@ -1,6 +1,6 @@
 return {
   settings = {
-    ltex = {
+    ["ltex_plus"] = {
       completionEnabled = true,
       language = "en",
       checkFrequency = "save",
