@@ -1,5 +1,5 @@
 return {
-  capabilities = { positionEncodings = "utf-8" },
+  capabilities = { offsetEncoding = "utf-8" },
   cmd = {
     "clangd",
     "--completion-style=bundled",
