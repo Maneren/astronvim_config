@@ -1,3 +1,63 @@
+--- Find the outermost Cargo/uv workspace root containing the buffer.
+--- Returns an empty table when the buffer is not part of a workspace, so the
+--- remaining detectors can fall back to the usual behavior.
+---@param bufnr integer
+---@return string[]
+local function workspace_root(bufnr)
+  local path = vim.api.nvim_buf_get_name(bufnr)
+  if path == "" then
+    return {}
+  end
+
+  local markers = {
+    { file = "Cargo.toml", section = "[workspace]" },
+    { file = "pyproject.toml", section = "[tool.uv.workspace]" },
+  }
+
+  ---@param file string
+  ---@param section string
+  local function has_section(file, section)
+    local fd = io.open(file, "r")
+    if not fd then
+      return false
+    end
+    local found = false
+    for line in fd:lines() do
+      -- strip trailing comments and whitespace (also handles CRLF)
+      if vim.trim((line:gsub("#.*$", ""))) == section then
+        found = true
+        break
+      end
+    end
+    fd:close()
+    return found
+  end
+
+  local sections = {}
+  local filenames = {}
+  for _, marker in ipairs(markers) do
+    sections[marker.file] = marker.section
+    filenames[#filenames + 1] = marker.file
+  end
+
+  -- Don't look for workspaces above the repository root
+  local repo = vim.fs.root(path, { ".git", "_darcs", ".hg", ".bzr", ".svn" })
+
+  -- `vim.fs.find` returns nearest matches first, so the last match wins
+  local root
+  for _, file in ipairs(vim.fs.find(filenames, { path = path, upward = true, type = "file", limit = math.huge })) do
+    local dir = vim.fs.dirname(file)
+    if
+      (not repo or dir == repo or vim.startswith(dir, repo .. "/"))
+      and has_section(file, sections[vim.fs.basename(file)])
+    then
+      root = dir
+    end
+  end
+
+  return root and { root } or {}
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -79,8 +139,9 @@ return {
     },
     rooter = {
       detector = {
+        workspace_root,
         "lsp",
-        { "lua", "Makefile", "package.json", "Cargo.toml", "CMakeLists.txt" },
+        { "init.lua", "Makefile", "package.json", "Cargo.toml", "CMakeLists.txt", "pyproject.toml" },
         { ".git", "_darcs", ".hg", ".bzr", ".svn" },
       },
       autochdir = true,
