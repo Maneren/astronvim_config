@@ -79,15 +79,27 @@ return {
 
       -- Remove binaries that are already installed to prevent duplicate install
       -- with system packages
+      local installed_servers = {}
       for i = #opts.ensure_installed, 1, -1 do
         local name = opts.ensure_installed[i]
         local spec = get_package(name).spec
 
         if vim.iter(spec.bin):all(function(k, _) return vim.fn.executable(k) == 1 end) then
           table.remove(opts.ensure_installed, i)
-          vim.lsp.enable(name)
+          installed_servers[#installed_servers + 1] = name
         end
       end
+
+      -- Enabling an LSP before `nvim-lspconfig` is on the runtimepath resolves
+      -- its config without the plugin's `filetypes`, etc. Wait until it's
+      -- loaded.
+      require("astrocore").on_load("nvim-lspconfig", function()
+        for _, name in ipairs(installed_servers) do
+          if vim.lsp.config[name] then
+            require("astrolsp").lsp_setup(name)
+          end
+        end
+      end)
       return opts
     end,
   },
